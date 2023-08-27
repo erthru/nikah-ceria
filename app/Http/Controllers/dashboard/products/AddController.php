@@ -22,7 +22,7 @@ class AddController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $this->authorize('act-as-admin');
-        $code = $request->input('code');
+        $code = str_replace(' ', '', $request->input('code'));
         $name = $request->input('name');
         $description = $request->input('description');
         $thumbnail = $request->file('thumbnail');

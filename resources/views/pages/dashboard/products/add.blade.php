@@ -18,7 +18,7 @@
                             <div class="w-100">
                                 <label class="form-label">Kode</label>
                                 <input value="{{ old('code') }}" type="text" class="form-control" name="code"
-                                    placeholder="Masukkan Nama" required />
+                                    placeholder="Masukkan Kode" required />
                             </div>
                             <div class="w-100">
                                 <label class="form-label">Nama</label>
@@ -28,8 +28,7 @@
                         </div>
                         <div class="w-100 mb-2">
                             <label class="form-label">Deskripsi (Opsional)</label>
-                            <textarea value="{{ old('description') }}" type="text" class="form-control" name="description"
-                                placeholder="Masukkan Deskripsi"></textarea>
+                            <textarea type="text" class="form-control" name="description" placeholder="Masukkan Deskripsi">{{ old('description') }}</textarea>
                         </div>
                         <div class="d-flex flex-column flex-md-row row-gap-2 row-gap-md-0 column-gap-md-2 w-100 mb-2">
                             <div class="w-100">
@@ -54,12 +53,14 @@
                                 style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
                             <input id="thumbnail" type="file" class="form-control" name="thumbnail"
                                 accept=".jpg,.jpeg,.png,.webp,.git" required onchange="onThumbnailChange(this)" />
+                            <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB</p>
                         </div>
                         <div class="w-100 mb-2">
                             <label class="form-label">Status</label>
                             <select name="is_active" class="form-select" required>
-                                <option value="true">Aktif</option>
-                                <option value="false">Tidak Aktif</option>
+                                <option value="true" {{ old('is_active') == 'true' ? 'selected' : '' }}>Aktif</option>
+                                <option value="false" {{ old('is_active') == 'false' ? 'selected' : '' }}>Tidak Aktif
+                                </option>
                             </select>
                         </div>
                         <button class="btn btn-primary text-white submit-button mt-2">Tambah</button>

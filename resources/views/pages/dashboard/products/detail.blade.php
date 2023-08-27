@@ -19,7 +19,7 @@
                             <div class="w-100">
                                 <label class="form-label">Kode</label>
                                 <input value="{{ $product->code }}" type="text" class="form-control" name="code"
-                                    placeholder="Masukkan Nama" disabled />
+                                    placeholder="Masukkan Kode" disabled />
                             </div>
                             <div class="w-100">
                                 <label class="form-label">Nama</label>
@@ -58,12 +58,18 @@
                                 style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
                             <input id="thumbnail" type="file" class="form-control" name="thumbnail"
                                 accept=".jpg,.jpeg,.png,.webp,.git" onchange="onThumbnailChange(this)" />
+                            <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB</p>
                         </div>
                         <div class="w-100 mb-2">
                             <label class="form-label">Status</label>
                             <select name="is_active" class="form-select" required>
-                                <option value="true">Aktif</option>
-                                <option value="false">Tidak Aktif</option>
+                                <option value="true"
+                                    {{ old('is_active') == 'true' ? 'selected' : (!old('is_active') && $product->is_active == 1 ? 'selected' : '') }}>
+                                    Aktif</option>
+                                <option value="false"
+                                    {{ old('is_active') == 'false' ? 'selected' : (!old('is_active') && $product->is_active == 0 ? 'selected' : '') }}>
+                                    Tidak Aktif
+                                </option>
                             </select>
                         </div>
                         <p class="mb-2 text-secondary" style="font-size: 14px;">Terakhir diperbarui pada:
