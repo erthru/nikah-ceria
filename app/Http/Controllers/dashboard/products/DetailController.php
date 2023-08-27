@@ -1,0 +1,77 @@
+<?php
+
+namespace App\Http\Controllers\dashboard\products;
+
+use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
+
+class DetailController extends Controller
+{
+    public function show(String $id): View
+    {
+        $this->authorize('act-as-admin');
+        $product = Product::findOrFail($id);
+
+        return view('pages.dashboard.products.detail', [
+            'title' => 'Detail Produk',
+            'product' => $product
+        ]);
+    }
+
+    public function update(String $id, Request $request): RedirectResponse
+    {
+        $this->authorize('act-as-admin');
+        $name = $request->input('name');
+        $description = $request->input('description');
+        $thumbnail = $request->file('thumbnail');
+        $price = $request->input('price');
+        $discount = $request->input('discount');
+        $discount_expires_at = $request->input('discount_expires_at');
+        $is_active = $request->input('is_active');
+
+        if ($discount && $discount != '0' && !$discount_expires_at) {
+            return redirect('/dashboard/products/' . $id)->with('errorMessage', '"Diskon berakhir pada" wajib diisi jika menggunakan diskon')->withInput();
+        }
+
+        $thumbnailName = '';
+
+        if ($thumbnail) {
+            $thumbnailName = time() . '.' . $thumbnail->getClientOriginalExtension();
+            $thumbnail->move(public_path('/uploads'), $thumbnailName);
+        }
+
+        Product::find($id)->update([
+            'name' => $name,
+            'description' => $description,
+            'price' => $price,
+            'discount' => $discount,
+            'discount_expires_at' => $discount_expires_at,
+            'is_active' => $is_active == 'true' ? 1 : 0,
+        ]);
+
+        if ($thumbnailName) {
+            Product::find($id)->update([
+                'thumbnail' => $thumbnailName
+            ]);
+        }
+
+        return redirect('/dashboard/products')->with('successMessage', 'Produk berhasil diperbarui');
+    }
+
+    public function destroy(String $id): RedirectResponse
+    {
+        $this->authorize('act-as-admin');
+        $ordersTotal = Order::where('product_id', $id)->count();
+
+        if ($ordersTotal > 0) {
+            return redirect('/dashboard/products/' . $id)->with('errorMessage', 'Produk tidak dapat dihapus')->withInput();
+        }
+
+        Product::destroy($id);
+        return redirect('/dashboard/products')->with('successMessage', 'Produk berhasil dihapus');
+    }
+}
