@@ -41,13 +41,6 @@
                                     <input value="{{ old('name') ? old('name') : $tempName }}" type="text"
                                         class="form-control" name="name" placeholder="Masukkan Nama" required />
                                 </div>
-                                <div class="w-100">
-                                    <label class="form-label">Slug</label>
-                                    <input value="{{ old('slug') ? old('slug') : $tempSlug }}" type="text"
-                                        class="form-control" name="slug" placeholder="Masukkan Slug" required />
-                                    <p style="font-size: 14px; margin-top: 4px;">Dapat diakses nanti di: <a href="#"
-                                            target="blank" class="fw-medium"></a></p>
-                                </div>
                             </div>
                         @endif
                     </div>

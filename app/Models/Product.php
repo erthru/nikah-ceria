@@ -18,6 +18,7 @@ class Product extends Model
         'price',
         'discount',
         'discount_expires_at',
+        'demo_url',
         'is_active'
     ];
 

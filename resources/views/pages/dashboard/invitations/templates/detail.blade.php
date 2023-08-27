@@ -1,3 +1,4 @@
+@inject('carbon', 'Carbon\Carbon')
 @extends('layouts.dashboard')
 
 @section('content')
@@ -31,12 +32,41 @@
                     </a>
                     <div class="card mt-3">
                         <div class="card-body">
+                            <p>{{ $product->description }}</p>
+                            <a href="{{ $product->demo_url }}" target="blank" style="fw-medium">Lihat Demo</a>
                         </div>
                     </div>
                 </div>
                 <div class="price">
                     <div class="card">
-                        <div class="card-body"></div>
+                        <div class="card-body">
+                            <h4 style="margin-top: -4px">{{ $product->name }}</h4>
+                            <div class="d-flex mt-2">
+                                <p class="fw-medium {{ $product->price == 0 ? 'text-success' : ($product->price > 0 && $product->discount > 0 && $carbon::now()->lte(reverseFormatedDate($product->discount_expires_at)) ? 'text-danger' : '') }}"
+                                    style="font-size: 14px; margin-top: -8px; text-decoration: {{ $product->price > 0 && $product->discount > 0 && $carbon::now()->lte(reverseFormatedDate($product->discount_expires_at)) ? 'line-through' : '' }}">
+                                    {{ $product->price == 0 ? 'Gratis' : 'Rp ' . number_format($product->price, 0, ',', '.') }}
+                                </p>
+                                @if (
+                                    $product->price > 0 &&
+                                        $product->discount > 0 &&
+                                        $carbon::now()->lte(reverseFormatedDate($product->discount_expires_at)))
+                                    <p class="fw-medium ms-1" style="font-size: 14px; margin-top: -8px;">
+                                        Rp {{ number_format($product->price - $product->discount, 0, ',', '.') }}
+                                    </p>
+                                @endif
+                            </div>
+                            @if (
+                                $product->price > 0 &&
+                                    $product->discount > 0 &&
+                                    $carbon::now()->lte(reverseFormatedDate($product->discount_expires_at)))
+                                <p style="font-size: 14px;">
+                                    *Diskon akan berakhir pada
+                                    {{ str_replace(' 00:00:00', '', $product->discount_expires_at) }}
+                                </p>
+                            @endif
+                            <a href="/dashboard/invitations/templates/{{ $product->code }}"
+                                class="btn btn-primary mt-3 text-white w-100">Beli</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -45,15 +75,15 @@
 @endsection
 
 @section('style')
-<style>
-    .price {
-        width: 100%;
-    }
-
-    @media(min-width: 992px) {
+    <style>
         .price {
-            width: 250px;
+            width: 100%;
         }
-    }
-</style>
+
+        @media(min-width: 992px) {
+            .price {
+                width: 300px;
+            }
+        }
+    </style>
 @endsection

@@ -60,17 +60,24 @@
                                 accept=".jpg,.jpeg,.png,.webp,.git" onchange="onThumbnailChange(this)" />
                             <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB</p>
                         </div>
-                        <div class="w-100 mb-2">
-                            <label class="form-label">Status</label>
-                            <select name="is_active" class="form-select" required>
-                                <option value="true"
-                                    {{ old('is_active') == 'true' ? 'selected' : (!old('is_active') && $product->is_active == 1 ? 'selected' : '') }}>
-                                    Aktif</option>
-                                <option value="false"
-                                    {{ old('is_active') == 'false' ? 'selected' : (!old('is_active') && $product->is_active == 0 ? 'selected' : '') }}>
-                                    Tidak Aktif
-                                </option>
-                            </select>
+                        <div class="d-flex flex-column flex-md-row row-gap-2 row-gap-md-0 column-gap-md-2 w-100 mb-2">
+                            <div class="w-100">
+                                <label class="form-label">Demo URL</label>
+                                <input value="{{ old('demo_url') ? old('demo_url') : $product->demo_url }}" type="text"
+                                    class="form-control" name="demo_url" placeholder="Masukkan Demo URL" required />
+                            </div>
+                            <div class="w-100">
+                                <label class="form-label">Status</label>
+                                <select name="is_active" class="form-select" required>
+                                    <option value="true"
+                                        {{ old('is_active') == 'true' ? 'selected' : (!old('is_active') && $product->is_active == 1 ? 'selected' : '') }}>
+                                        Aktif</option>
+                                    <option value="false"
+                                        {{ old('is_active') == 'false' ? 'selected' : (!old('is_active') && $product->is_active == 0 ? 'selected' : '') }}>
+                                        Tidak Aktif
+                                    </option>
+                                </select>
+                            </div>
                         </div>
                         <p class="mb-2 text-secondary" style="font-size: 14px;">Terakhir diperbarui pada:
                             {{ $product->updated_at }}</p>

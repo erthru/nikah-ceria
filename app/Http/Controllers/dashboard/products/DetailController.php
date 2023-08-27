@@ -31,6 +31,7 @@ class DetailController extends Controller
         $price = $request->input('price');
         $discount = $request->input('discount');
         $discount_expires_at = $request->input('discount_expires_at');
+        $demo_url = $request->input('demo_url');
         $is_active = $request->input('is_active');
 
         if ($discount && $discount != '0' && !$discount_expires_at) {
@@ -50,6 +51,7 @@ class DetailController extends Controller
             'price' => $price,
             'discount' => $discount,
             'discount_expires_at' => $discount_expires_at,
+            'demo_url' => $demo_url,
             'is_active' => $is_active == 'true' ? 1 : 0,
         ]);
 
