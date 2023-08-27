@@ -45,7 +45,7 @@
                             <div class="w-100">
                                 <label class="form-label">Diskon Berakhir Pada (Opsional)</label>
                                 <input
-                                    value="{{ old('discount_expires_at') ? old('discount_expires_at') : implode('-', array_reverse(explode('/', str_replace(' 00:00:00', '', $product->discount_expires_at)))) }}"
+                                    value="{{ old('discount_expires_at') ? old('discount_expires_at') : str_replace('/', '-', reverseFormatedDate($product->discount_expires_at)) }}"
                                     type="date" class="form-control" name="discount_expires_at"
                                     placeholder="Masukkan Diskon" />
                             </div>
