@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard\invitations\templates;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -27,5 +28,11 @@ class DetailController extends Controller
             'product' => $product,
             'isProductPurchased' => $isProductPurchased
         ]);
+    }
+
+    public function buy(String $id, Request $request): RedirectResponse
+    {
+        $message = '';
+        return redirect('/dashboard/orders')->with('successMessage', $message);
     }
 }

@@ -38,6 +38,10 @@ class DetailController extends Controller
             return redirect('/dashboard/products/' . $id)->with('errorMessage', '"Diskon berakhir pada" wajib diisi jika menggunakan diskon')->withInput();
         }
 
+        if ((int)$discount >= (int)$price) {
+            return redirect('/dashboard/products/' . $id)->with('errorMessage', 'Diskon tidak boleh lebih besar dari harga')->withInput();
+        }
+
         $thumbnailName = '';
 
         if ($thumbnail) {

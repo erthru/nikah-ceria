@@ -64,8 +64,21 @@
                                     {{ str_replace(' 00:00:00', '', $product->discount_expires_at) }}
                                 </p>
                             @endif
-                            <a href="/dashboard/invitations/templates/{{ $product->code }}"
-                                class="btn btn-primary mt-3 text-white w-100">Beli</a>
+                            @if (!$isProductPurchased)
+                                <form action="/dashboard/invitations/templates/{{ $product->id }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="{{ Auth::user()->customer->id }}" name="customer_id" />
+                                    @if ($product->price > 0)
+                                        <div class="mb-2 mt-2">
+                                            <label class="form-label">Metode Pembayaran</label>
+                                            <select name="payment_method" class="form-select">
+                                                <option value="BANK_TRANSFER">Bank Transfer</option>
+                                            </select>
+                                        </div>
+                                    @endif
+                                    <button class="btn btn-primary mt-3 text-white w-100">Beli</button>
+                                </form>
+                            @endif
                         </div>
                     </div>
                 </div>
