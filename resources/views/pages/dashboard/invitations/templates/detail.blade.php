@@ -18,7 +18,8 @@
                         sekarang</a>
                 </div>
             @endif
-            <div class="d-flex w-100 flex-column flex-lg-row row-gap-3 row-gap-lg-0 column-gap-lg-3">
+            <div
+                class="d-flex w-100 flex-column flex-lg-row row-gap-3 row-gap-lg-0 column-gap-lg-3 {{ $isProductPurchased ? 'mt-3' : '' }}">
                 <div class="w-100" style="flex: 1 1 0%">
                     <a href="/uploads/{{ $product->thumbnail }}" target="blank">
                         <div class="position-relative">

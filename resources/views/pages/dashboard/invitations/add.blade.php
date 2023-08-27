@@ -23,7 +23,7 @@
                             </div>
                         @else
                             <div
-                                class="d-flex flex-column flex-md-row row-gap-2 row-gap-md-0 column-gap-md-2 w-100 mb-2 mt-3">
+                                class="d-flex flex-column flex-md-row row-gap-2 row-gap-md-0 column-gap-md-2 w-100 mb-2">
                                 <div class="w-100">
                                     <label class="form-label">Template</label>
                                     <select name="product_id" class="form-select" required>
@@ -34,7 +34,8 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    <p style="font-size: 14px; margin-top: 4px;">Beli template lain di sini</p>
+                                    <p style="font-size: 14px; margin-top: 4px;">Beli template lain <a
+                                            href="/dashboard/invitations/templates" class="fw-medium">di sini</a></p>
                                 </div>
                                 <div class="w-100">
                                     <label class="form-label">Nama</label>
