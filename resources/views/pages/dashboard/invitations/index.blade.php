@@ -12,45 +12,61 @@
             <div class="card">
                 <div class="card-body d-flex flex-column w-100">
                     @can('act-as-customer')
-                        <a href="/dashboard/invitations/add" class="btn btn-primary text-white mx-auto mx-md-0"
+                        <a href="/dashboard/invitations/add"
+                            class="btn btn-primary text-white mx-auto mx-md-0 {{ Auth::user()->can('act-as-customer') ? 'button-add' : '' }}"
                             style="width: max-content; z-index: 20;">
                             <i class="bi bi-pencil-square"></i>
                             <span>Tambah</span>
                         </a>
                     @endcan
-                    <div
-                        class="table-responsive {{ Auth::user()->can('act-as-customer') ? 'table-responsive-top-space' : '' }}">
-                        <table class="table table-striped nowrap w-100">
-                            <thead>
+                    <table class="table table-striped nowrap w-100 ">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th>Nama</th>
+                                <th>Pengantin Pria</th>
+                                <th>Pengantin Wanita</th>
+                                <th>Template</th>
+                                <th>Diterbitkan</th>
+                                @can('act-as-admin')
+                                    <th>Pengguna</th>
+                                @endcan
+                                @can('act-as-customer')
+                                    <th>Aksi</th>
+                                @endcan
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($invitations as $invitation)
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th>Nama</th>
-                                    <th>Pengantin Pria</th>
-                                    <th>Pengantin Wanita</th>
-                                    <th>Template</th>
-                                    <th>Diterbitkan</th>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>
+                                        @if (Auth::user()->can('act-as-customer'))
+                                            <a
+                                                href="/dashboard/invitations/{{ $invitation->id }}">{{ $invitation->name }}</a>
+                                        @else
+                                            <span>{{ $invitation->name }}</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $invitation->male_name }}</td>
+                                    <td>{{ $invitation->female_name }}</td>
+                                    <td>{{ $invitation->product->name }}</td>
+                                    <td>{{ $invitation->is_published ? 'Iya' : 'Tidak' }}</td>
                                     @can('act-as-admin')
-                                        <th>Pengguna</th>
+                                        <td>{{ $invitation->customer->name }}</td>
+                                    @endcan
+                                    @can('act-as-customer')
+                                        <td>
+                                            <a href="/dashboard/invitations/{{ $invitation->id }}" class="btn btn-warning">
+                                                <i class="bi bi-eye"></i>
+                                                <span>Lihat</span>
+                                            </a>
+                                        </td>
                                     @endcan
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($invitations as $invitation)
-                                    <tr>
-                                        <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $invitation->name }}</td>
-                                        <td>{{ $invitation->male_name }}</td>
-                                        <td>{{ $invitation->female_name }}</td>
-                                        <td>{{ $invitation->product->name }}</td>
-                                        <td>{{ $invitation->is_published ? 'Iya' : 'Tidak' }}</td>
-                                        @can('act-as-admin')
-                                            <td>{{ $invitation->customer->name }}</td>
-                                        @endcan
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -59,13 +75,13 @@
 
 @section('style')
     <style>
-        .table-responsive-top-space {
-            margin-top: 16px;
+        .button-add {
+            margin-bottom: 16px !important;
         }
 
         @media (min-width: 768px) {
-            .table-responsive-top-space {
-                margin-top: -30px
+            .button-add {
+                margin-bottom: -30px !important;
             }
         }
     </style>
@@ -73,8 +89,11 @@
 
 @section('script')
     <script type="module">
-        $('.table').DataTable({
-            lengthChange: false
-        })
+        setTimeout(function() {
+            $('.table').DataTable({
+                lengthChange: false,
+                responsive: true
+            })
+        }, 250);
     </script>
 @endsection

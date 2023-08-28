@@ -11,28 +11,26 @@
             </nav>
             <div class="card">
                 <div class="card-body d-flex flex-column w-100">
-                    <div class="table-responsive">
-                        <table class="table table-striped nowrap w-100">
-                            <thead>
+                    <table class="table table-striped nowrap w-100">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Tgl Registrasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($customers as $customer)
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Tgl Registrasi</th>
+                                    <th scope="row">{{ $loop->index + 1 }}</th>
+                                    <td>{{ $customer->name }}</td>
+                                    <td>{{ $customer->user->email }}</td>
+                                    <td>{{ $customer->user->created_at }}</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($customers as $customer)
-                                    <tr>
-                                        <th scope="row">{{ $loop->index + 1 }}</th>
-                                        <td>{{ $customer->name }}</td>
-                                        <td>{{ $customer->user->email }}</td>
-                                        <td>{{ $customer->user->created_at }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -41,8 +39,11 @@
 
 @section('script')
     <script type="module">
-        $('.table').DataTable({
-            lengthChange: false
-        })
+        setTimeout(function() {
+            $('.table').DataTable({
+                lengthChange: false,
+                responsive: true
+            })
+        }, 250);
     </script>
 @endsection

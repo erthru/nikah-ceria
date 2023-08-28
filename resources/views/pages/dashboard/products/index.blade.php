@@ -11,52 +11,50 @@
             </nav>
             <div class="card">
                 <div class="card-body d-flex flex-column w-100">
-                    <a href="/dashboard/products/add" class="btn btn-primary text-white mx-auto mx-md-0"
+                    <a href="/dashboard/products/add" class="btn btn-primary text-white mx-auto mx-md-0 button-add"
                         style="width: max-content; z-index: 20;">
                         <i class="bi bi-pencil-square"></i>
                         <span>Tambah</span>
                     </a>
-                    <div class="table-responsive">
-                        <table class="table table-striped nowrap w-100">
-                            <thead>
+                    <table class="table table-striped nowrap w-100">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th>Nama</th>
+                                <th>Harga</th>
+                                <th>Diskon</th>
+                                <th>Tgl Berakhir Diskon</th>
+                                <th>Status</th>
+                                <th>Thumbnail</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($products as $product)
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th>Nama</th>
-                                    <th>Harga</th>
-                                    <th>Diskon</th>
-                                    <th>Tgl Berakhir Diskon</th>
-                                    <th>Status</th>
-                                    <th>Thumbnail</th>
-                                    <th>Aksi</th>
+                                    <td scope="row">{{ $loop->index + 1 }}</td>
+                                    <td><a href="/dashboard/products/{{ $product->id }}">{{ $product->name }}</a></td>
+                                    <td>Rp {{ number_format($product->price, 0, ',', '.') }}</td>
+                                    <td>Rp
+                                        {{ $product->discount ? number_format($product->discount, 0, ',', '.') : '0' }}
+                                    </td>
+                                    <td>{{ $product->discount_expires_at ? str_replace('00:00:00', '', $product->discount_expires_at) : '-' }}
+                                    </td>
+                                    <td>{{ $product->is_active ? 'Aktif' : 'Tidak Aktif' }}</td>
+                                    <td>
+                                        <img src="/uploads/{{ $product->thumbnail }}" alt="thumbnail"
+                                            style="width: 80px; height: 80px; object-fit: cover;" />
+                                    </td>
+                                    <td>
+                                        <a href="/dashboard/products/{{ $product->id }}" class="btn btn-warning">
+                                            <i class="bi bi-eye"></i>
+                                            <span>Lihat</span>
+                                        </a>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($products as $product)
-                                    <tr>
-                                        <td scope="row">{{ $loop->index + 1 }}</td>
-                                        <td>{{ $product->name }}</td>
-                                        <td>Rp {{ number_format($product->price, 0, ',', '.') }}</td>
-                                        <td>Rp
-                                            {{ $product->discount ? number_format($product->discount, 0, ',', '.') : '0' }}
-                                        </td>
-                                        <td>{{ $product->discount_expires_at ? str_replace('00:00:00', '', $product->discount_expires_at) : '-' }}
-                                        </td>
-                                        <td>{{ $product->is_active ? 'Aktif' : 'Tidak Aktif' }}</td>
-                                        <td>
-                                            <img src="/uploads/{{ $product->thumbnail }}" alt="thumbnail"
-                                                style="width: 80px; height: 80px; object-fit: cover;" />
-                                        </td>
-                                        <td>
-                                            <a href="/dashboard/products/{{ $product->id }}" class="btn btn-warning">
-                                                <i class="bi bi-eye"></i>
-                                                <span>Lihat</span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -65,13 +63,13 @@
 
 @section('style')
     <style>
-        .table-responsive {
-            margin-top: 16px;
+        .button-add {
+            margin-bottom: 16px;
         }
 
         @media (min-width: 768px) {
-            .table-responsive {
-                margin-top: -30px
+            .button-add {
+                margin-bottom: -30px
             }
         }
     </style>
@@ -79,8 +77,11 @@
 
 @section('script')
     <script type="module">
-        $('.table').DataTable({
-            lengthChange: false
-        })
+        setTimeout(function() {} {
+            $('.table').DataTable({
+                lengthChange: false,
+                responsive: true
+            })
+        }, 250);
     </script>
 @endsection

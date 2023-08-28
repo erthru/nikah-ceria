@@ -104,7 +104,7 @@
     <div id="sidebarOverlay" class="position-fixed d-xl-none w-100"
         style="top: 0; left-0; height: 100dvh; background-color: rgba(0, 0, 0, 0.5); z-index: 9990"
         onclick="toggleSidebar()"></div>
-    <div class="w-100" style="flex: 1 1 0%;">
+    <div class="w-100" style="flex: 1 1 0%; overflow-x: hidden">
         <header>
             <div class="container mx-auto d-flex w-100 py-2 align-items-center">
                 <i class="bi bi-list fs-1 text-primary d-block d-xl-none me-3" style="cursor: pointer;"
