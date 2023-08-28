@@ -31,9 +31,6 @@
                                 @can('act-as-admin')
                                     <th>Pengguna</th>
                                 @endcan
-                                @can('act-as-customer')
-                                    <th>Aksi</th>
-                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -54,14 +51,6 @@
                                     <td>{{ $invitation->is_published ? 'Iya' : 'Tidak' }}</td>
                                     @can('act-as-admin')
                                         <td>{{ $invitation->customer->name }}</td>
-                                    @endcan
-                                    @can('act-as-customer')
-                                        <td>
-                                            <a href="/dashboard/invitations/{{ $invitation->id }}" class="btn btn-warning">
-                                                <i class="bi bi-eye"></i>
-                                                <span>Lihat</span>
-                                            </a>
-                                        </td>
                                     @endcan
                                 </tr>
                             @endforeach

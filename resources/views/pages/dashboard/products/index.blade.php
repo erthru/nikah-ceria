@@ -26,7 +26,6 @@
                                 <th>Tgl Berakhir Diskon</th>
                                 <th>Status</th>
                                 <th>Thumbnail</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,12 +43,6 @@
                                     <td>
                                         <img src="/uploads/{{ $product->thumbnail }}" alt="thumbnail"
                                             style="width: 80px; height: 80px; object-fit: cover;" />
-                                    </td>
-                                    <td>
-                                        <a href="/dashboard/products/{{ $product->id }}" class="btn btn-warning">
-                                            <i class="bi bi-eye"></i>
-                                            <span>Lihat</span>
-                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -77,7 +70,7 @@
 
 @section('script')
     <script type="module">
-        setTimeout(function() {} {
+        setTimeout(function() {
             $('.table').DataTable({
                 lengthChange: false,
                 responsive: true

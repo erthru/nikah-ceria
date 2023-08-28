@@ -23,7 +23,6 @@
                                 <th>Status</th>
                                 <th>Metode Pembayaran</th>
                                 <th>Total Yang Harus Dibayar</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,12 +40,6 @@
                                     <td>{{ $order->payment_method == 'BANK_TRANSFER' ? 'Bank Transfer' : 'Virtual Account' }}
                                     </td>
                                     <td>Rp {{ number_format($order->final_price, 0, ',', '.') }}</td>
-                                    <td>
-                                        <a href="/dashboard/orders/{{ $order->id }}" class="btn btn-warning">
-                                            <i class="bi bi-eye"></i>
-                                            <span>Lihat</span>
-                                        </a>
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
