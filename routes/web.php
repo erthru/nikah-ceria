@@ -11,6 +11,7 @@ use App\Http\Controllers\dashboard\invitations\AddController as DashboardInvitat
 use App\Http\Controllers\dashboard\invitations\templates\IndexController as DashboardInvitationsTemplatesIndexController;
 use App\Http\Controllers\dashboard\invitations\templates\DetailController as DashboardInvitationsTemplatesDetailController;
 use App\Http\Controllers\dashboard\orders\IndexController as DashboardOrdersIndexController;
+use App\Http\Controllers\dashboard\orders\DetailController as DashboardOrdersDetailController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -48,4 +49,5 @@ Route::get('/dashboard/invitations/templates', [DashboardInvitationsTemplatesInd
 Route::get('/dashboard/invitations/templates/{code}', [DashboardInvitationsTemplatesDetailController::class, 'show'])->middleware('auth');
 Route::post('/dashboard/invitations/templates/{code}', [DashboardInvitationsTemplatesDetailController::class, 'buy'])->middleware('auth');
 Route::get('/dashboard/orders', [DashboardOrdersIndexController::class, 'show'])->middleware('auth');
+Route::get('/dashboard/orders/{id}', [DashboardOrdersDetailController::class, 'show'])->middleware('auth');
 Route::get('/dashboard/logout', [DashboardLogoutController::class, 'show'])->middleware('auth');

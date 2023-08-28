@@ -41,7 +41,7 @@
                                     </td>
                                     <td>{{ $product->is_active ? 'Aktif' : 'Tidak Aktif' }}</td>
                                     <td>
-                                        <img src="/uploads/{{ $product->thumbnail }}" alt="thumbnail"
+                                        <img src="/uploads/{{ $product->thumbnail }}" alt="thumbnail" class="rounded"
                                             style="width: 80px; height: 80px; object-fit: cover;" />
                                     </td>
                                 </tr>
