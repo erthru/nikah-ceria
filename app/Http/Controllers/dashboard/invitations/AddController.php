@@ -13,13 +13,13 @@ class AddController extends Controller
     public function show(): View
     {
         $this->authorize('act-as-customer');
-        $paidOrders = Order::with(['product'])->where('customer_id', Auth::user()->customer->id)->where('status', 'PAID')->get();
+        $paidOrders = Order::with('product')->where('customer_id', Auth::user()->customer->id)->where('status', 'PAID')->get();
         $products = [];
 
         foreach ($paidOrders as $po) {
             array_push($products, $po->product);
         }
-        
+
         return view('pages.dashboard.invitations.add', [
             'title' => 'Tambah Undangan',
             'products' => $products,

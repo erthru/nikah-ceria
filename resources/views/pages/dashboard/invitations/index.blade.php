@@ -30,7 +30,7 @@
                                     <th>Template</th>
                                     <th>Diterbitkan</th>
                                     @can('act-as-admin')
-                                        <th>Pelanggan</th>
+                                        <th>Pengguna</th>
                                     @endcan
                                 </tr>
                             </thead>

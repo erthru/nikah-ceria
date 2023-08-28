@@ -12,7 +12,7 @@ class CustomersController extends Controller
     public function show(): View
     {
         $this->authorize('act-as-admin');
-        $customers = Customer::with(['user'])->latest()->get();
+        $customers = Customer::with('user')->latest()->get();
 
         return view('pages.dashboard.customers', [
             'title' => 'Pengguna',
