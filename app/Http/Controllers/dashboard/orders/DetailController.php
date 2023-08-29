@@ -35,7 +35,7 @@ class DetailController extends Controller
         return redirect('/dashboard/orders/' . $id)->with('errorMessage', 'Aksi tidak valid');
     }
 
-    public function customActionPutUploadTransferProof(String $id, Request $request): RedirectResponse
+    private function customActionPutUploadTransferProof(String $id, Request $request): RedirectResponse
     {
         $transfer_proof = $request->file('transfer_proof');
         $order = Order::findOrFail($id);
@@ -54,10 +54,19 @@ class DetailController extends Controller
         return redirect('/dashboard/orders/' . $id)->with('successMessage', 'Berhasil mengunggah bukti transfer');
     }
 
-    public function customActionPutChangeStatus(String $id, Request $request): RedirectResponse
+    private function customActionPutChangeStatus(String $id, Request $request): RedirectResponse
     {
         $this->authorize('act-as-admin');
         $status = $request->input('status');
+
+        if ($status == 'PAID') {
+            $order = Order::findOrFail($id);
+            $paidSameOrder = Order::where('customer_id', $order->customer_id)->where('product_id', $order->product_id)->where('status', 'PAID')->first();
+
+            if ($paidSameOrder) {
+                return redirect('/dashboard/orders/' . $id)->with('errorMessage', 'Orderan dangan produk & customer sudah pernah dibeli');
+            }
+        }
 
         Order::find($id)->update([
             'status' => $status
