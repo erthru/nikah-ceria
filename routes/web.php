@@ -50,4 +50,5 @@ Route::get('/dashboard/invitations/templates/{code}', [DashboardInvitationsTempl
 Route::post('/dashboard/invitations/templates/{code}', [DashboardInvitationsTemplatesDetailController::class, 'buy'])->middleware('auth');
 Route::get('/dashboard/orders', [DashboardOrdersIndexController::class, 'show'])->middleware('auth');
 Route::get('/dashboard/orders/{id}', [DashboardOrdersDetailController::class, 'show'])->middleware('auth');
+Route::put('/dashboard/orders/{id}', [DashboardOrdersDetailController::class, 'customActionPut'])->middleware('auth');
 Route::get('/dashboard/logout', [DashboardLogoutController::class, 'show'])->middleware('auth');

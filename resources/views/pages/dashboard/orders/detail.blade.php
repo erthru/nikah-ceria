@@ -38,7 +38,7 @@
                             @csrf
                             <div class="mb-2 mt-1">
                                 <label class="form-label">Ganti Status</label>
-                                <select name="payment_method" class="form-select">
+                                <select name="status" class="form-select">
                                     <option value="PAID" {{ $order->status == 'PAID' ? 'selected' : '' }}>Telah Dibayar
                                     </option>
                                     <option value="UNPAID" {{ $order->status == 'UNPAID' ? 'selected' : '' }}>Menunggu
@@ -61,7 +61,10 @@
                     @endif
                     @if ($order->status == 'UNPAID' && Auth::user()->role == 'CUSTOMER')
                         <form action="/dashboard/orders/{{ $order->id }}?ca=uploadTransferProof"
+                            method="POST"
                             enctype="multipart/form-data" class="mt-1">
+                            @method("PUT")
+                            @csrf
                             <div class="mb-2">
                                 <label class="form-label">Upload Bukti Transfer</label>
                                 <img id="transferProofPreview" src="#" alt="thumbnail" class="d-none rounded"
