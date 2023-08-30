@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="mb-2">
                                     <label class="form-label">Anak Keberapa Di Keluarga (Pengantin Pria)</label>
-                                    <input value="{{ old('male_family_order') }}" type="text" class="form-control"
+                                    <input value="{{ old('male_family_order') }}" type="number" class="form-control"
                                         name="male_family_order" placeholder="Cth: 1" required />
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="mb-2">
                                     <label class="form-label">Anak Keberapa Di Keluarga (Pengantin Wanita)</label>
-                                    <input value="{{ old('female_family_order') }}" type="text" class="form-control"
+                                    <input value="{{ old('female_family_order') }}" type="number" class="form-control"
                                         name="female_family_order" placeholder="Cth: 1" required />
                                 </div>
                             </div>
