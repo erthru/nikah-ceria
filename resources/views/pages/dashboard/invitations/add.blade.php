@@ -116,6 +116,29 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-body" style="background-color: #f4f4f4">
+                        <p class="fw-medium fs-5">Caption</p>
+                        <div class="w-100 mb-3">
+                            <label class="form-label">Caption 1</label>
+                            <textarea id="caption1" class="form-control" name="caption_1"
+                                placeholder="Cth: Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. (QS. Ar-Rum 21)"
+                                required>{{ old('caption_1') }}</textarea>
+                            <p class="text-primary fw-medium" style="margin-top: 4px; font-size: 14px; cursor: pointer;"
+                                onclick="copyToCaption1(true)">
+                                Salin Dari Contoh
+                            </p>
+                        </div>
+                        <div class="w-100">
+                            <label class="form-label">Caption 2</label>
+                            <textarea id="caption2" class="form-control" name="caption_2"
+                                placeholder="Cth: Maha Suci Allah SWT, Yang telah menciptakan makhlukNya berpasang-pasangan. Ya Allah, perkenankanlah dan Ridhoilah Pernikahan kami"
+                                required>{{ old('caption_2') }}</textarea>
+                            <p class="text-primary fw-medium" style="margin-top: 4px; font-size: 14px; cursor: pointer;"
+                                onclick="copyToCaption2(true)">
+                                Salin Dari Contoh
+                            </p>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -126,6 +149,14 @@
     <script type="module">
         const malePhotoPreview = $('#malePhotoPreview')
         const femalePhotoPreview = $('#femalePhotoPreview')
+        const caption1 = $("#caption1")
+        const caption2 = $("#caption2")
+
+        const caption1Text =
+            'Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. (QS. Ar-Rum 21)'
+
+        const caption2Text =
+            'Maha Suci Allah SWT, Yang telah menciptakan makhlukNya berpasang-pasangan. Ya Allah, perkenankanlah dan Ridhoilah Pernikahan kami'
 
         window.onMalePhotoChange = function(e) {
             const file = e.files[0]
@@ -139,6 +170,14 @@
             femalePhotoPreview.attr('src', URL.createObjectURL(file))
             femalePhotoPreview.removeClass('d-none')
             femalePhotoPreview.addClass('d-block')
+        }
+
+        window.copyToCaption1 = function(e) {
+            caption1.html(caption1Text)
+        }
+
+        window.copyToCaption2 = function(e) {
+            caption2.html(caption2Text)
         }
     </script>
 @endsection
