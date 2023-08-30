@@ -35,7 +35,6 @@ class Invitation extends Model
         'gallery_6',
         'gallery_7',
         'gallery_8',
-        'youtube_url',
         'song',
         'is_published',
         'product_id',
