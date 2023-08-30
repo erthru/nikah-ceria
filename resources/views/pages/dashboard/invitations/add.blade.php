@@ -98,7 +98,7 @@
                     <div class="card-body">
                         <p class="fw-medium fs-5">Foto Pengantin</p>
                         <div class="mt-2 d-flex flex-column flex-md-row row-gap-3 column-gap-2">
-                            <div class="photo">
+                            <div class="w-100">
                                 <label class="form-label">Upload Foto Pengantin Pria</label>
                                 <img id="malePhotoPreview" src="#" alt="male-photo" class="d-none rounded"
                                     style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
@@ -106,7 +106,7 @@
                                     accept=".jpg,.jpeg,.png,.webp,.git" required onchange="onMalePhotoChange(this)" />
                                 <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB</p>
                             </div>
-                            <div class="photo">
+                            <div class="w-100">
                                 <label class="form-label">Upload Foto Pengantin Wanita</label>
                                 <img id="femalePhotoPreview" src="#" alt="female-photo" class="d-none rounded"
                                     style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
@@ -120,20 +120,6 @@
             </div>
         </div>
     </section>
-@endsection
-
-@section('style')
-    <style>
-        .photo {
-            width: 100%;
-        }
-
-        @media (min-width: 768px) {
-            .photo {
-                width: max-content;
-            }
-        }
-    </style>
 @endsection
 
 @section('script')
