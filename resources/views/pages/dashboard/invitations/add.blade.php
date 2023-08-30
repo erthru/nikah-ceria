@@ -97,7 +97,7 @@
                     </div>
                     <div class="card-body">
                         <p class="fw-medium fs-5">Foto Pengantin</p>
-                        <div class="mt-2 d-flex flex-column flex-md-row row-gap-3 column-gap-2">
+                        <div class="mt-2 d-flex flex-column flex-md-row row-gap-3 column-gap-3">
                             <div class="w-100">
                                 <label class="form-label">Upload Foto Pengantin Pria</label>
                                 <img id="malePhotoPreview" src="#" alt="male-photo" class="d-none rounded"
@@ -118,7 +118,7 @@
                     </div>
                     <div class="card-body" style="background-color: #f4f4f4">
                         <p class="fw-medium fs-5">Caption</p>
-                        <div class="w-100 mb-3">
+                        <div class="w-100 mb-3 mt-2">
                             <label class="form-label">Caption 1</label>
                             <textarea id="caption1" class="form-control" name="caption_1"
                                 placeholder="Cth: Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. (QS. Ar-Rum 21)"
