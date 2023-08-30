@@ -49,7 +49,7 @@
                         </div>
                         <div class="w-100 mb-2">
                             <label class="form-label">Thumbnail</label>
-                            <img id="thumbnailPreview" src="#" alt="thumbnail" class="d-none"
+                            <img id="thumbnailPreview" src="#" alt="thumbnail" class="d-none rounded"
                                 style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
                             <input id="thumbnail" type="file" class="form-control" name="thumbnail"
                                 accept=".jpg,.jpeg,.png,.webp,.git" required onchange="onThumbnailChange(this)" />
@@ -95,7 +95,6 @@
 @section('script')
     <script type="module">
         const thumbnailPreview = $('#thumbnailPreview')
-        const thumbnail = $('#thumbnail')
 
         window.onThumbnailChange = function(e) {
             const file = e.files[0]

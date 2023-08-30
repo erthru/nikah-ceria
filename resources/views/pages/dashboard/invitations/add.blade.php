@@ -38,8 +38,8 @@
                                 </div>
                                 <div class="w-100">
                                     <label class="form-label">Nama</label>
-                                    <input value="{{ old('name') ? old('name') : $tempName }}" type="text"
-                                        class="form-control" name="name" placeholder="Masukkan Nama" required />
+                                    <input value="{{ old('name') }}" type="text" class="form-control" name="name"
+                                        placeholder="Cth: Romeo & Juliet Wedding" required />
                                 </div>
                             </div>
                         @endif
@@ -50,72 +50,109 @@
                             <div class="w-100">
                                 <div class="mb-2">
                                     <label class="form-label">Nama Pengantin Pria</label>
-                                    <input value="{{ old('male_name') ? old('male_name') : $tempMaleName }}" type="text"
-                                        class="form-control" name="male_name" placeholder="Masukkan Nama Pengantin Pria"
-                                        required />
+                                    <input value="{{ old('male_name') }}" type="text" class="form-control"
+                                        name="male_name" placeholder="Masukkan Nama Pengantin Pria" required />
                                 </div>
                                 <div class="mb-2">
                                     <label class="form-label">Nama Ayah Pengantin Pria</label>
-                                    <input
-                                        value="{{ old('male_father_name') ? old('male_father_name') : $tempMaleFatherName }}"
-                                        type="text" class="form-control" name="male_father_name"
-                                        placeholder="Masukkan Nama Ayah Pengantin Pria" required />
+                                    <input value="{{ old('male_father_name') }}" type="text" class="form-control"
+                                        name="male_father_name" placeholder="Masukkan Nama Ayah Pengantin Pria" required />
                                 </div>
                                 <div class="mb-2">
                                     <label class="form-label">Nama Ibu Pengantin Pria</label>
-                                    <input
-                                        value="{{ old('male_mother_name') ? old('male_mother_name') : $tempMaleMotherName }}"
-                                        type="text" class="form-control" name="male_mother_name"
-                                        placeholder="Masukkan Nama Ibu Pengantin Pria" required />
+                                    <input value="{{ old('male_mother_name') }}" type="text" class="form-control"
+                                        name="male_mother_name" placeholder="Masukkan Nama Ibu Pengantin Pria" required />
                                 </div>
                                 <div class="mb-2">
-                                    <label class="form-label">Anak Keberapa Dari Bersaudara (Pria)</label>
-                                    <input
-                                        value="{{ old('male_family_order') ? old('male_family_order') : $tempMaleFamilyOrder }}"
-                                        type="text" class="form-control" name="male_family_order" placeholder="Cth: 1"
-                                        required />
+                                    <label class="form-label">Anak Keberapa Di Keluarga (Pengantin Pria)</label>
+                                    <input value="{{ old('male_family_order') }}" type="text" class="form-control"
+                                        name="male_family_order" placeholder="Cth: 1" required />
                                 </div>
                             </div>
                             <div class="w-100">
                                 <div class="mb-2">
                                     <label class="form-label">Nama Pengantin Wanita</label>
-                                    <input value="{{ old('female_name') ? old('female_name') : $tempFemaleName }}"
-                                        type="text" class="form-control" name="female_name"
-                                        placeholder="Masukkan Nama Pengantin Wanita" required />
+                                    <input value="{{ old('female_name') }}" type="text" class="form-control"
+                                        name="female_name" placeholder="Masukkan Nama Pengantin Wanita" required />
                                 </div>
                                 <div class="mb-2">
                                     <label class="form-label">Nama Ayah Pengantin Wanita</label>
-                                    <input
-                                        value="{{ old('female_father_name') ? old('female_father_name') : $tempFemaleFatherName }}"
-                                        type="text" class="form-control" name="female_father_name"
-                                        placeholder="Masukkan Nama Ayah Pengantin Wanita" required />
+                                    <input value="{{ old('female_father_name') }}" type="text" class="form-control"
+                                        name="female_father_name" placeholder="Masukkan Nama Ayah Pengantin Wanita"
+                                        required />
                                 </div>
                                 <div class="mb-2">
                                     <label class="form-label">Nama Ibu Pengantin Wanita</label>
-                                    <input
-                                        value="{{ old('female_mother_name') ? old('female_mother_name') : $tempFemaleMotherName }}"
-                                        type="text" class="form-control" name="female_mother_name"
-                                        placeholder="Masukkan Nama Ibu Pengantin Wanita" required />
+                                    <input value="{{ old('female_mother_name') }}" type="text" class="form-control"
+                                        name="female_mother_name" placeholder="Masukkan Nama Ibu Pengantin Wanita"
+                                        required />
                                 </div>
                                 <div class="mb-2">
-                                    <label class="form-label">Anak Keberapa Dari Bersaudara (Wanita)</label>
-                                    <input
-                                        value="{{ old('female_family_order') ? old('female_family_order') : $tempFemaleFamilyOrder }}"
-                                        type="text" class="form-control" name="female_family_order" placeholder="Cth: 1"
-                                        required />
+                                    <label class="form-label">Anak Keberapa Di Keluarga (Pengantin Wanita)</label>
+                                    <input value="{{ old('female_family_order') }}" type="text" class="form-control"
+                                        name="female_family_order" placeholder="Cth: 1" required />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <p class="fw-medium fs-5">Foto Pengantin</p>
-                        <div class="mt-2 d-flex row-gap-3 column-gap-2">
-                            <div class="w-100"></div>
-                            <div class="w-100"></div>
+                        <div class="mt-2 d-flex flex-column flex-md-row row-gap-3 column-gap-2">
+                            <div class="photo">
+                                <label class="form-label">Upload Foto Pengantin Pria</label>
+                                <img id="malePhotoPreview" src="#" alt="male-photo" class="d-none rounded"
+                                    style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
+                                <input type="file" class="form-control" name="male_photo"
+                                    accept=".jpg,.jpeg,.png,.webp,.git" required onchange="onMalePhotoChange(this)" />
+                                <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB</p>
+                            </div>
+                            <div class="photo">
+                                <label class="form-label">Upload Foto Pengantin Wanita</label>
+                                <img id="femalePhotoPreview" src="#" alt="female-photo" class="d-none rounded"
+                                    style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
+                                <input type="file" class="form-control" name="female_photo"
+                                    accept=".jpg,.jpeg,.png,.webp,.git" required onchange="onFemalePhotoChange(this)" />
+                                <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB</p>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </section>
+@endsection
+
+@section('style')
+    <style>
+        .photo {
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .photo {
+                width: max-content;
+            }
+        }
+    </style>
+@endsection
+
+@section('script')
+    <script type="module">
+        const malePhotoPreview = $('#malePhotoPreview')
+        const femalePhotoPreview = $('#femalePhotoPreview')
+
+        window.onMalePhotoChange = function(e) {
+            const file = e.files[0]
+            malePhotoPreview.attr('src', URL.createObjectURL(file))
+            malePhotoPreview.removeClass('d-none')
+            malePhotoPreview.addClass('d-block')
+        }
+
+        window.onFemalePhotoChange = function(e) {
+            const file = e.files[0]
+            femalePhotoPreview.attr('src', URL.createObjectURL(file))
+            femalePhotoPreview.removeClass('d-none')
+            femalePhotoPreview.addClass('d-block')
+        }
+    </script>
 @endsection

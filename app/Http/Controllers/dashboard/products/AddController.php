@@ -36,7 +36,7 @@ class AddController extends Controller
             return redirect('/dashboard/products/add')->with('errorMessage', '"Diskon berakhir pada" wajib diisi jika menggunakan diskon')->withInput();
         }
 
-        if ((int)$discount >= (int)$price) {
+        if ((int)$price > 0 && (int)$discount >= (int)$price) {
             return redirect('/dashboard/products/add')->with('errorMessage', 'Diskon tidak boleh lebih besar dari harga')->withInput();
         }
 

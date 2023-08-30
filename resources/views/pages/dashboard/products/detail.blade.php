@@ -54,7 +54,7 @@
                             <label class="form-label">Thumbnail</label>
                             <img id="thumbnailPreview"
                                 src="{{ $product->thumbnail ? '/uploads/' . $product->thumbnail : '#' }}" alt="thumbnail"
-                                class="{{ $product->thumbnail ? 'd-block' : 'd-none' }}"
+                                class="rounded {{ $product->thumbnail ? 'd-block' : 'd-none' }}"
                                 style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
                             <input id="thumbnail" type="file" class="form-control" name="thumbnail"
                                 accept=".jpg,.jpeg,.png,.webp,.git" onchange="onThumbnailChange(this)" />
@@ -131,7 +131,6 @@
 @section('script')
     <script type="module">
         const thumbnailPreview = $('#thumbnailPreview')
-        const thumbnail = $('#thumbnail')
 
         window.onThumbnailChange = function(e) {
             const file = e.files[0]
