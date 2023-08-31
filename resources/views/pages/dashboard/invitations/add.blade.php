@@ -40,109 +40,213 @@
                                     <label class="form-label">Nama</label>
                                     <input value="{{ old('name') }}" type="text" class="form-control" name="name"
                                         placeholder="Cth: Romeo & Juliet Wedding" required />
+                                    <p style="font-size: 14px; margin-top: 4px;">Nama tidak dapat diubah setelah disimpan
+                                    </p>
                                 </div>
                             </div>
                         @endif
                     </div>
-                    <div class="card-body" style="background-color: #f4f4f4">
-                        <p class="fw-medium fs-5">Data Pengantin</p>
-                        <div class="d-flex flex-column flex-md-row row-gap-1 column-gap-3 mt-2">
-                            <div class="w-100">
-                                <div class="mb-2">
-                                    <label class="form-label">Nama Pengantin Pria</label>
-                                    <input value="{{ old('male_name') }}" type="text" class="form-control"
-                                        name="male_name" placeholder="Masukkan Nama Pengantin Pria" required />
-                                </div>
-                                <div class="mb-2">
-                                    <label class="form-label">Nama Ayah Pengantin Pria</label>
-                                    <input value="{{ old('male_father_name') }}" type="text" class="form-control"
-                                        name="male_father_name" placeholder="Masukkan Nama Ayah Pengantin Pria" required />
-                                </div>
-                                <div class="mb-2">
-                                    <label class="form-label">Nama Ibu Pengantin Pria</label>
-                                    <input value="{{ old('male_mother_name') }}" type="text" class="form-control"
-                                        name="male_mother_name" placeholder="Masukkan Nama Ibu Pengantin Pria" required />
-                                </div>
-                                <div class="mb-2">
-                                    <label class="form-label">Anak Keberapa Di Keluarga (Pengantin Pria)</label>
-                                    <input value="{{ old('male_family_order') }}" type="number" class="form-control"
-                                        name="male_family_order" placeholder="Cth: 1" required />
-                                </div>
-                            </div>
-                            <div class="w-100">
-                                <div class="mb-2">
-                                    <label class="form-label">Nama Pengantin Wanita</label>
-                                    <input value="{{ old('female_name') }}" type="text" class="form-control"
-                                        name="female_name" placeholder="Masukkan Nama Pengantin Wanita" required />
-                                </div>
-                                <div class="mb-2">
-                                    <label class="form-label">Nama Ayah Pengantin Wanita</label>
-                                    <input value="{{ old('female_father_name') }}" type="text" class="form-control"
-                                        name="female_father_name" placeholder="Masukkan Nama Ayah Pengantin Wanita"
-                                        required />
-                                </div>
-                                <div class="mb-2">
-                                    <label class="form-label">Nama Ibu Pengantin Wanita</label>
-                                    <input value="{{ old('female_mother_name') }}" type="text" class="form-control"
-                                        name="female_mother_name" placeholder="Masukkan Nama Ibu Pengantin Wanita"
-                                        required />
-                                </div>
-                                <div class="mb-2">
-                                    <label class="form-label">Anak Keberapa Di Keluarga (Pengantin Wanita)</label>
-                                    <input value="{{ old('female_family_order') }}" type="number" class="form-control"
-                                        name="female_family_order" placeholder="Cth: 1" required />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="fw-medium fs-5">Foto Pengantin</p>
-                        <div class="mt-2 d-flex flex-column flex-md-row row-gap-3 column-gap-3">
-                            <div class="w-100">
-                                <label class="form-label">Upload Foto Pengantin Pria</label>
-                                <img id="malePhotoPreview" src="#" alt="male-photo" class="d-none rounded"
-                                    style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
-                                <input type="file" class="form-control" name="male_photo"
-                                    accept=".jpg,.jpeg,.png,.webp,.git" required onchange="onMalePhotoChange(this)" />
-                                <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB</p>
-                            </div>
-                            <div class="w-100">
-                                <label class="form-label">Upload Foto Pengantin Wanita</label>
-                                <img id="femalePhotoPreview" src="#" alt="female-photo" class="d-none rounded"
-                                    style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
-                                <input type="file" class="form-control" name="female_photo"
-                                    accept=".jpg,.jpeg,.png,.webp,.git" required onchange="onFemalePhotoChange(this)" />
+                    @if (count($products) > 0)
+                        <div class="card-body" style="background-color: #f4f4f4">
+                            <p class="fw-medium fs-5">Cover / Sampul Halaman</p>
+                            <div class="w-100 mt-2">
+                                <label class="form-label">Upload Cover / Sampul Halaman</label>
+                                <img id="headerPreview" src="#" alt="male-photo" class="d-none rounded"
+                                    style="width: 280px; height: 280px; object-fit: cover; margin-bottom: 16px;" />
+                                <input type="file" class="form-control" name="header"
+                                    accept=".jpg,.jpeg,.png,.webp,.git" required onchange="onHeaderChange(this)" />
                                 <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body" style="background-color: #f4f4f4">
-                        <p class="fw-medium fs-5">Caption</p>
-                        <div class="w-100 mb-3 mt-2">
-                            <label class="form-label">Caption 1</label>
-                            <textarea id="caption1" class="form-control" name="caption_1"
-                                placeholder="Cth: Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. (QS. Ar-Rum 21)"
-                                required>{{ old('caption_1') }}</textarea>
-                            <p class="text-primary fw-medium" style="margin-top: 4px; font-size: 14px; cursor: pointer;"
-                                onclick="copyToCaption1(true)">
-                                Salin Dari Contoh
-                            </p>
+                        <div class="card-body">
+                            <p class="fw-medium fs-5">Data Pengantin</p>
+                            <div class="d-flex flex-column flex-md-row row-gap-1 column-gap-3 mt-2">
+                                <div class="w-100">
+                                    <div class="mb-2">
+                                        <label class="form-label">Nama Pengantin Pria</label>
+                                        <input value="{{ old('male_name') }}" type="text" class="form-control"
+                                            name="male_name" placeholder="Masukkan Nama Pengantin Pria" required />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Nama Ayah Pengantin Pria</label>
+                                        <input value="{{ old('male_father_name') }}" type="text" class="form-control"
+                                            name="male_father_name" placeholder="Masukkan Nama Ayah Pengantin Pria"
+                                            required />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Nama Ibu Pengantin Pria</label>
+                                        <input value="{{ old('male_mother_name') }}" type="text" class="form-control"
+                                            name="male_mother_name" placeholder="Masukkan Nama Ibu Pengantin Pria"
+                                            required />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Anak Keberapa Di Keluarga (Pengantin Pria)</label>
+                                        <input value="{{ old('male_family_order') }}" type="number" class="form-control"
+                                            name="male_family_order" placeholder="Cth: 1" required />
+                                    </div>
+                                </div>
+                                <div class="w-100">
+                                    <div class="mb-2">
+                                        <label class="form-label">Nama Pengantin Wanita</label>
+                                        <input value="{{ old('female_name') }}" type="text" class="form-control"
+                                            name="female_name" placeholder="Masukkan Nama Pengantin Wanita" required />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Nama Ayah Pengantin Wanita</label>
+                                        <input value="{{ old('female_father_name') }}" type="text" class="form-control"
+                                            name="female_father_name" placeholder="Masukkan Nama Ayah Pengantin Wanita"
+                                            required />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Nama Ibu Pengantin Wanita</label>
+                                        <input value="{{ old('female_mother_name') }}" type="text"
+                                            class="form-control" name="female_mother_name"
+                                            placeholder="Masukkan Nama Ibu Pengantin Wanita" required />
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Anak Keberapa Di Keluarga (Pengantin Wanita)</label>
+                                        <input value="{{ old('female_family_order') }}" type="number"
+                                            class="form-control" name="female_family_order" placeholder="Cth: 1"
+                                            required />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="w-100">
-                            <label class="form-label">Caption 2</label>
-                            <textarea id="caption2" class="form-control" name="caption_2"
-                                placeholder="Cth: Maha Suci Allah SWT, Yang telah menciptakan makhlukNya berpasang-pasangan. Ya Allah, perkenankanlah dan Ridhoilah Pernikahan kami"
-                                required>{{ old('caption_2') }}</textarea>
-                            <p class="text-primary fw-medium" style="margin-top: 4px; font-size: 14px; cursor: pointer;"
-                                onclick="copyToCaption2(true)">
-                                Salin Dari Contoh
-                            </p>
+                        <div class="card-body" style="background-color: #f4f4f4">
+                            <p class="fw-medium fs-5">Foto Pengantin</p>
+                            <div class="mt-2 d-flex flex-column flex-md-row row-gap-3 column-gap-3">
+                                <div class="w-100">
+                                    <label class="form-label">Upload Foto Pengantin Pria</label>
+                                    <img id="malePhotoPreview" src="#" alt="male-photo" class="d-none rounded"
+                                        style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
+                                    <input type="file" class="form-control" name="male_photo"
+                                        accept=".jpg,.jpeg,.png,.webp,.git" required onchange="onMalePhotoChange(this)" />
+                                    <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB</p>
+                                </div>
+                                <div class="w-100">
+                                    <label class="form-label">Upload Foto Pengantin Wanita</label>
+                                    <img id="femalePhotoPreview" src="#" alt="female-photo"
+                                        class="d-none rounded"
+                                        style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
+                                    <input type="file" class="form-control" name="female_photo"
+                                        accept=".jpg,.jpeg,.png,.webp,.git" required
+                                        onchange="onFemalePhotoChange(this)" />
+                                    <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="fw-medium fs-5">Tambahkan 2 sampai 8 Foto Gallery Bersama Pasangan (Min: 2)</p>
-
-                    </div>
+                        <div class="card-body">
+                            <p class="fw-medium fs-5">Caption</p>
+                            <div class="w-100 mb-3 mt-2">
+                                <label class="form-label">Caption 1</label>
+                                <textarea id="caption1" class="form-control" name="caption_1"
+                                    placeholder="Cth: Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. (QS. Ar-Rum 21)"
+                                    required>{{ old('caption_1') }}</textarea>
+                                <p class="text-primary fw-medium"
+                                    style="margin-top: 4px; font-size: 14px; cursor: pointer;"
+                                    onclick="copyToCaption1(true)">
+                                    Salin Dari Contoh
+                                </p>
+                            </div>
+                            <div class="w-100">
+                                <label class="form-label">Caption 2</label>
+                                <textarea id="caption2" class="form-control" name="caption_2"
+                                    placeholder="Cth: Maha Suci Allah SWT, Yang telah menciptakan makhlukNya berpasang-pasangan. Ya Allah, perkenankanlah dan Ridhoilah Pernikahan kami"
+                                    required>{{ old('caption_2') }}</textarea>
+                                <p class="text-primary fw-medium"
+                                    style="margin-top: 4px; font-size: 14px; cursor: pointer;"
+                                    onclick="copyToCaption2(true)">
+                                    Salin Dari Contoh
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card-body" style="background-color: #f4f4f4">
+                            <p class="fw-medium fs-5">Tambahkan 2 sampai 8 Foto Gallery Bersama Pasangan (Min: 2)</p>
+                            <div class="w-100 d-flex align-items-center column-gap-3 mt-3" style="overflow-x: auto">
+                                <label for="gallery1" class="rounded d-flex align-items-center"
+                                    style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
+                                    <i id="gallery1Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                        style="font-size: 44px"></i>
+                                    <img id="gallery1Preview" src="#" class="rounded w-100 h-100 d-none"
+                                        alt="gallery" style="object-fit: cover" />
+                                    <input id="gallery1" type="file" name="gallery_1"
+                                        accept=".jpg,.jpeg,.png,.webp,.git" class="d-none" required
+                                        onchange="onGallery1Change(this)" required>
+                                </label>
+                                <label for="gallery2" class="rounded d-flex align-items-center"
+                                    style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
+                                    <i id="gallery2Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                        style="font-size: 44px"></i>
+                                    <img id="gallery2Preview" src="#" class="rounded w-100 h-100 d-none"
+                                        alt="gallery" style="object-fit: cover" />
+                                    <input id="gallery2" type="file" name="gallery_2"
+                                        accept=".jpg,.jpeg,.png,.webp,.git" class="d-none" required
+                                        onchange="onGallery2Change(this)" required>
+                                </label>
+                                <label for="gallery3" class="rounded d-flex align-items-center"
+                                    style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
+                                    <i id="gallery3Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                        style="font-size: 44px"></i>
+                                    <img id="gallery3Preview" src="#" class="rounded w-100 h-100 d-none"
+                                        alt="gallery" style="object-fit: cover" />
+                                    <input id="gallery3" type="file" name="gallery_3"
+                                        accept=".jpg,.jpeg,.png,.webp,.git" class="d-none" required
+                                        onchange="onGallery3Change(this)" required>
+                                </label>
+                                <label for="gallery4" class="rounded d-flex align-items-center"
+                                    style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
+                                    <i id="gallery4Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                        style="font-size: 44px"></i>
+                                    <img id="gallery4Preview" src="#" class="rounded w-100 h-100 d-none"
+                                        alt="gallery" style="object-fit: cover" />
+                                    <input id="gallery4" type="file" name="gallery_4"
+                                        accept=".jpg,.jpeg,.png,.webp,.git" class="d-none" required
+                                        onchange="onGallery4Change(this)" required>
+                                </label>
+                                <label for="gallery5" class="rounded d-flex align-items-center"
+                                    style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
+                                    <i id="gallery5Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                        style="font-size: 44px"></i>
+                                    <img id="gallery5Preview" src="#" class="rounded w-100 h-100 d-none"
+                                        alt="gallery" style="object-fit: cover" />
+                                    <input id="gallery5" type="file" name="gallery_5"
+                                        accept=".jpg,.jpeg,.png,.webp,.git" class="d-none" required
+                                        onchange="onGallery5Change(this)" required>
+                                </label>
+                                <label for="gallery6" class="rounded d-flex align-items-center"
+                                    style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
+                                    <i id="gallery6Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                        style="font-size: 44px"></i>
+                                    <img id="gallery6Preview" src="#" class="rounded w-100 h-100 d-none"
+                                        alt="gallery" style="object-fit: cover" />
+                                    <input id="gallery6" type="file" name="gallery_6"
+                                        accept=".jpg,.jpeg,.png,.webp,.git" class="d-none" required
+                                        onchange="onGallery6Change(this)" required>
+                                </label>
+                                <label for="gallery7" class="rounded d-flex align-items-center"
+                                    style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
+                                    <i id="gallery7Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                        style="font-size: 44px"></i>
+                                    <img id="gallery7Preview" src="#" class="rounded w-100 h-100 d-none"
+                                        alt="gallery" style="object-fit: cover" />
+                                    <input id="gallery7" type="file" name="gallery_7"
+                                        accept=".jpg,.jpeg,.png,.webp,.git" class="d-none" required
+                                        onchange="onGallery7Change(this)" required>
+                                </label>
+                                <label for="gallery8" class="rounded d-flex align-items-center"
+                                    style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
+                                    <i id="gallery8Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                        style="font-size: 44px"></i>
+                                    <img id="gallery8Preview" src="#" class="rounded w-100 h-100 d-none"
+                                        alt="gallery" style="object-fit: cover" />
+                                    <input id="gallery8" type="file" name="gallery_8"
+                                        accept=".jpg,.jpeg,.png,.webp,.git" class="d-none" required
+                                        onchange="onGallery8Change(this)" required>
+                                </label>
+                            </div>
+                            <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB untuk masing - masing foto</p>
+                        </div>
+                    @endif
                 </form>
             </div>
         </div>
@@ -151,16 +255,40 @@
 
 @section('script')
     <script type="module">
+        const headerPreview = $("#headerPreview")
         const malePhotoPreview = $('#malePhotoPreview')
         const femalePhotoPreview = $('#femalePhotoPreview')
         const caption1 = $("#caption1")
         const caption2 = $("#caption2")
+        const gallery1Icon = $("#gallery1Icon")
+        const gallery1Preview = $("#gallery1Preview")
+        const gallery2Icon = $("#gallery2Icon")
+        const gallery2Preview = $("#gallery2Preview")
+        const gallery3Icon = $("#gallery3Icon")
+        const gallery3Preview = $("#gallery3Preview")
+        const gallery4Icon = $("#gallery4Icon")
+        const gallery4Preview = $("#gallery4Preview")
+        const gallery5Icon = $("#gallery5Icon")
+        const gallery5Preview = $("#gallery5Preview")
+        const gallery6Icon = $("#gallery6Icon")
+        const gallery6Preview = $("#gallery6Preview")
+        const gallery7Icon = $("#gallery7Icon")
+        const gallery7Preview = $("#gallery7Preview")
+        const gallery8Icon = $("#gallery8Icon")
+        const gallery8Preview = $("#gallery8Preview")
 
         const caption1Text =
             'Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. (QS. Ar-Rum 21)'
 
         const caption2Text =
             'Maha Suci Allah SWT, Yang telah menciptakan makhlukNya berpasang-pasangan. Ya Allah, perkenankanlah dan Ridhoilah Pernikahan kami'
+
+        window.onHeaderChange = function(e) {
+            const file = e.files[0]
+            headerPreview.attr('src', URL.createObjectURL(file))
+            headerPreview.removeClass('d-none')
+            headerPreview.addClass('d-block')
+        }
 
         window.onMalePhotoChange = function(e) {
             const file = e.files[0]
@@ -182,6 +310,78 @@
 
         window.copyToCaption2 = function(e) {
             caption2.html(caption2Text)
+        }
+
+        window.onGallery1Change = function(e) {
+            const file = e.files[0]
+            gallery1Preview.attr('src', URL.createObjectURL(file))
+            gallery1Preview.removeClass('d-none')
+            gallery1Preview.addClass('d-block')
+            gallery1Icon.removeClass('d-block')
+            gallery1Icon.addClass('d-none')
+        }
+
+        window.onGallery2Change = function(e) {
+            const file = e.files[0]
+            gallery2Preview.attr('src', URL.createObjectURL(file))
+            gallery2Preview.removeClass('d-none')
+            gallery2Preview.addClass('d-block')
+            gallery2Icon.removeClass('d-block')
+            gallery2Icon.addClass('d-none')
+        }
+
+        window.onGallery3Change = function(e) {
+            const file = e.files[0]
+            gallery3Preview.attr('src', URL.createObjectURL(file))
+            gallery3Preview.removeClass('d-none')
+            gallery3Preview.addClass('d-block')
+            gallery3Icon.removeClass('d-block')
+            gallery3Icon.addClass('d-none')
+        }
+
+        window.onGallery4Change = function(e) {
+            const file = e.files[0]
+            gallery4Preview.attr('src', URL.createObjectURL(file))
+            gallery4Preview.removeClass('d-none')
+            gallery4Preview.addClass('d-block')
+            gallery4Icon.removeClass('d-block')
+            gallery4Icon.addClass('d-none')
+        }
+
+        window.onGallery5Change = function(e) {
+            const file = e.files[0]
+            gallery5Preview.attr('src', URL.createObjectURL(file))
+            gallery5Preview.removeClass('d-none')
+            gallery5Preview.addClass('d-block')
+            gallery5Icon.removeClass('d-block')
+            gallery5Icon.addClass('d-none')
+        }
+
+        window.onGallery6Change = function(e) {
+            const file = e.files[0]
+            gallery6Preview.attr('src', URL.createObjectURL(file))
+            gallery6Preview.removeClass('d-none')
+            gallery6Preview.addClass('d-block')
+            gallery6Icon.removeClass('d-block')
+            gallery6Icon.addClass('d-none')
+        }
+
+        window.onGallery7Change = function(e) {
+            const file = e.files[0]
+            gallery7Preview.attr('src', URL.createObjectURL(file))
+            gallery7Preview.removeClass('d-none')
+            gallery7Preview.addClass('d-block')
+            gallery7Icon.removeClass('d-block')
+            gallery7Icon.addClass('d-none')
+        }
+
+        window.onGallery8Change = function(e) {
+            const file = e.files[0]
+            gallery8Preview.attr('src', URL.createObjectURL(file))
+            gallery8Preview.removeClass('d-none')
+            gallery8Preview.addClass('d-block')
+            gallery8Icon.removeClass('d-block')
+            gallery8Icon.addClass('d-none')
         }
     </script>
 @endsection
