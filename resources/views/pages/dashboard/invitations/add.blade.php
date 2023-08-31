@@ -139,6 +139,10 @@
                             </p>
                         </div>
                     </div>
+                    <div class="card-body">
+                        <p class="fw-medium fs-5">Tambahkan 2 sampai 8 Foto Gallery Bersama Pasangan (Min: 2)</p>
+
+                    </div>
                 </form>
             </div>
         </div>
