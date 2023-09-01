@@ -246,11 +246,36 @@
                             </div>
                             <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB untuk masing - masing foto</p>
                         </div>
+                        <div class="card-body">
+                            <p class="fw-medium fs-5">Background Music</p>
+                            <div class="mt-2 w-100">
+
+                            </div>
+                        </div>
+                        <div class="card-body" style="background-color: #f4f4f4">
+                            <p style="font-size: 14px;">* Acara, Tamu dan Gift Digital dapat ditambahkan setelah mengklik
+                                Simpan pada halaman ini.</p>
+                            <button class="btn btn-primary mt-3 text-white save-button">Simpan</button>
+                        </div>
                     @endif
                 </form>
             </div>
         </div>
     </section>
+@endsection
+
+@section('style')
+    <style>
+        .save-button {
+            width: 100%
+        }
+
+        @media(min-width: 768px) {
+            .save-button {
+                width: max-content;
+            }
+        }
+    </style>
 @endsection
 
 @section('script')
