@@ -43,6 +43,19 @@
                                     <p style="font-size: 14px; margin-top: 4px;">Nama tidak dapat diubah setelah disimpan
                                     </p>
                                 </div>
+                                <div class="w-100">
+                                    <label class="form-label">Status</label>
+                                    <select name="is_published" class="form-select" required>
+                                        <option value="1"
+                                            {{ old('is_published') ? (old('is_published') == 1 ? 'selected' : '') : 'selected' }}>
+                                            Dipublikasi
+                                        </option>
+                                        <option value="0"
+                                            {{ old('is_published') ? (old('is_published') == 0 ? 'selected' : '') : '' }}>
+                                            Draft
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
                         @endif
                     </div>
@@ -249,7 +262,13 @@
                         <div class="card-body">
                             <p class="fw-medium fs-5">Background Music</p>
                             <div class="mt-2 w-100">
-
+                                <label class="form-label">Upload Music</label>
+                                <audio controls="controls" id="songPreview" class="mb-4 d-none">
+                                    <source src="#" type="audio/mp4" />
+                                </audio>
+                                <input type="file" class="form-control" name="song" accept=".mp3,.wav,.m4a"
+                                    required onchange="onSongChange(this)" />
+                                <p style="font-size: 14px; margin-top: 4px">Max size: 7 MB</p>
                             </div>
                         </div>
                         <div class="card-body" style="background-color: #f4f4f4">
@@ -301,6 +320,7 @@
         const gallery7Preview = $("#gallery7Preview")
         const gallery8Icon = $("#gallery8Icon")
         const gallery8Preview = $("#gallery8Preview")
+        const songPreivew = $("#songPreview")
 
         const caption1Text =
             'Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. (QS. Ar-Rum 21)'
@@ -407,6 +427,13 @@
             gallery8Preview.addClass('d-block')
             gallery8Icon.removeClass('d-block')
             gallery8Icon.addClass('d-none')
+        }
+
+        window.onSongChange = function(e) {
+            const file = e.files[0]
+            songPreivew.attr('src', URL.createObjectURL(file))
+            songPreivew.removeClass('d-none')
+            songPreivew.addClass('d-block')
         }
     </script>
 @endsection
