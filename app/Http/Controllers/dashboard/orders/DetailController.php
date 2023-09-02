@@ -42,6 +42,10 @@ class DetailController extends Controller
         $this->authorize('update-order-transfer-proof', $order);
         $transferProofName = '';
 
+        if ($transfer_proof->getSize() / 1024 > 2000) {
+            return redirect('/dashboard/orders' . $id)->with('successMessage', 'Ukuran file terlalu besar')->withInput();
+        }
+
         if ($transfer_proof) {
             $transferProofName = time() . '.' . $transfer_proof->getClientOriginalExtension();
             $transfer_proof->move(public_path('/uploads'), $transferProofName);

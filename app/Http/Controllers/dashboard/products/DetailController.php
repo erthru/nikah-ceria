@@ -34,6 +34,10 @@ class DetailController extends Controller
         $demo_url = $request->input('demo_url');
         $is_active = $request->input('is_active');
 
+        if ($thumbnail->getSize() / 1024 > 2000) {
+            return redirect('/dashboard/products/' . $id)->with('errorMessage', 'Ukuran file terlalu besar')->withInput();
+        }
+
         if ($discount && $discount != '0' && !$discount_expires_at) {
             return redirect('/dashboard/products/' . $id)->with('errorMessage', '"Diskon berakhir pada" wajib diisi jika menggunakan diskon')->withInput();
         }

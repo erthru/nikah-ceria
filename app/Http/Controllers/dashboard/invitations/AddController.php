@@ -32,7 +32,7 @@ class AddController extends Controller
         $this->authorize('act-as-customer');
         $name = $request->input('name');
         $slug = $request->input('slug');
-        $header = $request->input('header');
+        $header = $request->file('header');
         $male_name = $request->input('male_name');
         $female_name = $request->input('female_name');
         $male_father_name = $request->input('male_father_name');
@@ -41,21 +41,38 @@ class AddController extends Controller
         $female_mother_name = $request->input('female_mother_name');
         $male_family_order = $request->input('male_family_order');
         $female_family_order = $request->input('female_family_order');
-        $male_photo = $request->input('male_photo');
-        $female_photo = $request->input('female_photo');
+        $male_photo = $request->file('male_photo');
+        $female_photo = $request->file('female_photo');
         $caption_1 = $request->input('caption_1');
         $caption_2 = $request->input('caption_2');
-        $gallery_1 = $request->input('gallery_1');
-        $gallery_2 = $request->input('gallery_2');
-        $gallery_3 = $request->input('gallery_3');
-        $gallery_4 = $request->input('gallery_4');
-        $gallery_5 = $request->input('gallery_5');
-        $gallery_6 = $request->input('gallery_6');
-        $gallery_7 = $request->input('gallery_7');
-        $gallery_8 = $request->input('gallery_8');
-        $song = $request->input('song');
+        $gallery_1 = $request->file('gallery_1');
+        $gallery_2 = $request->file('gallery_2');
+        $gallery_3 = $request->file('gallery_3');
+        $gallery_4 = $request->file('gallery_4');
+        $gallery_5 = $request->file('gallery_5');
+        $gallery_6 = $request->file('gallery_6');
+        $gallery_7 = $request->file('gallery_7');
+        $gallery_8 = $request->file('gallery_8');
+        $song = $request->file('song');
         $is_published = $request->input('is_published');
         $product_id = $request->input('product_id');
+
+        if (
+            $header->getSize() / 1024 > 2000 ||
+            $male_photo->getSize() / 1024 > 2000 ||
+            $female_photo->getSize() / 1024 > 2000 ||
+            $gallery_1->getSize() / 1024 > 2000 ||
+            $gallery_2->getSize() / 1024 > 2000 ||
+            $gallery_3->getSize() / 1024 > 2000 ||
+            $gallery_4->getSize() / 1024 > 2000 ||
+            $gallery_5->getSize() / 1024 > 2000 ||
+            $gallery_6->getSize() / 1024 > 2000 ||
+            $gallery_7->getSize() / 1024 > 2000 ||
+            $gallery_8->getSize() / 1024 > 2000 ||
+            $song->getSize() / 1024 > 7000
+        ) {
+            return redirect()->with('errorMessage', 'Ukuran file terlalu besar')->withInput();
+        }
 
         return redirect();
     }
