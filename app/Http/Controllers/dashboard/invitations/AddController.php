@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\dashboard\invitations;
 
 use App\Http\Controllers\Controller;
+use App\Models\Invitation;
 use App\Models\Order;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -31,7 +32,6 @@ class AddController extends Controller
     {
         $this->authorize('act-as-customer');
         $name = $request->input('name');
-        $slug = $request->input('slug');
         $header = $request->file('header');
         $male_name = $request->input('male_name');
         $female_name = $request->input('female_name');
@@ -71,9 +71,130 @@ class AddController extends Controller
             $gallery_8->getSize() / 1024 > 2000 ||
             $song->getSize() / 1024 > 7000
         ) {
-            return redirect()->with('errorMessage', 'Ukuran file terlalu besar')->withInput();
+            return redirect('/dashboard/invitations/add')->with('errorMessage', 'Ukuran file terlalu besar')->withInput();
         }
 
-        return redirect();
+        $headerName = '';
+
+        if ($header) {
+            $headerName = time() . '.' . $header->getClientOriginalExtension();
+            $header->move(public_path('/uploads'), $headerName);
+        }
+
+        $male_photoName = '';
+
+        if ($male_photo) {
+            $male_photoName = time() . '.' . $male_photo->getClientOriginalExtension();
+            $male_photo->move(public_path('/uploads'), $male_photoName);
+        }
+
+        $female_photoName = '';
+
+        if ($female_photo) {
+            $female_photoName = time() . '.' . $female_photo->getClientOriginalExtension();
+            $female_photo->move(public_path('/uploads'), $female_photoName);
+        }
+
+        $gallery_1Name = '';
+
+        if ($gallery_1) {
+            $gallery_1Name = time() . '.' . $gallery_1->getClientOriginalExtension();
+            $gallery_1->move(public_path('/uploads'), $gallery_1Name);
+        }
+
+        $gallery_2Name = '';
+
+        if ($gallery_2) {
+            $gallery_2Name = time() . '.' . $gallery_2->getClientOriginalExtension();
+            $gallery_2->move(public_path('/uploads'), $gallery_2Name);
+        }
+
+        $gallery_3Name = '';
+
+        if ($gallery_3) {
+            $gallery_3Name = time() . '.' . $gallery_3->getClientOriginalExtension();
+            $gallery_3->move(public_path('/uploads'), $gallery_3Name);
+        }
+
+        $gallery_4Name = '';
+
+        if ($gallery_4) {
+            $gallery_4Name = time() . '.' . $gallery_4->getClientOriginalExtension();
+            $gallery_4->move(public_path('/uploads'), $gallery_4Name);
+        }
+
+        $gallery_5Name = '';
+
+        if ($gallery_5) {
+            $gallery_5Name = time() . '.' . $gallery_5->getClientOriginalExtension();
+            $gallery_5->move(public_path('/uploads'), $gallery_5Name);
+        }
+
+        $gallery_6Name = '';
+
+        if ($gallery_6) {
+            $gallery_6Name = time() . '.' . $gallery_6->getClientOriginalExtension();
+            $gallery_6->move(public_path('/uploads'), $gallery_6Name);
+        }
+
+        $gallery_7Name = '';
+
+        if ($gallery_7) {
+            $gallery_7Name = time() . '.' . $gallery_7->getClientOriginalExtension();
+            $gallery_7->move(public_path('/uploads'), $gallery_7Name);
+        }
+
+        $gallery_8Name = '';
+
+        if ($gallery_8) {
+            $gallery_8Name = time() . '.' . $gallery_8->getClientOriginalExtension();
+            $gallery_8->move(public_path('/uploads'), $gallery_8Name);
+        }
+
+        $songName = '';
+
+        if ($song) {
+            $songName = time() . '.' . $song->getClientOriginalExtension();
+            $song->move(public_path('/uploads'), $songName);
+        }
+
+        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $name)));
+        $invitationWithTheSameSlug = Invitation::where('slug', $slug)->first();
+
+        if ($invitationWithTheSameSlug) {
+            $slug = $slug . '-' . time();
+        }
+
+        $invitation = Invitation::create([
+            'name' => $name,
+            'slug' => $slug,
+            'header' => $headerName,
+            'male_name' => $male_name,
+            'female_name' => $female_name,
+            'male_father_name' => $male_father_name,
+            'male_mother_name' => $male_mother_name,
+            'female_father_name' => $female_father_name,
+            'female_mother_name' => $female_mother_name,
+            'male_family_order' => $male_family_order,
+            'female_family_order' => $female_family_order,
+            'male_photo' => $male_photoName,
+            'female_photo' => $female_photoName,
+            'caption_1' => $caption_1,
+            'caption_2' => $caption_2,
+            'gallery_1' => $gallery_1Name,
+            'gallery_2' => $gallery_2Name,
+            'gallery_3' => $gallery_3Name,
+            'gallery_4' => $gallery_4Name,
+            'gallery_5' => $gallery_5Name,
+            'gallery_6' => $gallery_6Name,
+            'gallery_7' => $gallery_7Name,
+            'gallery_8' => $gallery_8Name,
+            'song' => $songName,
+            'is_published' => $is_published,
+            'product_id' => $product_id,
+            'customer_id' => Auth::user()->customer->id,
+        ]);
+
+        return redirect('/dashboard/invitations/' . $invitation->id)->with('successMessage', 'Berhasil membuat undangan');
     }
 }
