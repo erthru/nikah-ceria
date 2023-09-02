@@ -47,7 +47,7 @@ class DetailController extends Controller
         }
 
         if ($transfer_proof) {
-            $transferProofName = time() . '.' . $transfer_proof->getClientOriginalExtension();
+            $transferProofName = time() + 1 . '.' . $transfer_proof->getClientOriginalExtension();
             $transfer_proof->move(public_path('/uploads'), $transferProofName);
         }
 

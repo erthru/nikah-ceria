@@ -53,7 +53,7 @@ class AddController extends Controller
         $thumbnailName = '';
 
         if ($thumbnail) {
-            $thumbnailName = time() . '.' . $thumbnail->getClientOriginalExtension();
+            $thumbnailName = time() + 1 . '.' . $thumbnail->getClientOriginalExtension();
             $thumbnail->move(public_path('/uploads'), $thumbnailName);
         }
 

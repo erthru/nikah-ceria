@@ -77,84 +77,84 @@ class AddController extends Controller
         $headerName = '';
 
         if ($header) {
-            $headerName = time() . '.' . $header->getClientOriginalExtension();
+            $headerName = time() + 1 . '.' . $header->getClientOriginalExtension();
             $header->move(public_path('/uploads'), $headerName);
         }
 
         $male_photoName = '';
 
         if ($male_photo) {
-            $male_photoName = time() . '.' . $male_photo->getClientOriginalExtension();
+            $male_photoName = time() + 2 . '.' . $male_photo->getClientOriginalExtension();
             $male_photo->move(public_path('/uploads'), $male_photoName);
         }
 
         $female_photoName = '';
 
         if ($female_photo) {
-            $female_photoName = time() . '.' . $female_photo->getClientOriginalExtension();
+            $female_photoName = time() + 3 . '.' . $female_photo->getClientOriginalExtension();
             $female_photo->move(public_path('/uploads'), $female_photoName);
         }
 
         $gallery_1Name = '';
 
         if ($gallery_1) {
-            $gallery_1Name = time() . '.' . $gallery_1->getClientOriginalExtension();
+            $gallery_1Name = time() + 4 . '.' . $gallery_1->getClientOriginalExtension();
             $gallery_1->move(public_path('/uploads'), $gallery_1Name);
         }
 
         $gallery_2Name = '';
 
         if ($gallery_2) {
-            $gallery_2Name = time() . '.' . $gallery_2->getClientOriginalExtension();
+            $gallery_2Name = time() + 5 . '.' . $gallery_2->getClientOriginalExtension();
             $gallery_2->move(public_path('/uploads'), $gallery_2Name);
         }
 
         $gallery_3Name = '';
 
         if ($gallery_3) {
-            $gallery_3Name = time() . '.' . $gallery_3->getClientOriginalExtension();
+            $gallery_3Name = time() + 6 . '.' . $gallery_3->getClientOriginalExtension();
             $gallery_3->move(public_path('/uploads'), $gallery_3Name);
         }
 
         $gallery_4Name = '';
 
         if ($gallery_4) {
-            $gallery_4Name = time() . '.' . $gallery_4->getClientOriginalExtension();
+            $gallery_4Name = time() + 7 . '.' . $gallery_4->getClientOriginalExtension();
             $gallery_4->move(public_path('/uploads'), $gallery_4Name);
         }
 
         $gallery_5Name = '';
 
         if ($gallery_5) {
-            $gallery_5Name = time() . '.' . $gallery_5->getClientOriginalExtension();
+            $gallery_5Name = time() + 8 . '.' . $gallery_5->getClientOriginalExtension();
             $gallery_5->move(public_path('/uploads'), $gallery_5Name);
         }
 
         $gallery_6Name = '';
 
         if ($gallery_6) {
-            $gallery_6Name = time() . '.' . $gallery_6->getClientOriginalExtension();
+            $gallery_6Name = time() + 9 . '.' . $gallery_6->getClientOriginalExtension();
             $gallery_6->move(public_path('/uploads'), $gallery_6Name);
         }
 
         $gallery_7Name = '';
 
         if ($gallery_7) {
-            $gallery_7Name = time() . '.' . $gallery_7->getClientOriginalExtension();
+            $gallery_7Name = time() + 10 . '.' . $gallery_7->getClientOriginalExtension();
             $gallery_7->move(public_path('/uploads'), $gallery_7Name);
         }
 
         $gallery_8Name = '';
 
         if ($gallery_8) {
-            $gallery_8Name = time() . '.' . $gallery_8->getClientOriginalExtension();
+            $gallery_8Name = time() + 11 . '.' . $gallery_8->getClientOriginalExtension();
             $gallery_8->move(public_path('/uploads'), $gallery_8Name);
         }
 
         $songName = '';
 
         if ($song) {
-            $songName = time() . '.' . $song->getClientOriginalExtension();
+            $songName = time() + 12 . '.' . $song->getClientOriginalExtension();
             $song->move(public_path('/uploads'), $songName);
         }
 
