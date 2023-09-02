@@ -11,7 +11,7 @@
                 </ol>
             </nav>
             <div class="card">
-                <form action="/dashboard/invitations/add" method="POST">
+                <form action="/dashboard/invitations/add" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         @if (count($products) == 0)
