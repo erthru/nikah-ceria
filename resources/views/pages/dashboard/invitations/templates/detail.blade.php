@@ -8,7 +8,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="/dashboard/invitations">Undangan</a></li>
-                    <li class="breadcrumb-item"><a href="/dashboard/invitations/templates">Template</a></li>
+                    <li class="breadcrumb-item"><a href="/dashboard/invitations/buy/templates">Template</a></li>
                     <li class="breadcrumb-item active">Detail Template</li>
                 </ol>
             </nav>
@@ -66,7 +66,7 @@
                                 </p>
                             @endif
                             @if (!$isProductPurchased)
-                                <form action="/dashboard/invitations/templates/{{ $product->id }}" method="POST">
+                                <form action="/dashboard/invitations/buy/templates/{{ $product->id }}" method="POST">
                                     @csrf
                                     <input type="hidden" value="{{ Auth::user()->customer->id }}" name="customer_id" />
                                     @if ($product->price > 0)

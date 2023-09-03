@@ -9,8 +9,8 @@ use App\Http\Controllers\dashboard\products\DetailController as DashboardProduct
 use App\Http\Controllers\dashboard\invitations\IndexController as DashboardInvitationsIndexController;
 use App\Http\Controllers\dashboard\invitations\AddController as DashboardInvitationsAddController;
 use App\Http\Controllers\dashboard\invitations\DetailController as DashboardInvitationsDetailController;
-use App\Http\Controllers\dashboard\invitations\templates\IndexController as DashboardInvitationsTemplatesIndexController;
-use App\Http\Controllers\dashboard\invitations\templates\DetailController as DashboardInvitationsTemplatesDetailController;
+use App\Http\Controllers\dashboard\invitations\buy\templates\IndexController as DashboardInvitationsBuyTemplatesIndexController;
+use App\Http\Controllers\dashboard\invitations\buy\templates\DetailController as DashboardInvitationsBuyTemplatesDetailController;
 use App\Http\Controllers\dashboard\orders\IndexController as DashboardOrdersIndexController;
 use App\Http\Controllers\dashboard\orders\DetailController as DashboardOrdersDetailController;
 use App\Http\Controllers\IndexController;
@@ -48,9 +48,9 @@ Route::get('/dashboard/invitations', [DashboardInvitationsIndexController::class
 Route::get('/dashboard/invitations/add', [DashboardInvitationsAddController::class, 'show'])->middleware('auth');
 Route::post('/dashboard/invitations/add', [DashboardInvitationsAddController::class, 'store'])->middleware('auth');
 Route::get('/dashboard/invitations/{id}', [DashboardInvitationsDetailController::class, 'show'])->middleware('auth');
-Route::get('/dashboard/invitations/templates', [DashboardInvitationsTemplatesIndexController::class, 'show'])->middleware('auth');
-Route::get('/dashboard/invitations/templates/{code}', [DashboardInvitationsTemplatesDetailController::class, 'show'])->middleware('auth');
-Route::post('/dashboard/invitations/templates/{code}', [DashboardInvitationsTemplatesDetailController::class, 'buy'])->middleware('auth');
+Route::get('/dashboard/invitations/buy/templates', [DashboardInvitationsBuyTemplatesIndexController::class, 'show'])->middleware('auth');
+Route::get('/dashboard/invitations/buy/templates/{code}', [DashboardInvitationsBuyTemplatesDetailController::class, 'show'])->middleware('auth');
+Route::post('/dashboard/invitations/buy/templates/{code}', [DashboardInvitationsBuyTemplatesDetailController::class, 'buy'])->middleware('auth');
 Route::get('/dashboard/orders', [DashboardOrdersIndexController::class, 'show'])->middleware('auth');
 Route::get('/dashboard/orders/{id}', [DashboardOrdersDetailController::class, 'show'])->middleware('auth');
 Route::put('/dashboard/orders/{id}', [DashboardOrdersDetailController::class, 'customActionPut'])->middleware('auth');

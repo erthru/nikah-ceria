@@ -35,7 +35,7 @@
                             <p class="card-text mt-2"
                                 style="overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical;">
                                 {{ $product->description }}</p>
-                            <a href="/dashboard/invitations/templates/{{ $product->code }}"
+                            <a href="/dashboard/invitations/buy/templates/{{ $product->code }}"
                                 class="btn btn-primary mt-3 text-white select-button">Pilih Template</a>
                         </div>
                     </div>

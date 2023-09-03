@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\dashboard\invitations\templates;
+namespace App\Http\Controllers\dashboard\invitations\buy\templates;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
