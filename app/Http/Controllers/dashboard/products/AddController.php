@@ -32,7 +32,7 @@ class AddController extends Controller
         $demo_url = $request->input('demo_url');
         $is_active = $request->input('is_active');
 
-        if ($thumbnail->getSize() / 1024 > 2000) {
+        if ($thumbnail && $thumbnail->getSize() / 1024 > 2000) {
             return redirect('/dashboard/products/add')->with('errorMessage', 'Ukuran file terlalu besar')->withInput();
         }
 

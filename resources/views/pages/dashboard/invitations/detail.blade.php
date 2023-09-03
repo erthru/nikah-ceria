@@ -57,7 +57,7 @@
                                 class="d-block rounded"
                                 style="width: 280px; height: 280px; object-fit: cover; margin-bottom: 16px;" />
                             <input type="file" class="form-control" name="header" accept=".jpg,.jpeg,.png,.webp,.git"
-                                required onchange="onHeaderChange(this)" />
+                                onchange="onHeaderChange(this)" />
                             <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB</p>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
                                     class="d-block rounded"
                                     style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
                                 <input type="file" class="form-control" name="male_photo"
-                                    accept=".jpg,.jpeg,.png,.webp,.git" required onchange="onMalePhotoChange(this)" />
+                                    accept=".jpg,.jpeg,.png,.webp,.git" onchange="onMalePhotoChange(this)" />
                                 <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB</p>
                             </div>
                             <div class="w-100">
@@ -142,7 +142,7 @@
                                     alt="female-photo" class="d-block rounded"
                                     style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
                                 <input type="file" class="form-control" name="female_photo"
-                                    accept=".jpg,.jpeg,.png,.webp,.git" required onchange="onFemalePhotoChange(this)" />
+                                    accept=".jpg,.jpeg,.png,.webp,.git" onchange="onFemalePhotoChange(this)" />
                                 <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB</p>
                             </div>
                         </div>
@@ -180,8 +180,7 @@
                                 <img id="gallery1Preview" src="/uploads/{{ $invitation->gallery_1 }}"
                                     class="rounded w-100 h-100 d-block" alt="gallery" style="object-fit: cover" />
                                 <input id="gallery1" type="file" name="gallery_1"
-                                    accept=".jpg,.jpeg,.png,.webp,.git" class="d-none" onchange="onGallery1Change(this)"
-                                    required>
+                                    accept=".jpg,.jpeg,.png,.webp,.git" class="d-none" onchange="onGallery1Change(this)">
                             </label>
                             <label for="gallery2" class="rounded d-flex align-items-center"
                                 style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
@@ -190,8 +189,7 @@
                                 <img id="gallery2Preview" src="/uploads/{{ $invitation->gallery_2 }}"
                                     class="rounded w-100 h-100 d-block" alt="gallery" style="object-fit: cover" />
                                 <input id="gallery2" type="file" name="gallery_2"
-                                    accept=".jpg,.jpeg,.png,.webp,.git" class="d-none" onchange="onGallery2Change(this)"
-                                    required>
+                                    accept=".jpg,.jpeg,.png,.webp,.git" class="d-none" onchange="onGallery2Change(this)">
                             </label>
                             <label for="gallery3" class="rounded d-flex align-items-center"
                                 style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
@@ -269,7 +267,7 @@
                             <audio controls="controls" id="songPreview" class="mb-4 d-block">
                                 <source src="/uploads/{{ $invitation->song }}" type="audio/mp4" />
                             </audio>
-                            <input type="file" class="form-control" name="song" accept=".mp3,.wav,.m4a" required
+                            <input type="file" class="form-control" name="song" accept=".mp3,.wav,.m4a"
                                 onchange="onSongChange(this)" />
                             <p style="font-size: 14px; margin-top: 4px">Max size: 7 MB</p>
                         </div>

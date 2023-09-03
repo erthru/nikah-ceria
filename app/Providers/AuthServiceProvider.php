@@ -37,5 +37,17 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('update-order-transfer-proof', function (User $user, Order $order) {
             return $user->role == 'CUSTOMER' && $order->customer_id == $user->customer->id;
         });
+
+        Gate::define('show-invitation', function (User $user, Invitation $invitation) {
+            return $user->role == 'CUSTOMER' && $invitation->customer_id == $user->customer->id;
+        });
+
+        Gate::define('update-invitation', function (User $user, Invitation $invitation) {
+            return $user->role == 'CUSTOMER' && $invitation->customer_id == $user->customer->id;
+        });
+
+        Gate::define('destroy-invitation', function (User $user, Invitation $invitation) {
+            return $user->role == 'CUSTOMER' && $invitation->customer_id == $user->customer->id;
+        });
     }
 }

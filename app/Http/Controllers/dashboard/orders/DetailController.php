@@ -42,7 +42,7 @@ class DetailController extends Controller
         $this->authorize('update-order-transfer-proof', $order);
         $transferProofName = '';
 
-        if ($transfer_proof->getSize() / 1024 > 2000) {
+        if ($$transfer_proof && $transfer_proof->getSize() / 1024 > 2000) {
             return redirect('/dashboard/orders' . $id)->with('successMessage', 'Ukuran file terlalu besar')->withInput();
         }
 

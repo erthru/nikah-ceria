@@ -58,18 +58,18 @@ class AddController extends Controller
         $product_id = $request->input('product_id');
 
         if (
-            $header->getSize() / 1024 > 2000 ||
-            $male_photo->getSize() / 1024 > 2000 ||
-            $female_photo->getSize() / 1024 > 2000 ||
-            $gallery_1->getSize() / 1024 > 2000 ||
-            $gallery_2->getSize() / 1024 > 2000 ||
-            $gallery_3->getSize() / 1024 > 2000 ||
-            $gallery_4->getSize() / 1024 > 2000 ||
-            $gallery_5->getSize() / 1024 > 2000 ||
-            $gallery_6->getSize() / 1024 > 2000 ||
-            $gallery_7->getSize() / 1024 > 2000 ||
-            $gallery_8->getSize() / 1024 > 2000 ||
-            $song->getSize() / 1024 > 7000
+            ($header && $header->getSize() / 1024 > 2000) ||
+            ($male_photo && $male_photo->getSize() / 1024 > 2000) ||
+            ($female_photo && $female_photo->getSize() / 1024 > 2000) ||
+            ($gallery_1 && $gallery_1->getSize() / 1024 > 2000) ||
+            ($gallery_2 && $gallery_2->getSize() / 1024 > 2000) ||
+            ($gallery_3 && $gallery_3->getSize() / 1024 > 2000) ||
+            ($gallery_4 && $gallery_4->getSize() / 1024 > 2000) ||
+            ($gallery_5 && $gallery_5->getSize() / 1024 > 2000) ||
+            ($gallery_6 && $gallery_6->getSize() / 1024 > 2000) ||
+            ($gallery_7 && $gallery_7->getSize() / 1024 > 2000) ||
+            ($gallery_8 && $gallery_8->getSize() / 1024 > 2000) ||
+            ($song && $song->getSize() / 1024 > 7000)
         ) {
             return redirect('/dashboard/invitations/add')->with('errorMessage', 'Ukuran file terlalu besar')->withInput();
         }
