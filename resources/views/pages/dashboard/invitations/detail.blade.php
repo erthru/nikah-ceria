@@ -274,8 +274,9 @@
                             <p style="font-size: 14px; margin-top: 4px">Max size: 7 MB</p>
                         </div>
                     </div>
-                    <div class="card-body" style="background-color: #f4f4f4">
-                        <button class="btn btn-primary text-white save-button">Simpan</button>
+                    <div class="card-body d-flex flex-column flex-md-row gap-2" style="background-color: #f4f4f4">
+                        <button class="btn btn-primary text-white action-button">Simpan</button>
+                        <button type="button" class="btn btn-danger text-white action-button">Hapus</button>
                     </div>
                 </form>
             </div>
@@ -285,12 +286,12 @@
 
 @section('style')
     <style>
-        .save-button {
+        .action-button {
             width: 100%
         }
 
         @media(min-width: 768px) {
-            .save-button {
+            .action-button {
                 width: max-content;
             }
         }
