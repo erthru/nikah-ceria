@@ -274,12 +274,34 @@
                     </div>
                     <div class="card-body d-flex flex-column flex-md-row gap-2" style="background-color: #f4f4f4">
                         <button class="btn btn-primary text-white action-button">Simpan</button>
-                        <button type="button" class="btn btn-danger text-white action-button">Hapus</button>
+                        <button type="button" class="btn btn-danger text-white action-button" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal">Hapus</button>
                     </div>
                 </form>
             </div>
         </div>
     </section>
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/dashboard/invitations/{{ $invitation->id }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Undangan</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Apakah kamu yakin dengan keputusan ini?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('style')

@@ -260,10 +260,10 @@ class DetailController extends Controller
     {
         $invitation = Invitation::with(['product', 'customer'])->findOrFail($id);
         $this->authorize('destroy-invitation', $invitation);
-        InvitationEvent::where('invitation_id', $invitation->id)->destroy();
-        InvitationGift::where('invitation_id', $invitation->id)->destroy();
-        InvitationGuestBook::where('invitation_id', $invitation->id)->destroy();
-        InvitationGuest::where('invitation_id', $invitation->id)->destroy();
+        InvitationEvent::where('invitation_id', $invitation->id)->delete();
+        InvitationGift::where('invitation_id', $invitation->id)->delete();
+        InvitationGuestBook::where('invitation_id', $invitation->id)->delete();
+        InvitationGuest::where('invitation_id', $invitation->id)->delete();
         Invitation::destroy($invitation->id);
         return redirect('/dashboard/invitations/')->with('successMessage', 'Berhasil menghapus undangan');
     }
