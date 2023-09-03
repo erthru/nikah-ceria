@@ -8,7 +8,8 @@ use App\Http\Controllers\dashboard\products\AddController as DashboardProductsAd
 use App\Http\Controllers\dashboard\products\DetailController as DashboardProductsDetailController;
 use App\Http\Controllers\dashboard\invitations\IndexController as DashboardInvitationsIndexController;
 use App\Http\Controllers\dashboard\invitations\AddController as DashboardInvitationsAddController;
-use App\Http\Controllers\dashboard\invitations\DetailController as DashboardInvitationsDetailController;
+use App\Http\Controllers\dashboard\invitations\detail\IndexController as DashboardInvitationsDetailIndexController;
+use App\Http\Controllers\dashboard\invitations\detail\OtherController as DashboardInvitationsDetailOtherController;
 use App\Http\Controllers\dashboard\invitations\buy\templates\IndexController as DashboardInvitationsBuyTemplatesIndexController;
 use App\Http\Controllers\dashboard\invitations\buy\templates\DetailController as DashboardInvitationsBuyTemplatesDetailController;
 use App\Http\Controllers\dashboard\orders\IndexController as DashboardOrdersIndexController;
@@ -47,9 +48,10 @@ Route::delete('/dashboard/products/{id}', [DashboardProductsDetailController::cl
 Route::get('/dashboard/invitations', [DashboardInvitationsIndexController::class, 'show'])->middleware('auth');
 Route::get('/dashboard/invitations/add', [DashboardInvitationsAddController::class, 'show'])->middleware('auth');
 Route::post('/dashboard/invitations/add', [DashboardInvitationsAddController::class, 'store'])->middleware('auth');
-Route::get('/dashboard/invitations/{id}', [DashboardInvitationsDetailController::class, 'show'])->middleware('auth');
-Route::put('/dashboard/invitations/{id}', [DashboardInvitationsDetailController::class, 'update'])->middleware('auth');
-Route::delete('/dashboard/invitations/{id}', [DashboardInvitationsDetailController::class, 'destroy'])->middleware('auth');
+Route::get('/dashboard/invitations/{id}', [DashboardInvitationsDetailIndexController::class, 'show'])->middleware('auth');
+Route::put('/dashboard/invitations/{id}', [DashboardInvitationsDetailIndexController::class, 'update'])->middleware('auth');
+Route::delete('/dashboard/invitations/{id}', [DashboardInvitationsDetailIndexController::class, 'destroy'])->middleware('auth');
+Route::get('/dashboard/invitations/{id}/other', [DashboardInvitationsDetailOtherController::class, 'show'])->middleware('auth');
 Route::get('/dashboard/invitations/buy/templates', [DashboardInvitationsBuyTemplatesIndexController::class, 'show'])->middleware('auth');
 Route::get('/dashboard/invitations/buy/templates/{code}', [DashboardInvitationsBuyTemplatesDetailController::class, 'show'])->middleware('auth');
 Route::post('/dashboard/invitations/buy/templates/{code}', [DashboardInvitationsBuyTemplatesDetailController::class, 'buy'])->middleware('auth');

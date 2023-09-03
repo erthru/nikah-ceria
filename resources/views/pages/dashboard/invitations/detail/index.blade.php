@@ -10,7 +10,11 @@
                     <li class="breadcrumb-item active">Detail Undangan</li>
                 </ol>
             </nav>
-            <div class="card">
+            <div class="alert alert-warning">
+                Silahkan klik <a href="/dashboard/invitations/{{ $invitation->id }}/other" class="fw-medium">Di sini</a> untuk masuk ke
+                pengaturan Acara, Tamu, Buku tamu & Gift
+            </div>
+            <div class="card mt-3">
                 <form action="/dashboard/invitations/{{ $invitation->id }}" method="POST" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\dashboard\invitations;
+namespace App\Http\Controllers\dashboard\invitations\detail;
 
 use App\Http\Controllers\Controller;
 use App\Models\Invitation;
@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
-class DetailController extends Controller
+class IndexController extends Controller
 {
     public function show(String $id): View
     {
@@ -28,7 +28,7 @@ class DetailController extends Controller
             array_push($products, $po->product);
         }
 
-        return view('pages.dashboard.invitations.detail', [
+        return view('pages.dashboard.invitations.detail.index', [
             'title' => 'Detail Invitation',
             'invitation' => $invitation,
             'products' => $products
