@@ -7,11 +7,12 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="/dashboard/invitations">Undangan</a></li>
-                    <li class="breadcrumb-item active">Tambah Undangan</li>
+                    <li class="breadcrumb-item active">Detail Undangan</li>
                 </ol>
             </nav>
             <div class="card">
-                <form action="/dashboard/invitations/add" method="POST" enctype="multipart/form-data">
+                <form action="/dashboard/invitations/{{ $invitation->id }}" method="POST" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
                     <div class="card-body">
                         @if (count($products) == 0)
@@ -28,7 +29,7 @@
                                     <select name="product_id" class="form-select" required>
                                         @foreach ($products as $product)
                                             <option value="{{ $product->id }}"
-                                                {{ $product->id == old('product_id') ? 'selected' : '' }}>
+                                                {{ $product->id == old('product_id') ? 'selected' : ($product->id == $invitation->product->id ? 'selected' : '') }}>
                                                 {{ $product->name }}
                                             </option>
                                         @endforeach
@@ -38,20 +39,18 @@
                                 </div>
                                 <div class="w-100">
                                     <label class="form-label">Nama</label>
-                                    <input value="{{ old('name') }}" type="text" class="form-control" name="name"
-                                        placeholder="Cth: Romeo & Juliet Wedding" required />
-                                    <p style="font-size: 14px; margin-top: 4px;">Nama tidak dapat diubah setelah disimpan
-                                    </p>
+                                    <input value="{{ $invitation->name }}" type="text" class="form-control"
+                                        placeholder="Cth: Romeo & Juliet Wedding" disabled />
                                 </div>
                                 <div class="w-100">
                                     <label class="form-label">Status</label>
                                     <select name="is_published" class="form-select" required>
                                         <option value="1"
-                                            {{ old('is_published') ? (old('is_published') == 1 ? 'selected' : '') : 'selected' }}>
+                                            {{ old('is_published') ? (old('is_published') == 1 ? 'selected' : '') : ($invitation->is_published == 1 ? 'selected' : '') }}>
                                             Dipublikasi
                                         </option>
                                         <option value="0"
-                                            {{ old('is_published') ? (old('is_published') == 0 ? 'selected' : '') : '' }}>
+                                            {{ old('is_published') ? (old('is_published') == 0 ? 'selected' : '') : ($invitation->is_published == 0 ? 'selected' : '') }}>
                                             Draft
                                         </option>
                                     </select>
@@ -64,7 +63,8 @@
                             <p class="fw-medium fs-5">Cover / Sampul Halaman</p>
                             <div class="w-100 mt-2">
                                 <label class="form-label">Upload Cover / Sampul Halaman</label>
-                                <img id="headerPreview" src="#" alt="male-photo" class="d-none rounded"
+                                <img id="headerPreview" src="/uploads/{{ $invitation->header }}" alt="male-photo"
+                                    class="d-block rounded"
                                     style="width: 280px; height: 280px; object-fit: cover; margin-bottom: 16px;" />
                                 <input type="file" class="form-control" name="header"
                                     accept=".jpg,.jpeg,.png,.webp,.git" required onchange="onHeaderChange(this)" />
@@ -77,50 +77,60 @@
                                 <div class="w-100">
                                     <div class="mb-2">
                                         <label class="form-label">Nama Pengantin Pria</label>
-                                        <input value="{{ old('male_name') }}" type="text" class="form-control"
-                                            name="male_name" placeholder="Masukkan Nama Pengantin Pria" required />
+                                        <input value="{{ old('male_name') ? old('male_name') : $invitation->male_name }}"
+                                            type="text" class="form-control" name="male_name"
+                                            placeholder="Masukkan Nama Pengantin Pria" required />
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Nama Ayah Pengantin Pria</label>
-                                        <input value="{{ old('male_father_name') }}" type="text" class="form-control"
-                                            name="male_father_name" placeholder="Masukkan Nama Ayah Pengantin Pria"
-                                            required />
+                                        <input
+                                            value="{{ old('male_father_name') ? old('male_father_name') : $invitation->male_father_name }}"
+                                            type="text" class="form-control" name="male_father_name"
+                                            placeholder="Masukkan Nama Ayah Pengantin Pria" required />
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Nama Ibu Pengantin Pria</label>
-                                        <input value="{{ old('male_mother_name') }}" type="text" class="form-control"
-                                            name="male_mother_name" placeholder="Masukkan Nama Ibu Pengantin Pria"
-                                            required />
+                                        <input
+                                            value="{{ old('male_mother_name') ? old('male_mother_name') : $invitation->male_mother_name }}"
+                                            type="text" class="form-control" name="male_mother_name"
+                                            placeholder="Masukkan Nama Ibu Pengantin Pria" required />
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Anak Keberapa Di Keluarga (Pengantin Pria)</label>
-                                        <input value="{{ old('male_family_order') }}" type="number" class="form-control"
-                                            name="male_family_order" placeholder="Cth: 1" required />
+                                        <input
+                                            value="{{ old('male_family_order') ? old('male_family_order') : $invitation->male_family_order }}"
+                                            type="number" class="form-control" name="male_family_order"
+                                            placeholder="Cth: 1" required />
                                     </div>
                                 </div>
                                 <div class="w-100">
                                     <div class="mb-2">
                                         <label class="form-label">Nama Pengantin Wanita</label>
-                                        <input value="{{ old('female_name') }}" type="text" class="form-control"
-                                            name="female_name" placeholder="Masukkan Nama Pengantin Wanita" required />
+                                        <input
+                                            value="{{ old('female_name') ? old('female_name') : $invitation->female_name }}"
+                                            type="text" class="form-control" name="female_name"
+                                            placeholder="Masukkan Nama Pengantin Wanita" required />
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Nama Ayah Pengantin Wanita</label>
-                                        <input value="{{ old('female_father_name') }}" type="text"
-                                            class="form-control" name="female_father_name"
+                                        <input
+                                            value="{{ old('female_father_name') ? old('female_father_name') : $invitation->female_father_name }}"
+                                            type="text" class="form-control" name="female_father_name"
                                             placeholder="Masukkan Nama Ayah Pengantin Wanita" required />
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Nama Ibu Pengantin Wanita</label>
-                                        <input value="{{ old('female_mother_name') }}" type="text"
-                                            class="form-control" name="female_mother_name"
+                                        <input
+                                            value="{{ old('female_mother_name') ? old('female_mother_name') : $invitation->female_mother_name }}"
+                                            type="text" class="form-control" name="female_mother_name"
                                             placeholder="Masukkan Nama Ibu Pengantin Wanita" required />
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Anak Keberapa Di Keluarga (Pengantin Wanita)</label>
-                                        <input value="{{ old('female_family_order') }}" type="number"
-                                            class="form-control" name="female_family_order" placeholder="Cth: 1"
-                                            required />
+                                        <input
+                                            value="{{ old('female_family_order') ? old('female_family_order') : $invitation->female_family_order }}"
+                                            type="number" class="form-control" name="female_family_order"
+                                            placeholder="Cth: 1" required />
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +140,8 @@
                             <div class="mt-2 d-flex flex-column flex-md-row row-gap-3 column-gap-3">
                                 <div class="w-100">
                                     <label class="form-label">Upload Foto Pengantin Pria</label>
-                                    <img id="malePhotoPreview" src="#" alt="male-photo" class="d-none rounded"
+                                    <img id="malePhotoPreview" src="/uploads/{{ $invitation->male_photo }}"
+                                        alt="male-photo" class="d-block rounded"
                                         style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
                                     <input type="file" class="form-control" name="male_photo"
                                         accept=".jpg,.jpeg,.png,.webp,.git" required onchange="onMalePhotoChange(this)" />
@@ -138,8 +149,8 @@
                                 </div>
                                 <div class="w-100">
                                     <label class="form-label">Upload Foto Pengantin Wanita</label>
-                                    <img id="femalePhotoPreview" src="#" alt="female-photo"
-                                        class="d-none rounded"
+                                    <img id="femalePhotoPreview" src="/uploads/{{ $invitation->female_photo }}"
+                                        alt="female-photo" class="d-block rounded"
                                         style="width: 200px; height: 200px; object-fit: cover; margin-bottom: 16px;" />
                                     <input type="file" class="form-control" name="female_photo"
                                         accept=".jpg,.jpeg,.png,.webp,.git" required
@@ -154,7 +165,7 @@
                                 <label class="form-label">Caption 1</label>
                                 <textarea id="caption1" class="form-control" name="caption_1"
                                     placeholder="Cth: Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. (QS. Ar-Rum 21)"
-                                    required>{{ old('caption_1') }}</textarea>
+                                    required>{{ old('caption_1') ? old('caption_1') : $invitation->caption_1 }}</textarea>
                                 <p class="text-primary fw-medium"
                                     style="margin-top: 4px; font-size: 14px; cursor: pointer;"
                                     onclick="copyToCaption1(true)">
@@ -165,7 +176,7 @@
                                 <label class="form-label">Caption 2</label>
                                 <textarea id="caption2" class="form-control" name="caption_2"
                                     placeholder="Cth: Maha Suci Allah SWT, Yang telah menciptakan makhlukNya berpasang-pasangan. Ya Allah, perkenankanlah dan Ridhoilah Pernikahan kami"
-                                    required>{{ old('caption_2') }}</textarea>
+                                    required>{{ old('caption_2') ? old('caption_2') : $invitation->caption_2 }}</textarea>
                                 <p class="text-primary fw-medium"
                                     style="margin-top: 4px; font-size: 14px; cursor: pointer;"
                                     onclick="copyToCaption2(true)">
@@ -178,29 +189,31 @@
                             <div class="w-100 d-flex align-items-center column-gap-3 mt-3" style="overflow-x: auto">
                                 <label for="gallery1" class="rounded d-flex align-items-center"
                                     style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
-                                    <i id="gallery1Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                    <i id="gallery1Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-none"
                                         style="font-size: 44px"></i>
-                                    <img id="gallery1Preview" src="#" class="rounded w-100 h-100 d-none"
-                                        alt="gallery" style="object-fit: cover" />
+                                    <img id="gallery1Preview" src="/uploads/{{ $invitation->gallery_1 }}"
+                                        class="rounded w-100 h-100 d-block" alt="gallery" style="object-fit: cover" />
                                     <input id="gallery1" type="file" name="gallery_1"
                                         accept=".jpg,.jpeg,.png,.webp,.git" class="d-none"
                                         onchange="onGallery1Change(this)" required>
                                 </label>
                                 <label for="gallery2" class="rounded d-flex align-items-center"
                                     style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
-                                    <i id="gallery2Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                    <i id="gallery2Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-none"
                                         style="font-size: 44px"></i>
-                                    <img id="gallery2Preview" src="#" class="rounded w-100 h-100 d-none"
-                                        alt="gallery" style="object-fit: cover" />
+                                    <img id="gallery2Preview" src="/uploads/{{ $invitation->gallery_2 }}"
+                                        class="rounded w-100 h-100 d-block" alt="gallery" style="object-fit: cover" />
                                     <input id="gallery2" type="file" name="gallery_2"
                                         accept=".jpg,.jpeg,.png,.webp,.git" class="d-none"
                                         onchange="onGallery2Change(this)" required>
                                 </label>
                                 <label for="gallery3" class="rounded d-flex align-items-center"
                                     style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
-                                    <i id="gallery3Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                    <i id="gallery3Icon"
+                                        class="bi bi-plus-circle-dotted mx-auto text-secondary {{ $invitation->gallery_3 ? 'd-none' : 'd-block' }}"
                                         style="font-size: 44px"></i>
-                                    <img id="gallery3Preview" src="#" class="rounded w-100 h-100 d-none"
+                                    <img id="gallery3Preview" src="/uploads/{{ $invitation->gallery_3 }}"
+                                        class="rounded w-100 h-100 {{ $invitation->gallery_3 ? 'd-block' : 'd-none' }}"
                                         alt="gallery" style="object-fit: cover" />
                                     <input id="gallery3" type="file" name="gallery_3"
                                         accept=".jpg,.jpeg,.png,.webp,.git" class="d-none"
@@ -208,9 +221,11 @@
                                 </label>
                                 <label for="gallery4" class="rounded d-flex align-items-center"
                                     style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
-                                    <i id="gallery4Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                    <i id="gallery4Icon"
+                                        class="bi bi-plus-circle-dotted mx-auto text-secondary {{ $invitation->gallery_4 ? 'd-none' : 'd-block' }}"
                                         style="font-size: 44px"></i>
-                                    <img id="gallery4Preview" src="#" class="rounded w-100 h-100 d-none"
+                                    <img id="gallery4Preview" src="/uploads/{{ $invitation->gallery_4 }}"
+                                        class="rounded w-100 h-100 {{ $invitation->gallery_4 ? 'd-block' : 'd-none' }}"
                                         alt="gallery" style="object-fit: cover" />
                                     <input id="gallery4" type="file" name="gallery_4"
                                         accept=".jpg,.jpeg,.png,.webp,.git" class="d-none"
@@ -218,9 +233,11 @@
                                 </label>
                                 <label for="gallery5" class="rounded d-flex align-items-center"
                                     style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
-                                    <i id="gallery5Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                    <i id="gallery5Icon"
+                                        class="bi bi-plus-circle-dotted mx-auto text-secondary {{ $invitation->gallery_5 ? 'd-none' : 'd-block' }}"
                                         style="font-size: 44px"></i>
-                                    <img id="gallery5Preview" src="#" class="rounded w-100 h-100 d-none"
+                                    <img id="gallery5Preview" src="/uploads/{{ $invitation->gallery_5 }}"
+                                        class="rounded w-100 h-100 {{ $invitation->gallery_5 ? 'd-block' : 'd-none' }}"
                                         alt="gallery" style="object-fit: cover" />
                                     <input id="gallery5" type="file" name="gallery_5"
                                         accept=".jpg,.jpeg,.png,.webp,.git" class="d-none"
@@ -228,9 +245,11 @@
                                 </label>
                                 <label for="gallery6" class="rounded d-flex align-items-center"
                                     style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
-                                    <i id="gallery6Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                    <i id="gallery6Icon"
+                                        class="bi bi-plus-circle-dotted mx-auto text-secondary {{ $invitation->gallery_6 ? 'd-none' : 'd-block' }}"
                                         style="font-size: 44px"></i>
-                                    <img id="gallery6Preview" src="#" class="rounded w-100 h-100 d-none"
+                                    <img id="gallery6Preview" src="/uploads/{{ $invitation->gallery_6 }}"
+                                        class="rounded w-100 h-100 {{ $invitation->gallery_6 ? 'd-block' : 'd-none' }}"
                                         alt="gallery" style="object-fit: cover" />
                                     <input id="gallery6" type="file" name="gallery_6"
                                         accept=".jpg,.jpeg,.png,.webp,.git" class="d-none"
@@ -238,9 +257,11 @@
                                 </label>
                                 <label for="gallery7" class="rounded d-flex align-items-center"
                                     style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
-                                    <i id="gallery7Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                    <i id="gallery7Icon"
+                                        class="bi bi-plus-circle-dotted mx-auto text-secondary {{ $invitation->gallery_7 ? 'd-none' : 'd-block' }}"
                                         style="font-size: 44px"></i>
-                                    <img id="gallery7Preview" src="#" class="rounded w-100 h-100 d-none"
+                                    <img id="gallery7Preview" src="/uploads/{{ $invitation->gallery_7 }}"
+                                        class="rounded w-100 h-100 {{ $invitation->gallery_7 ? 'd-block' : 'd-none' }}"
                                         alt="gallery" style="object-fit: cover" />
                                     <input id="gallery7" type="file" name="gallery_7"
                                         accept=".jpg,.jpeg,.png,.webp,.git" class="d-none"
@@ -248,9 +269,11 @@
                                 </label>
                                 <label for="gallery8" class="rounded d-flex align-items-center"
                                     style="min-height: 100px; min-width: 100px; height: 100px; width: 100px; background-color: rgba(0, 0, 0, 0.1); cursor: pointer">
-                                    <i id="gallery8Icon" class="bi bi-plus-circle-dotted mx-auto text-secondary d-block"
+                                    <i id="gallery8Icon"
+                                        class="bi bi-plus-circle-dotted mx-auto text-secondary {{ $invitation->gallery_8 ? 'd-none' : 'd-block' }}"
                                         style="font-size: 44px"></i>
-                                    <img id="gallery8Preview" src="#" class="rounded w-100 h-100 d-none"
+                                    <img id="gallery8Preview" src="/uploads/{{ $invitation->gallery_8 }}"
+                                        class="rounded w-100 h-100 {{ $invitation->gallery_8 ? 'd-block' : 'd-none' }}"
                                         alt="gallery" style="object-fit: cover" />
                                     <input id="gallery8" type="file" name="gallery_8"
                                         accept=".jpg,.jpeg,.png,.webp,.git" class="d-none"
@@ -263,8 +286,8 @@
                             <p class="fw-medium fs-5">Background Music</p>
                             <div class="mt-2 w-100">
                                 <label class="form-label">Upload Music</label>
-                                <audio controls="controls" id="songPreview" class="mb-4 d-none">
-                                    <source src="#" type="audio/mp4" />
+                                <audio controls="controls" id="songPreview" class="mb-4 d-block">
+                                    <source src="/uploads/{{ $invitation->song }}" type="audio/mp4" />
                                 </audio>
                                 <input type="file" class="form-control" name="song" accept=".mp3,.wav,.m4a"
                                     required onchange="onSongChange(this)" />
@@ -272,9 +295,7 @@
                             </div>
                         </div>
                         <div class="card-body" style="background-color: #f4f4f4">
-                            <p style="font-size: 14px;">* Acara, Tamu dan Gift Digital dapat ditambahkan setelah mengklik
-                                Simpan pada halaman ini.</p>
-                            <button class="btn btn-primary mt-3 text-white save-button">Simpan</button>
+                            <button class="btn btn-primary text-white save-button">Simpan</button>
                         </div>
                     @endif
                 </form>
