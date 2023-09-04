@@ -5,18 +5,9 @@
  */
 
 import axios from "axios";
-import * as bootstrap from "bootstrap";
-import $ from "jquery";
-import DataTable from "datatables.net-bs5";
-import "datatables.net-responsive-bs5";
-
-// for css purpose just import in resources/scss/app.scss
-
 window.axios = axios;
+
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-window.bootstrap = bootstrap;
-window.$ = $;
-window.DataTable = DataTable;
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

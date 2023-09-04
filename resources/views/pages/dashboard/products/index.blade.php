@@ -69,7 +69,7 @@
 @endsection
 
 @section('script')
-    <script type="module">
+    <script>
         setTimeout(function() {
             $('.table').DataTable({
                 lengthChange: false,

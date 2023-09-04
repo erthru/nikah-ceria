@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "nikahceria/nikahceria",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Buat Undangan Pernikahan Gratis",
     "keywords": [
         "laravel",
         "framework"

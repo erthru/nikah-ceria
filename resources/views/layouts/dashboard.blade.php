@@ -5,7 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite(['resources/scss/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/assets/bootstrap-icons/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="/assets/datatables-bs5/css/datatables-bs5.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <script src="/assets/bootstrap/js/bootstrap.js"></script>
+    <script src="/assets/jquery/js/jquery.js"></script>
+    <script src="/assets/datatables-bs5/js/datatables-bs5.js"></script>
     <style>
         .sidebar {
             min-height: 100dvh;
@@ -59,8 +65,7 @@
         </div>
         <ul class="d-flex flex-column sidebar-menu">
             <li class="sidebar-menu-item {{ Request::is('dashboard') ? 'sidebar-menu-item-active' : '' }}">
-                <a href="/dashboard" class="py-3 px-5 d-flex column-gap-4 align-items-center"
-                    style="color: inherit;">
+                <a href="/dashboard" class="py-3 px-5 d-flex column-gap-4 align-items-center" style="color: inherit;">
                     <i class="bi bi-speedometer2 fs-3"></i>
                     <span class="fw-bold">Dashboard</span>
                 </a>
@@ -133,7 +138,7 @@
             </div>
         </div>
     </div>
-    <script type="module">
+    <script>
         const successMessage = "{{ session('successMessage') ? session('successMessage') : '' }}"
         const warningMessage = "{{ session('warningMessage') ? session('warningMessage') : '' }}"
         const errorMessage = "{{ session('errorMessage') ? session('errorMessage') : '' }}"
@@ -162,7 +167,7 @@
             toastBootstrap.show()
         }
 
-        window.toggleSidebar = function() {
+        function toggleSidebar() {
             sidebar.toggleClass('sidebar-active')
 
             if (sidebar.hasClass('sidebar-active')) {
@@ -173,7 +178,6 @@
         }
 
         if (document.body.clientWidth > 1200) {
-            console.log(document.body.clientWidth)
             toggleSidebar()
         }
     </script>

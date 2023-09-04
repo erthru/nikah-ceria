@@ -17,7 +17,8 @@
                         @if (count($products) == 0)
                             <div class="alert alert-warning">
                                 Kamu belum memiliki template, silahkan beli template <a
-                                    href="/dashboard/invitations/buy/templates" class="fw-medium">di sini</a> (tersedia banyak
+                                    href="/dashboard/invitations/buy/templates" class="fw-medium">di sini</a> (tersedia
+                                banyak
                                 template
                                 gratis)
                             </div>
@@ -298,7 +299,7 @@
 @endsection
 
 @section('script')
-    <script type="module">
+    <script>
         const headerPreview = $("#headerPreview")
         const malePhotoPreview = $('#malePhotoPreview')
         const femalePhotoPreview = $('#femalePhotoPreview')
@@ -328,36 +329,36 @@
         const caption2Text =
             'Maha Suci Allah SWT, Yang telah menciptakan makhlukNya berpasang-pasangan. Ya Allah, perkenankanlah dan Ridhoilah Pernikahan kami'
 
-        window.onHeaderChange = function(e) {
+        function onHeaderChange(e) {
             const file = e.files[0]
             headerPreview.attr('src', URL.createObjectURL(file))
             headerPreview.removeClass('d-none')
             headerPreview.addClass('d-block')
         }
 
-        window.onMalePhotoChange = function(e) {
+        function onMalePhotoChange(e) {
             const file = e.files[0]
             malePhotoPreview.attr('src', URL.createObjectURL(file))
             malePhotoPreview.removeClass('d-none')
             malePhotoPreview.addClass('d-block')
         }
 
-        window.onFemalePhotoChange = function(e) {
+        function onFemalePhotoChange(e) {
             const file = e.files[0]
             femalePhotoPreview.attr('src', URL.createObjectURL(file))
             femalePhotoPreview.removeClass('d-none')
             femalePhotoPreview.addClass('d-block')
         }
 
-        window.copyToCaption1 = function(e) {
+        function copyToCaption1(e) {
             caption1.html(caption1Text)
         }
 
-        window.copyToCaption2 = function(e) {
+        function copyToCaption2(e) {
             caption2.html(caption2Text)
         }
 
-        window.onGallery1Change = function(e) {
+        function onGallery1Change(e) {
             const file = e.files[0]
             gallery1Preview.attr('src', URL.createObjectURL(file))
             gallery1Preview.removeClass('d-none')
@@ -366,7 +367,7 @@
             gallery1Icon.addClass('d-none')
         }
 
-        window.onGallery2Change = function(e) {
+        function onGallery2Change(e) {
             const file = e.files[0]
             gallery2Preview.attr('src', URL.createObjectURL(file))
             gallery2Preview.removeClass('d-none')
@@ -375,7 +376,7 @@
             gallery2Icon.addClass('d-none')
         }
 
-        window.onGallery3Change = function(e) {
+        function onGallery3Change(e) {
             const file = e.files[0]
             gallery3Preview.attr('src', URL.createObjectURL(file))
             gallery3Preview.removeClass('d-none')
@@ -384,7 +385,7 @@
             gallery3Icon.addClass('d-none')
         }
 
-        window.onGallery4Change = function(e) {
+        function onGallery4Change(e) {
             const file = e.files[0]
             gallery4Preview.attr('src', URL.createObjectURL(file))
             gallery4Preview.removeClass('d-none')
@@ -393,7 +394,7 @@
             gallery4Icon.addClass('d-none')
         }
 
-        window.onGallery5Change = function(e) {
+        function onGallery5Change(e) {
             const file = e.files[0]
             gallery5Preview.attr('src', URL.createObjectURL(file))
             gallery5Preview.removeClass('d-none')
@@ -402,7 +403,7 @@
             gallery5Icon.addClass('d-none')
         }
 
-        window.onGallery6Change = function(e) {
+        function onGallery6Change(e) {
             const file = e.files[0]
             gallery6Preview.attr('src', URL.createObjectURL(file))
             gallery6Preview.removeClass('d-none')
@@ -411,7 +412,7 @@
             gallery6Icon.addClass('d-none')
         }
 
-        window.onGallery7Change = function(e) {
+        function onGallery7Change(e) {
             const file = e.files[0]
             gallery7Preview.attr('src', URL.createObjectURL(file))
             gallery7Preview.removeClass('d-none')
@@ -420,7 +421,7 @@
             gallery7Icon.addClass('d-none')
         }
 
-        window.onGallery8Change = function(e) {
+        function onGallery8Change(e) {
             const file = e.files[0]
             gallery8Preview.attr('src', URL.createObjectURL(file))
             gallery8Preview.removeClass('d-none')
@@ -429,7 +430,7 @@
             gallery8Icon.addClass('d-none')
         }
 
-        window.onSongChange = function(e) {
+        function onSongChange(e) {
             const file = e.files[0]
             songPreivew.attr('src', URL.createObjectURL(file))
             songPreivew.removeClass('d-none')

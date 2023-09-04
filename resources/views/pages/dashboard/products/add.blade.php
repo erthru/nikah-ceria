@@ -93,10 +93,10 @@
 @endsection
 
 @section('script')
-    <script type="module">
+    <script>
         const thumbnailPreview = $('#thumbnailPreview')
 
-        window.onThumbnailChange = function(e) {
+        function onThumbnailChange(e) {
             const file = e.files[0]
             thumbnailPreview.attr('src', URL.createObjectURL(file))
             thumbnailPreview.removeClass('d-none')

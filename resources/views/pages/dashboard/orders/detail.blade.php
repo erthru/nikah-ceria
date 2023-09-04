@@ -107,12 +107,12 @@
 @endsection
 
 @section('script')
-    <script type="module">
+    <script>
         const savedTransferProof = $('#savedTransferProof')
         const noTransferProof = $('#noTransferProof')
         const transferProofPreview = $('#transferProofPreview')
 
-        window.onTransferProofChange = function(e) {
+        function onTransferProofChange(e) {
             const file = e.files[0]
             transferProofPreview.attr('src', URL.createObjectURL(file))
             transferProofPreview.removeClass('d-none')
