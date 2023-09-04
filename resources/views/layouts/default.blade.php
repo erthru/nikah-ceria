@@ -51,7 +51,7 @@
         </div>
     </header>
     <div class="collapse" id="menu" class="d-flex"
-        style="background-color: #011c36; left:0; position: fixed; width: 100%; top: 70px;">
+        style="background-color: #023361; left:0; position: fixed; width: 100%; top: 70px;">
         <ul class="mx-auto text-center py-1 mt-2" style="width: max-content;">
             <li class="py-2">
                 <a href="/#" class="text-decoration-none link-white-hover font-medium" style="color: #dbdbdb">
@@ -78,7 +78,7 @@
     <main class="h-100" style="flex: 1 1 0%">
         @yield('content')
     </main>
-    <footer class="py-4" style="background-color: #011c36">
+    <footer class="py-4" style="background-color: #023361">
         <div class="container d-flex flex-column flex-lg-row column-gap-lg-5 row-gap-4 row-gap-lg-0 w-100 mx-auto">
             <div class="w-100">
                 <a href="/#">

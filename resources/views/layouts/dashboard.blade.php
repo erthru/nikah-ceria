@@ -16,7 +16,7 @@
         .sidebar {
             min-height: 100dvh;
             width: 0;
-            background-color: #011c36;
+            background-color: #023361;
             overflow-x: hidden;
             transition: all 0.2s;
             z-index: 9991;
@@ -38,12 +38,12 @@
 
         .sidebar .sidebar-menu .sidebar-menu-item:hover {
             color: #ffffff;
-            background-color: #01162a;
+            background-color: #012c56;
         }
 
         .sidebar .sidebar-menu .sidebar-menu-item-active {
             color: #ffffff;
-            background-color: #01162a;
+            background-color: #012c56;
         }
 
         @media (min-width: 1200px) {
