@@ -17,7 +17,7 @@
                     <p class="fw-bold fs-4" style="margin-top: -4px">Acara</p>
                     <button
                         class="mt-2 btn btn-primary text-white mx-auto mx-md-0 {{ Auth::user()->can('act-as-customer') ? 'button-add' : '' }}"
-                        style="width: max-content; z-index: 20;">
+                        style="width: max-content; z-index: 20;" data-bs-toggle="modal" data-bs-target="#addEventModal">
                         <i class="bi bi-pencil-square"></i>
                         <span>Tambah</span>
                     </button>
@@ -51,8 +51,9 @@
                                             Tidak tersedia
                                         @endif
                                     </td>
+                                    <td>{{ $ie->event_at }}</td>
                                     <td>
-                                        <button class="btn btn-danger text-white">
+                                        <button class="btn btn-warning text-white">
                                             <i class="bi bi-pen"></i>
                                             <span>Perbarui</span>
                                         </button>
@@ -120,6 +121,53 @@
             </div>
         </div>
     </section>
+    <div class="modal fade" id="addEventModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/dashboard/invitations/{{ $invitation->id }}/other?ca=addEvent" method="POST">
+                    @csrf
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Acara</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-2">
+                            <label class="form-label">Nama</label>
+                            <input type="text" class="form-control" name="name" placeholder="Cth: Akad Nikah"
+                                required />
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Tgl & Waktu</label>
+                            <input type="datetime-local" class="form-control" name="event_at" required />
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Tempat</label>
+                            <input type="text" class="form-control" name="place"
+                                placeholder="Cth: Gedung Bele Li Mbu'i" required />
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Alamat</label>
+                            <textarea class="form-control" name="address" placeholder="Masukkan Alamat" required></textarea>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Koordinat Latitude (Opsional)</label>
+                            <input type="text" class="form-control" name="latitude"
+                                placeholder="Masukkan Koordinat Latitude" />
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Koordinat Longitude (Opsional)</label>
+                            <input type="text" class="form-control" name="longitude"
+                                placeholder="Masukkan Koordinat Longitude" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('style')
