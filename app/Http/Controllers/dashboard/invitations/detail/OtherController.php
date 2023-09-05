@@ -48,7 +48,7 @@ class OtherController extends Controller
 
         InvitationEvent::create([
             'name' => $name,
-            'event_at' => $event_at . ':00',
+            'event_at' => $event_at,
             'place' => $place,
             'address' => $address,
             'latitude' => $latitude,
