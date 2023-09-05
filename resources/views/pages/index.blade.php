@@ -8,7 +8,7 @@
                 <div class="my-auto mx-auto mx-lg-0 text-center text-lg-start">
                     <p class="text-dark my-auto fs-1 fw-bold" style="line-height: 40px">Buat Undangan Pernikahan Gratis</p>
                     <p class="fs-6 text-secondary mt-2">Buat undangan tanpa adanya batasan.</p>
-                    <p class="fs-6 text-secondary">Explore ratusan template menarik.</p>
+                    <p class="fs-6 text-secondary">Explore banyak template menarik.</p>
                     <a href="/register" class="btn btn-primary text-white w-100 w-lg-auto btn-lg mt-3 mt-lg-5">Buat
                         Undanganmu
                         Sekarang</a>

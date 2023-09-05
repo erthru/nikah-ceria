@@ -87,7 +87,7 @@
                 <p class="text-white mt-3 fs-5">Buat Undangan Pernikahan Gratis</p>
                 <p style="color: #dbdbdb !important; font-size: 14px;">Buat undangan tanpa adanya
                     batasan.</p>
-                <p style="color: #dbdbdb !important; font-size: 14px;">Explore ratusan template menarik.
+                <p style="color: #dbdbdb !important; font-size: 14px;">Explore banyak template menarik.
                 </p>
             </div>
             <div class="w-100">
