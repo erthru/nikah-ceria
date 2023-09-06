@@ -53,7 +53,8 @@
                                     </td>
                                     <td>{{ $ie->event_at }}</td>
                                     <td>
-                                        <button class="btn btn-warning text-white">
+                                        <button class="btn btn-warning text-white" data-bs-toggle="modal"
+                                            data-bs-target="#updateEventModal" onclick="populateUpdateEventModal({{ json_encode($ie) }})">
                                             <i class="bi bi-pen"></i>
                                             <span>Perbarui</span>
                                         </button>
@@ -168,6 +169,55 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="updateEventModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/dashboard/invitations/{{ $invitation->id }}/other?ca=updateEvent" method="POST">
+                    @method('PUT')
+                    @csrf
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Perbarui Acara</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-2">
+                            <label class="form-label">Nama</label>
+                            <input id="updateEventName" type="text" class="form-control" name="name"
+                                placeholder="Cth: Akad Nikah" required />
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Tgl & Waktu</label>
+                            <input id="updateEventEventAt" type="datetime-local" class="form-control" name="event_at"
+                                required />
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Tempat</label>
+                            <input id="updateEventPlace" type="text" class="form-control" name="place"
+                                placeholder="Cth: Gedung Bele Li Mbu'i" required />
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Alamat</label>
+                            <textarea id="updateEventAddress" class="form-control" name="address" placeholder="Masukkan Alamat" required></textarea>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Koordinat Latitude (Opsional)</label>
+                            <input id="updateEventLatitude" type="text" class="form-control" name="latitude"
+                                placeholder="Masukkan Koordinat Latitude" />
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Koordinat Longitude (Opsional)</label>
+                            <input id="updateEventLongitude" type="text" class="form-control" name="longitude"
+                                placeholder="Masukkan Koordinat Longitude" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('style')
@@ -202,5 +252,9 @@
                 responsive: true
             })
         }, 250);
+
+        function populateUpdateEventModal(json) {
+            console.log(json)
+        }
     </script>
 @endsection
