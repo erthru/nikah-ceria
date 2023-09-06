@@ -54,7 +54,8 @@
                                     <td>{{ $ie->event_at }}</td>
                                     <td>
                                         <button class="btn btn-warning text-white" data-bs-toggle="modal"
-                                            data-bs-target="#updateEventModal" onclick="populateUpdateEventModal({{ json_encode($ie) }})">
+                                            data-bs-target="#updateEventModal"
+                                            onclick="populateUpdateEventModal({{ json_encode($ie) }})">
                                             <i class="bi bi-pen"></i>
                                             <span>Perbarui</span>
                                         </button>
@@ -172,7 +173,7 @@
     <div class="modal fade" id="updateEventModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="/dashboard/invitations/{{ $invitation->id }}/other?ca=updateEvent" method="POST">
+                <form id="formUpdateEvent" action="#" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="modal-header">
@@ -236,6 +237,14 @@
 
 @section('script')
     <script>
+        const formUpdateEvent = $("#formUpdateEvent")
+        const updateEventName = $('#updateEventName')
+        const updateEventEventAt = $('#updateEventEventAt')
+        const updateEventPlace = $('#updateEventPlace')
+        const updateEventAddress = $('#updateEventAddress')
+        const updateEventLatitude = $('#updateEventLatitude')
+        const updateEventLongitude = $('#updateEventLongitude')
+
         setTimeout(function() {
             $('#eventTable').DataTable({
                 lengthChange: false,
@@ -254,7 +263,16 @@
         }, 250);
 
         function populateUpdateEventModal(json) {
-            console.log(json)
+            const id = {!! json_encode($invitation->id) !!}
+            const eventAtSplited = json.event_at.split(" ")
+            const eventAt = `${eventAtSplited[0].split("/").reverse().join("-")}T${eventAtSplited[1]}`
+            updateEventName.val(json.name)
+            updateEventEventAt.val(eventAt)
+            updateEventPlace.val(json.place)
+            updateEventAddress.html(json.address)
+            updateEventLatitude.val(json.latitude)
+            updateEventLongitude.val(json.longitude)
+            formUpdateEvent.attr('action', `/dashboard/invitations/${id}/other?ca=updateEvent&invitationEventId=${json.id}`)
         }
     </script>
 @endsection
