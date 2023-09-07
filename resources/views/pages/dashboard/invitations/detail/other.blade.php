@@ -43,7 +43,8 @@
                                     <td>{{ $ie->address }}</td>
                                     <td>
                                         @if ($ie->latitude && $ie->longitude)
-                                            <a href="#" class="btn btn-danger text-white">
+                                            <a href="https://maps.google.com?q={{ $ie->latitude }},{{ $ie->longitude }}"
+                                                target="blank" class="btn btn-warning text-white">
                                                 <i class="bi bi-geo-alt"></i>
                                                 <span>Buka Di Maps</span>
                                             </a>
