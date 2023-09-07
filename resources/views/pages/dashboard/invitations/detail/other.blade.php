@@ -62,7 +62,9 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger text-white">
+                                        <button class="btn btn-danger text-white" data-bs-toggle="modal"
+                                            data-bs-target="#deleteEventModal"
+                                            onclick="populateDeleteEventModal({{ json_encode($ie) }})">
                                             <i class="bi bi-trash"></i>
                                             <span>Hapus</span>
                                         </button>
@@ -220,6 +222,27 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="deleteEventModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="formDeleteEvent" action="#" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Acara</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Apakah anda yakin dengan keputusan ini?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('style')
@@ -239,6 +262,7 @@
 @section('script')
     <script>
         const formUpdateEvent = $("#formUpdateEvent")
+        const formDeleteEvent = $("#formDeleteEvent")
         const updateEventName = $('#updateEventName')
         const updateEventEventAt = $('#updateEventEventAt')
         const updateEventPlace = $('#updateEventPlace')
@@ -274,6 +298,11 @@
             updateEventLatitude.val(json.latitude)
             updateEventLongitude.val(json.longitude)
             formUpdateEvent.attr('action', `/dashboard/invitations/${id}/other?ca=updateEvent&invitationEventId=${json.id}`)
+        }
+
+        function populateDeleteEventModal(json) {
+            const id = {!! json_encode($invitation->id) !!}
+            formDeleteEvent.attr('action', `/dashboard/invitations/${id}/other?ca=deleteEvent&invitationEventId=${json.id}`)
         }
     </script>
 @endsection

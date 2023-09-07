@@ -46,6 +46,17 @@ class OtherController extends Controller
         return redirect('/dashboard/invitations/' . $id . '/other')->with('errorMessage', 'Aksi tidak valid');
     }
 
+    public function customActionDelete(String $id, Request $request): RedirectResponse
+    {
+        $ca = $request->query('ca');
+
+        if ($ca == 'deleteEvent') {
+            return $this->customActionDeleteDeleteEvent($id, $request);
+        }
+
+        return redirect('/dashboard/invitations/' . $id . '/other')->with('errorMessage', 'Aksi tidak valid');
+    }
+
     private function customActionPostAddEvent(String $id, Request $request): RedirectResponse
     {
         $invitation = Invitation::with(['product', 'customer'])->findOrFail($id);
@@ -92,5 +103,14 @@ class OtherController extends Controller
         ]);
 
         return redirect('/dashboard/invitations/' . $id . '/other')->with('successMessage', 'Acara berhasil diperbarui');
+    }
+
+    private function customActionDeleteDeleteEvent(String $id, Request $request): RedirectResponse
+    {
+        $invitation = Invitation::with(['product', 'customer'])->findOrFail($id);
+        $this->authorize('update-invitation', $invitation);
+        $invitationEventId = $request->query('invitationEventId');
+        InvitationEvent::destroy($invitationEventId);
+        return redirect('/dashboard/invitations/' . $id . '/other')->with('successMessage', 'Acara berhasil dihapus');
     }
 }
