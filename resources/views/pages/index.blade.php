@@ -40,7 +40,7 @@
                 <img src="https://picsum.photos/1000/562" alt="template-list" class="template-list-image rounded">
                 <img src="https://picsum.photos/1000/562" alt="template-list" class="template-list-image rounded">
             </div>
-            <a href="/dashboard/invitations/buy/templates" class="btn btn-primary btn-lg text-white mx-auto mt-5"
+            <a href="/dashboard/invitations/templates" class="btn btn-primary btn-lg text-white mx-auto mt-5"
                 style="width: max-content">
                 Lihat Semua Template
             </a>

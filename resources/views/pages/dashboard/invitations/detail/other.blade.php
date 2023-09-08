@@ -43,7 +43,7 @@
                                     <td>
                                         @if ($ie->latitude && $ie->longitude)
                                             <a href="https://maps.google.com?q={{ $ie->latitude }},{{ $ie->longitude }}"
-                                                target="blank" class="btn btn-warning text-white">
+                                                target="blank" class="btn btn-warning">
                                                 <i class="bi bi-geo-alt"></i>
                                                 <span>Buka Di Maps</span>
                                             </a>
@@ -53,7 +53,7 @@
                                     </td>
                                     <td>{{ $ie->event_at }}</td>
                                     <td>
-                                        <button class="btn btn-warning text-white" data-bs-toggle="modal"
+                                        <button class="btn btn-warning" data-bs-toggle="modal"
                                             data-bs-target="#updateEventModal"
                                             onclick="populateUpdateEventModal({{ json_encode($ie) }})">
                                             <i class="bi bi-pen"></i>
@@ -98,19 +98,23 @@
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $ig->name }}</td>
                                     <td><a href="/{{ $invitation->slug }}?igc={{ $ig->code }}"
-                                            class="btn btn-warning text-white" target="blank">
+                                            class="btn btn-warning" target="blank">
                                             <i class="bi bi-eye"></i>
                                             <span>Lihat</span>
                                         </a>
                                     </td>
                                     <td>
-                                        <button class="btn btn-warning text-white">
+                                        <button class="btn btn-warning" data-bs-toggle="modal"
+                                            data-bs-target="#updateGuestModal"
+                                            onclick="populateUpdateGuestModal({{ json_encode($ig) }})">
                                             <i class="bi bi-pen"></i>
                                             <span>Perbarui</span>
                                         </button>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger text-white">
+                                        <button class="btn btn-danger text-white" data-bs-toggle="modal"
+                                            data-bs-target="#deleteGuestModal"
+                                            onclick="populateDeleteGuestModal({{ json_encode($ig) }})">
                                             <i class="bi bi-trash"></i>
                                             <span>Hapus</span>
                                         </button>
@@ -237,7 +241,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Tambah</button>
+                        <button type="submit" class="btn btn-primary">Perbarui</button>
                     </div>
                 </form>
             </div>
@@ -288,6 +292,52 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="updateGuestModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="formUpdateGuest" action="#" method="POST">
+                    @method('PUT')
+                    @csrf
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Perbarui Tamu</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-2">
+                            <label class="form-label">Nama</label>
+                            <input id="updateGuestName" type="text" class="form-control" name="name"
+                                placeholder="Masukkan Nama" required />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Perbarui</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deleteGuestModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="formDeleteGuest" action="#" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Tamu</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Apakah anda yakin dengan keputusan ini?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('style')
@@ -308,12 +358,15 @@
     <script>
         const formUpdateEvent = $("#formUpdateEvent")
         const formDeleteEvent = $("#formDeleteEvent")
+        const formUpdateGuest = $("#formUpdateGuest")
+        const formDeleteGuest = $("#formDeleteGuest")
         const updateEventName = $('#updateEventName')
         const updateEventEventAt = $('#updateEventEventAt')
         const updateEventPlace = $('#updateEventPlace')
         const updateEventAddress = $('#updateEventAddress')
         const updateEventLatitude = $('#updateEventLatitude')
         const updateEventLongitude = $('#updateEventLongitude')
+        const updateGuestName = $("#updateGuestName")
 
         setTimeout(function() {
             $('#eventTable').DataTable({
@@ -348,6 +401,17 @@
         function populateDeleteEventModal(json) {
             const id = {!! json_encode($invitation->id) !!}
             formDeleteEvent.attr('action', `/dashboard/invitations/${id}/other?ca=deleteEvent&invitationEventId=${json.id}`)
+        }
+
+        function populateUpdateGuestModal(json) {
+            const id = {!! json_encode($invitation->id) !!}
+            updateGuestName.val(json.name)
+            formUpdateGuest.attr('action', `/dashboard/invitations/${id}/other?ca=updateGuest&invitationGuestId=${json.id}`)
+        }
+
+        function populateDeleteGuestModal(json) {
+            const id = {!! json_encode($invitation->id) !!}
+            formDeleteGuest.attr('action', `/dashboard/invitations/${id}/other?ca=deleteGuest&invitationGuestId=${json.id}`)
         }
     </script>
 @endsection

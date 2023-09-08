@@ -17,7 +17,7 @@
                         @if (count($products) == 0)
                             <div class="alert alert-warning">
                                 Kamu belum memiliki template, silahkan beli template <a
-                                    href="/dashboard/invitations/buy/templates" class="fw-medium">di sini</a> (tersedia
+                                    href="/dashboard/invitations/templates" class="fw-medium">di sini</a> (tersedia
                                 banyak
                                 template
                                 gratis)
@@ -35,7 +35,7 @@
                                         @endforeach
                                     </select>
                                     <p style="font-size: 14px; margin-top: 4px;">Beli template lain <a
-                                            href="/dashboard/invitations/buy/templates" class="fw-medium">di sini</a></p>
+                                            href="/dashboard/invitations/templates" class="fw-medium">di sini</a></p>
                                 </div>
                                 <div class="w-100">
                                     <label class="form-label">Nama</label>

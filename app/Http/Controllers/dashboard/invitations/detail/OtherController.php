@@ -50,6 +50,10 @@ class OtherController extends Controller
             return $this->customActionPutUpdateEvent($id, $request);
         }
 
+        if ($ca == 'updateGuest') {
+            return $this->customActionPutUpdateGuest($id, $request);
+        }
+
         return redirect('/dashboard/invitations/' . $id . '/other')->with('errorMessage', 'Aksi tidak valid');
     }
 
@@ -59,6 +63,10 @@ class OtherController extends Controller
 
         if ($ca == 'deleteEvent') {
             return $this->customActionDeleteDeleteEvent($id, $request);
+        }
+
+        if ($ca == 'deleteGuest') {
+            return $this->customActionDeleteDeleteGuest($id, $request);
         }
 
         return redirect('/dashboard/invitations/' . $id . '/other')->with('errorMessage', 'Aksi tidak valid');
@@ -95,7 +103,7 @@ class OtherController extends Controller
         $name = $request->input('name');
 
         InvitationGuest::create([
-            'code' => time() . substr($name, 0, 1) . '-' . substr($name, -1),
+            'code' => time() . chr(rand(97, 122)) . '-' . chr(rand(97, 122)) . '-' . chr(rand(97, 122)),
             'name' => $name,
             'invitation_id' => $id
         ]);
@@ -115,7 +123,7 @@ class OtherController extends Controller
         $latitude = $request->input('latitude');
         $longitude = $request->input('longitude');
 
-        InvitationEvent::find($invitationEventId)->update([
+        InvitationEvent::findOrFail($invitationEventId)->update([
             'name' => $name,
             'event_at' => $event_at,
             'place' => $place,
@@ -127,6 +135,20 @@ class OtherController extends Controller
         return redirect('/dashboard/invitations/' . $id . '/other')->with('successMessage', 'Acara berhasil diperbarui');
     }
 
+    public function customActionPutUpdateGuest(String $id, Request $request): RedirectResponse
+    {
+        $invitation = Invitation::with(['product', 'customer'])->findOrFail($id);
+        $this->authorize('update-invitation', $invitation);
+        $invitationGuestId = $request->query('invitationGuestId');
+        $name = $request->input('name');
+
+        InvitationGuest::findOrFail($invitationGuestId)->update([
+            'name' => $name,
+        ]);
+
+        return redirect('/dashboard/invitations/' . $id . '/other')->with('successMessage', 'Tamu berhasil diperbarui');
+    }
+
     private function customActionDeleteDeleteEvent(String $id, Request $request): RedirectResponse
     {
         $invitation = Invitation::with(['product', 'customer'])->findOrFail($id);
@@ -134,5 +156,14 @@ class OtherController extends Controller
         $invitationEventId = $request->query('invitationEventId');
         InvitationEvent::destroy($invitationEventId);
         return redirect('/dashboard/invitations/' . $id . '/other')->with('successMessage', 'Acara berhasil dihapus');
+    }
+
+    private function customActionDeleteDeleteGuest(String $id, Request $request): RedirectResponse
+    {
+        $invitation = Invitation::with(['product', 'customer'])->findOrFail($id);
+        $this->authorize('update-invitation', $invitation);
+        $invitationGuestId = $request->query('invitationGuestId');
+        InvitationGuest::destroy($invitationGuestId);
+        return redirect('/dashboard/invitations/' . $id . '/other')->with('successMessage', 'Tamu berhasil dihapus');
     }
 }

@@ -10,8 +10,8 @@ use App\Http\Controllers\dashboard\invitations\IndexController as DashboardInvit
 use App\Http\Controllers\dashboard\invitations\AddController as DashboardInvitationsAddController;
 use App\Http\Controllers\dashboard\invitations\detail\IndexController as DashboardInvitationsDetailIndexController;
 use App\Http\Controllers\dashboard\invitations\detail\OtherController as DashboardInvitationsDetailOtherController;
-use App\Http\Controllers\dashboard\invitations\buy\templates\IndexController as DashboardInvitationsBuyTemplatesIndexController;
-use App\Http\Controllers\dashboard\invitations\buy\templates\DetailController as DashboardInvitationsBuyTemplatesDetailController;
+use App\Http\Controllers\dashboard\invitations\templates\IndexController as DashboardInvitationsTemplatesIndexController;
+use App\Http\Controllers\dashboard\invitations\templates\DetailController as DashboardInvitationsTemplatesDetailController;
 use App\Http\Controllers\dashboard\orders\IndexController as DashboardOrdersIndexController;
 use App\Http\Controllers\dashboard\orders\DetailController as DashboardOrdersDetailController;
 use App\Http\Controllers\IndexController;
@@ -19,6 +19,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\GuestMiddleware;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +49,9 @@ Route::delete('/dashboard/products/{id}', [DashboardProductsDetailController::cl
 Route::get('/dashboard/invitations', [DashboardInvitationsIndexController::class, 'show'])->middleware('auth');
 Route::get('/dashboard/invitations/add', [DashboardInvitationsAddController::class, 'show'])->middleware('auth');
 Route::post('/dashboard/invitations/add', [DashboardInvitationsAddController::class, 'store'])->middleware('auth');
+Route::get('/dashboard/invitations/templates', [DashboardInvitationsTemplatesIndexController::class, 'show'])->middleware('auth');
+Route::get('/dashboard/invitations/templates/{code}', [DashboardInvitationsTemplatesDetailController::class, 'show'])->middleware('auth');
+Route::post('/dashboard/invitations/templates/{code}', [DashboardInvitationsTemplatesDetailController::class, 'buy'])->middleware('auth');
 Route::get('/dashboard/invitations/{id}', [DashboardInvitationsDetailIndexController::class, 'show'])->middleware('auth');
 Route::put('/dashboard/invitations/{id}', [DashboardInvitationsDetailIndexController::class, 'update'])->middleware('auth');
 Route::delete('/dashboard/invitations/{id}', [DashboardInvitationsDetailIndexController::class, 'destroy'])->middleware('auth');
@@ -55,9 +59,6 @@ Route::get('/dashboard/invitations/{id}/other', [DashboardInvitationsDetailOther
 Route::post('/dashboard/invitations/{id}/other', [DashboardInvitationsDetailOtherController::class, 'customActionPost'])->middleware('auth');
 Route::put('/dashboard/invitations/{id}/other', [DashboardInvitationsDetailOtherController::class, 'customActionPut'])->middleware('auth');
 Route::delete('/dashboard/invitations/{id}/other', [DashboardInvitationsDetailOtherController::class, 'customActionDelete'])->middleware('auth');
-Route::get('/dashboard/invitations/buy/templates', [DashboardInvitationsBuyTemplatesIndexController::class, 'show'])->middleware('auth');
-Route::get('/dashboard/invitations/buy/templates/{code}', [DashboardInvitationsBuyTemplatesDetailController::class, 'show'])->middleware('auth');
-Route::post('/dashboard/invitations/buy/templates/{code}', [DashboardInvitationsBuyTemplatesDetailController::class, 'buy'])->middleware('auth');
 Route::get('/dashboard/orders', [DashboardOrdersIndexController::class, 'show'])->middleware('auth');
 Route::get('/dashboard/orders/{id}', [DashboardOrdersDetailController::class, 'show'])->middleware('auth');
 Route::put('/dashboard/orders/{id}', [DashboardOrdersDetailController::class, 'customActionPut'])->middleware('auth');
