@@ -15,9 +15,8 @@
             <div class="card">
                 <div class="card-body d-flex flex-column w-100">
                     <p class="fw-bold fs-4" style="margin-top: -4px">Acara</p>
-                    <button
-                        class="mt-2 btn btn-primary text-white mx-auto mx-md-0 {{ Auth::user()->can('act-as-customer') ? 'button-add' : '' }}"
-                        style="width: max-content; z-index: 20;" data-bs-toggle="modal" data-bs-target="#addEventModal">
+                    <button class="mt-2 btn btn-primary text-white mx-auto mx-md-0 button-add" style="width: max-content; z-index: 20;"
+                        data-bs-toggle="modal" data-bs-target="#addEventModal">
                         <i class="bi bi-pencil-square"></i>
                         <span>Tambah</span>
                     </button>
@@ -78,9 +77,8 @@
             <div class="card mt-3">
                 <div class="card-body d-flex flex-column w-100">
                     <p class="fw-bold fs-4" style="margin-top: -4px">Tamu</p>
-                    <button
-                        class="mt-2 btn btn-primary text-white mx-auto mx-md-0 {{ Auth::user()->can('act-as-customer') ? 'button-add' : '' }}"
-                        style="width: max-content; z-index: 20;">
+                    <button class="mt-2 btn btn-primary text-white mx-auto mx-md-0 button-add" style="width: max-content; z-index: 20;"
+                        data-bs-toggle="modal" data-bs-target="#addGuestModal">
                         <i class="bi bi-pencil-square"></i>
                         <span>Tambah</span>
                     </button>
@@ -102,8 +100,7 @@
             <div class="card mt-3">
                 <div class="card-body d-flex flex-column w-100">
                     <p class="fw-bold fs-4" style="margin-top: -4px">Gift Digital</p>
-                    <button
-                        class="mt-2 btn btn-primary text-white mx-auto mx-md-0 {{ Auth::user()->can('act-as-customer') ? 'button-add' : '' }}"
+                    <button class="mt-2 btn btn-primary text-white mx-auto mx-md-0 button-add"
                         style="width: max-content; z-index: 20;">
                         <i class="bi bi-pencil-square"></i>
                         <span>Tambah</span>
@@ -238,6 +235,30 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-danger">Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addGuestModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/dashboard/invitations/{{ $invitation->id }}/other?ca=addEvent" method="POST">
+                    @csrf
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Tamu</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-2">
+                            <label class="form-label">Nama</label>
+                            <input type="text" class="form-control" name="name" placeholder="Masukkan Nama"
+                                required />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
                     </div>
                 </form>
             </div>
