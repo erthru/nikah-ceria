@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard\invitations\detail;
 use App\Http\Controllers\Controller;
 use App\Models\Invitation;
 use App\Models\InvitationEvent;
+use App\Models\InvitationGift;
 use App\Models\InvitationGuest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,12 +19,14 @@ class OtherController extends Controller
         $this->authorize('show-invitation', $invitation);
         $invitationEvents = InvitationEvent::where('invitation_id', $id)->orderBy('id', 'asc')->get();
         $invitationGuests = InvitationGuest::where('invitation_id', $id)->orderBy('id', 'asc')->get();
+        $invitationGifts = InvitationGift::where('invitation_id', $id)->orderBy('id', 'asc')->get();
 
         return view('pages.dashboard.invitations.detail.other', [
             'title' => 'Detail Invitation',
             'invitation' => $invitation,
             'invitationEvents' => $invitationEvents,
-            'invitationGuests' => $invitationGuests
+            'invitationGuests' => $invitationGuests,
+            'invitationGifts' => $invitationGifts
         ]);
     }
 
@@ -37,6 +40,10 @@ class OtherController extends Controller
 
         if ($ca == 'addGuest') {
             return $this->customActionPostAddGuest($id, $request);
+        }
+
+        if ($ca == 'addGift') {
+            return $this->customActionPostAddGift($id, $request);
         }
 
         return redirect('/dashboard/invitations/' . $id . '/other')->with('errorMessage', 'Aksi tidak valid');
@@ -54,6 +61,10 @@ class OtherController extends Controller
             return $this->customActionPutUpdateGuest($id, $request);
         }
 
+        if ($ca == 'updateGift') {
+            return $this->customActionPutUpdateGift($id, $request);
+        }
+
         return redirect('/dashboard/invitations/' . $id . '/other')->with('errorMessage', 'Aksi tidak valid');
     }
 
@@ -67,6 +78,10 @@ class OtherController extends Controller
 
         if ($ca == 'deleteGuest') {
             return $this->customActionDeleteDeleteGuest($id, $request);
+        }
+
+        if ($ca == 'deleteGift') {
+            return $this->customActionDeleteDeleteGift($id, $request);
         }
 
         return redirect('/dashboard/invitations/' . $id . '/other')->with('errorMessage', 'Aksi tidak valid');
@@ -111,6 +126,24 @@ class OtherController extends Controller
         return redirect('/dashboard/invitations/' . $id . '/other')->with('successMessage', 'Tamu berhasil ditambahkan');
     }
 
+    private function customActionPostAddGift(String $id, Request $request): RedirectResponse
+    {
+        $invitation = Invitation::with(['product', 'customer'])->findOrFail($id);
+        $this->authorize('update-invitation', $invitation);
+        $bank = $request->input('bank');
+        $account_holder = $request->input('account_holder');
+        $account_number = $request->input('account_number');
+
+        InvitationGift::create([
+            'bank' => $bank,
+            'account_holder' => $account_holder,
+            'account_number' => $account_number,
+            'invitation_id' => $id
+        ]);
+
+        return redirect('/dashboard/invitations/' . $id . '/other')->with('successMessage', 'Gift Digital berhasil ditambahkan');
+    }
+
     private function customActionPutUpdateEvent(String $id, Request $request): RedirectResponse
     {
         $invitation = Invitation::with(['product', 'customer'])->findOrFail($id);
@@ -149,6 +182,24 @@ class OtherController extends Controller
         return redirect('/dashboard/invitations/' . $id . '/other')->with('successMessage', 'Tamu berhasil diperbarui');
     }
 
+    private function customActionPutUpdateGift(String $id, Request $request): RedirectResponse
+    {
+        $invitation = Invitation::with(['product', 'customer'])->findOrFail($id);
+        $this->authorize('update-invitation', $invitation);
+        $invitationGiftId = $request->query('invitationGiftId');
+        $bank = $request->input('bank');
+        $account_holder = $request->input('account_holder');
+        $account_number = $request->input('account_number');
+
+        InvitationGift::findOrFail($invitationGiftId)->update([
+            'bank' => $bank,
+            'account_holder' => $account_holder,
+            'account_number' => $account_number,
+        ]);
+
+        return redirect('/dashboard/invitations/' . $id . '/other')->with('successMessage', 'Gift Digital berhasil diperbarui');
+    }
+
     private function customActionDeleteDeleteEvent(String $id, Request $request): RedirectResponse
     {
         $invitation = Invitation::with(['product', 'customer'])->findOrFail($id);
@@ -165,5 +216,14 @@ class OtherController extends Controller
         $invitationGuestId = $request->query('invitationGuestId');
         InvitationGuest::destroy($invitationGuestId);
         return redirect('/dashboard/invitations/' . $id . '/other')->with('successMessage', 'Tamu berhasil dihapus');
+    }
+
+    private function customActionDeleteDeleteGift(String $id, Request $request): RedirectResponse
+    {
+        $invitation = Invitation::with(['product', 'customer'])->findOrFail($id);
+        $this->authorize('update-invitation', $invitation);
+        $invitationGiftId = $request->query('invitationGiftId');
+        InvitationGift::destroy($invitationGiftId);
+        return redirect('/dashboard/invitations/' . $id . '/other')->with('successMessage', 'Gift Digital berhasil dihapus');
     }
 }
