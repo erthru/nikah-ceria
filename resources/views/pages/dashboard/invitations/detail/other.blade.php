@@ -15,8 +15,8 @@
             <div class="card">
                 <div class="card-body d-flex flex-column w-100">
                     <p class="fw-bold fs-4" style="margin-top: -4px">Acara</p>
-                    <button class="mt-2 btn btn-primary text-white mx-auto mx-md-0 button-add" style="width: max-content; z-index: 20;"
-                        data-bs-toggle="modal" data-bs-target="#addEventModal">
+                    <button class="mt-2 btn btn-primary text-white mx-auto mx-md-0 button-add"
+                        style="width: max-content; z-index: 20;" data-bs-toggle="modal" data-bs-target="#addEventModal">
                         <i class="bi bi-pencil-square"></i>
                         <span>Tambah</span>
                     </button>
@@ -77,8 +77,8 @@
             <div class="card mt-3">
                 <div class="card-body d-flex flex-column w-100">
                     <p class="fw-bold fs-4" style="margin-top: -4px">Tamu</p>
-                    <button class="mt-2 btn btn-primary text-white mx-auto mx-md-0 button-add" style="width: max-content; z-index: 20;"
-                        data-bs-toggle="modal" data-bs-target="#addGuestModal">
+                    <button class="mt-2 btn btn-primary text-white mx-auto mx-md-0 button-add"
+                        style="width: max-content; z-index: 20;" data-bs-toggle="modal" data-bs-target="#addGuestModal">
                         <i class="bi bi-pencil-square"></i>
                         <span>Tambah</span>
                     </button>
@@ -93,6 +93,30 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($invitationGuests as $ig)
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $ig->name }}</td>
+                                    <td><a href="/{{ $invitation->slug }}?igc={{ $ig->code }}"
+                                            class="btn btn-warning text-white" target="blank">
+                                            <i class="bi bi-eye"></i>
+                                            <span>Lihat</span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-warning text-white">
+                                            <i class="bi bi-pen"></i>
+                                            <span>Perbarui</span>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger text-white">
+                                            <i class="bi bi-trash"></i>
+                                            <span>Hapus</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -243,7 +267,7 @@
     <div class="modal fade" id="addGuestModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="/dashboard/invitations/{{ $invitation->id }}/other?ca=addEvent" method="POST">
+                <form action="/dashboard/invitations/{{ $invitation->id }}/other?ca=addGuest" method="POST">
                     @csrf
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Tamu</h1>
