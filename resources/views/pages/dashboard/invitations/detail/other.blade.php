@@ -77,6 +77,9 @@
             <div class="card mt-3">
                 <div class="card-body d-flex flex-column w-100">
                     <p class="fw-bold fs-4" style="margin-top: -4px">Tamu</p>
+                    <p class="text-secondary" style="font-size: 14px; margin-top: -2px">*Setelah menambahkan tamu, Anda bisa
+                        meng-klik tombol
+                        "Lihat" pada kolom Lihat Undangan untuk melihat undangan yang sudah dibuat.</p>
                     <button class="mt-2 btn btn-primary text-white mx-auto mx-md-0 button-add"
                         style="width: max-content; z-index: 20;" data-bs-toggle="modal" data-bs-target="#addGuestModal">
                         <i class="bi bi-pencil-square"></i>
@@ -97,8 +100,8 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $ig->name }}</td>
-                                    <td><a href="/{{ $invitation->slug }}?igc={{ $ig->code }}"
-                                            class="btn btn-warning" target="blank">
+                                    <td><a href="/{{ $invitation->slug }}?igc={{ $ig->code }}" class="btn btn-warning"
+                                            target="blank">
                                             <i class="bi bi-eye"></i>
                                             <span>Lihat</span>
                                         </a>

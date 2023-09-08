@@ -14,7 +14,7 @@ class IndexController extends Controller
         $this->authorize('act-as-customer');
         $products = Product::where('is_active', 1)->latest()->get();
 
-        return view('pages.dashboard.invitations.buy.templates.index', [
+        return view('pages.dashboard.invitations.templates.index', [
             'title' => 'Template',
             'products' => $products,
         ]);

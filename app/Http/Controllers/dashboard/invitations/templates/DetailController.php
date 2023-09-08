@@ -24,7 +24,7 @@ class DetailController extends Controller
             $isProductPurchased = true;
         }
 
-        return view('pages.dashboard.invitations.buy.templates.detail', [
+        return view('pages.dashboard.invitations.templates.detail', [
             'title' => 'Detail Template',
             'product' => $product,
             'isProductPurchased' => $isProductPurchased
