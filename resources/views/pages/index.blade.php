@@ -33,12 +33,12 @@
     <section class="py-5 bg-white">
         <div class="container mx-auto d-flex flex-column">
             <div class="d-flex flex-wrap w-100 template-list">
-                <img src="https://picsum.photos/1000/562" alt="template-list" class="template-list-image rounded">
-                <img src="https://picsum.photos/1000/562" alt="template-list" class="template-list-image rounded">
-                <img src="https://picsum.photos/1000/562" alt="template-list" class="template-list-image rounded">
-                <img src="https://picsum.photos/1000/562" alt="template-list" class="template-list-image rounded">
-                <img src="https://picsum.photos/1000/562" alt="template-list" class="template-list-image rounded">
-                <img src="https://picsum.photos/1000/562" alt="template-list" class="template-list-image rounded">
+                @foreach ($products as $product)
+                    <a href="{{ $product->demo_url }}" class="template-list-item">
+                        <img src="/uploads/{{ $product->thumbnail }}" alt="template-list" class="w-100 h-100 rounded"
+                            style="object-fit: cover">
+                    </a>
+                @endforeach
             </div>
             <a href="/dashboard/invitations/templates" class="btn btn-primary btn-lg text-white mx-auto mt-5"
                 style="width: max-content">
@@ -149,7 +149,7 @@
             gap: 24px;
         }
 
-        .template-list .template-list-image {
+        .template-list .template-list-item {
             width: calc(50% - 12px);
             height: auto;
         }
@@ -168,7 +168,7 @@
                 height: 350px;
             }
 
-            .template-list .template-list-image {
+            .template-list .template-list-item {
                 width: calc(33% - 14px);
                 height: auto;
             }
@@ -189,7 +189,7 @@
                 height: 500px;
             }
 
-            .template-list .template-list-image {
+            .template-list .template-list-item {
                 width: calc(33% - 12px);
                 height: auto;
             }

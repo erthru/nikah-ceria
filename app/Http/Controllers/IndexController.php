@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -9,6 +10,10 @@ class IndexController extends Controller
 {
     public function show(): View
     {
-        return view('pages.index');
+        $products = Product::latest()->take(6)->get();
+        
+        return view('pages.index', [
+            'products' => $products
+        ]);
     }
 }
