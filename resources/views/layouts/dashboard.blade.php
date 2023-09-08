@@ -64,13 +64,13 @@
             </a>
         </div>
         <ul class="d-flex flex-column sidebar-menu">
-            <li class="sidebar-menu-item {{ Request::is('dashboard') ? 'sidebar-menu-item-active' : '' }}">
-                <a href="/dashboard" class="py-3 px-5 d-flex column-gap-4 align-items-center" style="color: inherit;">
-                    <i class="bi bi-speedometer2 fs-3"></i>
-                    <span class="fw-bold">Dashboard</span>
-                </a>
-            </li>
             @can('act-as-admin')
+                <li class="sidebar-menu-item {{ Request::is('dashboard') ? 'sidebar-menu-item-active' : '' }}">
+                    <a href="/dashboard" class="py-3 px-5 d-flex column-gap-4 align-items-center" style="color: inherit;">
+                        <i class="bi bi-speedometer2 fs-3"></i>
+                        <span class="fw-bold">Dashboard</span>
+                    </a>
+                </li>
                 <li
                     class="sidebar-menu-item {{ Request::is('dashboard/customers', 'dashboard/customers/*') ? 'sidebar-menu-item-active' : '' }}">
                     <a href="/dashboard/customers" class="py-3 px-5 d-flex column-gap-4 align-items-center"
