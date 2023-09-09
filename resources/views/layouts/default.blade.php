@@ -98,6 +98,8 @@
                     batasan.</p>
                 <p style="color: #dbdbdb !important; font-size: 14px;">Explore banyak template menarik.
                 </p>
+                <p class="mt-3" style="color: #dbdbdb !important; font-size: 14px;">© 2023 Nikah Ceria
+                </p>
             </div>
             <div class="w-100 d-flex flex-column text-center text-lg-start">
                 <p class="text-white fs-4 fw-bold">Links</p>
