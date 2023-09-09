@@ -12,16 +12,13 @@
     <script src="/assets/bootstrap/js/bootstrap.js"></script>
     <script src="/assets/jquery/js/jquery.js"></script>
     <script src="/assets/datatables-bs5/js/datatables-bs5.js"></script>
-    @yield('style')
     <title>{{ (isset($title) ? $title : 'Dashboard') . ' | Nikah Ceria' }}</title>
 </head>
 
 <body>
     <main>
         p1
-        @yield('content')
     </main>
-    @yield('script')
 </body>
 
 </html>

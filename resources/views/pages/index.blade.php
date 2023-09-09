@@ -26,29 +26,58 @@
                     <p class="text-dark my-auto fs-1 fw-bold" style="line-height: 40px">Tersedia Banyak Template</p>
                     <p class="fs-6 mt-3">Bebas template yang sesuai dengan kebutuhanmu.</p>
                 </div>
-                <img src="https://picsum.photos/1000/562" alt="template" class="mt-4 w-100">
+                <div class="d-flex w-100 template-list flex-wrap gap-3 mt-4">
+                    @foreach ($products as $product)
+                        <a href="{{ $product->demo_url }}" class="template-list-item" target="_blank">
+                            <img src="/uploads/{{ $product->thumbnail }}" alt="template" class="w-100 h-100 rounded"
+                                style="object-fit: cover" />
+                        </a>
+                    @endforeach
+                    <a href="/dashboard/invitations/templates" class="btn btn-primary view-all-template mt-2 mx-auto"
+                        target="_blank">Lihat Semua
+                        Template</a>
+                </div>
             </div>
         </div>
     </section>
-    <section class="py-5 bg-white">
-        <div class="container mx-auto d-flex flex-column">
-            <div class="d-flex flex-wrap w-100 template-list">
-                @foreach ($products as $product)
-                    <a href="{{ $product->demo_url }}" class="template-list-item">
-                        <img src="/uploads/{{ $product->thumbnail }}" alt="template-list" class="w-100 h-100 rounded"
-                            style="object-fit: cover">
-                    </a>
-                @endforeach
+    <section id="howTo" class="py-5 bg-white">
+        <div
+            class="container d-flex w-100 flex-column-reverse row-gap-2 row-gap-lg-0 flex-lg-row mx-auto column-gap-lg-3 align-items-center">
+            <div class="d-flex flex-column mx-auto mx-lg-0 w-100">
+                <div class="my-auto mx-auto mx-lg-0 text-center text-lg-start">
+                    <p class="text-dark my-auto fs-1 fw-bold" style="line-height: 40px">Cara Pembuatan Undangan</p>
+                    <p class="fs-6 mt-3">Pembuatan undangan yang sangat mudah dan cepat.</p>
+                </div>
+                <div class="d-flex align-items-center column-gap-3 w-100 mt-4">
+                    <img src="/images/ill-login-flat.png" class="object-fit: cover" style="width: 55px" alt="how-to">
+                    <p class="text-secondary">1. <a href="/register" class="fw-medium">Daftar</a> terlebih dahulu, atau <a
+                            href="/login" class="fw-medium">login</a> jika sudah punya
+                        akun
+                    </p>
+                </div>
+                <div class="d-flex align-items-center column-gap-3 w-100 mt-2">
+                    <img src="/images/ill-stats.png" class="object-fit: cover" style="width: 55px" alt="how-to">
+                    <p class="text-secondary">2. Masuk pada <a href="/dashboard/invitations" class="fw-medium">menu
+                            undangan</a> dan klik buat undangan
+                    </p>
+                </div>
+                <div class="d-flex align-items-center column-gap-3 w-100 mt-2">
+                    <img src="/images/ill-choose.png" class="object-fit: cover" style="width: 55px" alt="how-to">
+                    <p class="text-secondary">3. Pilih template dan isi semua kolom yang diperlukan
+                    </p>
+                </div>
+                <div class="d-flex align-items-center column-gap-3 w-100 mt-2">
+                    <img src="/images/ill-add-files.png" class="object-fit: cover" style="width: 55px" alt="how-to">
+                    <p class="text-secondary">4. Simpan, dan undangan kamu sudah siap digunakan
+                    </p>
+                </div>
             </div>
-            <a href="/dashboard/invitations/templates" class="btn btn-primary btn-lg text-white mx-auto mt-5"
-                style="width: max-content">
-                Lihat Semua Template
-            </a>
+            <img src="/images/ill-rafiki.png" alt="wedding" class="ill mx-auto mx-lg-0" />
         </div>
     </section>
     <section id="feature" class="py-5">
         <div class="container mx-auto">
-            <p class="text-dark my-auto fs-1 fw-bold" style="line-height: 40px">Fitur</p>
+            <p class="text-dark my-auto fs-1 fw-bold w-full text-center text-lg-start" style="line-height: 40px">Fitur</p>
             <div class="mt-4 d-flex flex-wrap w-100 feature-list">
                 <div class="card feature-list-item">
                     <div class="d-flex column-gap-3 card-body">
@@ -109,7 +138,8 @@
                         <i class="bi bi-gift fs-3 text-primary"></i>
                         <div>
                             <p class="fs-5 fw-bold text-primary">Gift Digital</p>
-                            <p style="font-size: 14px">Mempermudah para tamu untuk mengirimkan amplop / gift secara digital.
+                            <p style="font-size: 14px">Mempermudah para tamu untuk mengirimkan amplop / gift secara
+                                digital.
                             </p>
                         </div>
                     </div>
@@ -145,13 +175,13 @@
             width: 100%;
         }
 
-        .template-list {
-            gap: 24px;
+        .template-list .template-list-item {
+            width: 100%;
+            height: 150px;
         }
 
-        .template-list .template-list-item {
-            width: calc(50% - 12px);
-            height: auto;
+        .view-all-template {
+            width: 100%;
         }
 
         .feature-list {
@@ -169,8 +199,11 @@
             }
 
             .template-list .template-list-item {
-                width: calc(33% - 14px);
-                height: auto;
+                width: calc(50% - 8px);
+            }
+
+            .view-all-template {
+                width: max-content;
             }
 
             .feature-list .feature-list-item {
@@ -182,6 +215,10 @@
             .ill {
                 height: 450px;
             }
+
+            .template-list {
+                padding-left: 40px;
+            }
         }
 
         @media (min-width: 1200px) {
@@ -189,9 +226,8 @@
                 height: 500px;
             }
 
-            .template-list .template-list-item {
-                width: calc(33% - 12px);
-                height: auto;
+            .template-list {
+                padding-left: 120px;
             }
 
             .feature-list .feature-list-item {

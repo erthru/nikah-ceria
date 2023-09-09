@@ -10,7 +10,7 @@ class IndexController extends Controller
 {
     public function show(): View
     {
-        $products = Product::latest()->take(6)->get();
+        $products = Product::latest()->take(4)->get();
         
         return view('pages.index', [
             'products' => $products

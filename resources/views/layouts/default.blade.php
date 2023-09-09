@@ -39,6 +39,10 @@
                             class="text-decoration-none fw-medium link-dark link-primary-hover fw-medium">Template</a>
                     </li>
                     <li>
+                        <a href="/#howTo"
+                            class="text-decoration-none fw-medium link-dark link-primary-hover fw-medium">How To</a>
+                    </li>
+                    <li>
                         <a href="/#feature"
                             class="text-decoration-none fw-medium link-dark link-primary-hover fw-medium">Fitur</a>
                     </li>
@@ -51,7 +55,7 @@
         </div>
     </header>
     <div class="collapse" id="menu" class="d-flex"
-        style="background-color: #023361; left:0; position: fixed; width: 100%; top: 70px;">
+        style="background-color: #023361; left:0; position: absolute; width: 100%; top: 98px;">
         <ul class="mx-auto text-center py-1 mt-2" style="width: max-content;">
             <li class="py-2">
                 <a href="/#" class="text-decoration-none link-white-hover font-medium" style="color: #dbdbdb">
@@ -61,6 +65,11 @@
             <li class="list-group-item border-0 bg-transparent py-2">
                 <a href="/#template" class="text-decoration-none link-white-hover font-medium" style="color: #dbdbdb">
                     <p data-bs-toggle="collapse" data-bs-target="#menu">Template</p>
+                </a>
+            </li>
+            <li class="list-group-item border-0 bg-transparent py-2">
+                <a href="/#howTo" class="text-decoration-none link-white-hover font-medium" style="color: #dbdbdb">
+                    <p data-bs-toggle="collapse" data-bs-target="#menu">How To</p>
                 </a>
             </li>
             <li class="list-group-item border-0 bg-transparent py-2">
@@ -80,17 +89,17 @@
     </main>
     <footer class="py-4" style="background-color: #023361">
         <div class="container d-flex flex-column flex-lg-row column-gap-lg-5 row-gap-4 row-gap-lg-0 w-100 mx-auto">
-            <div class="w-100">
+            <div class="w-100 flex flex-column text-center text-lg-start">
                 <a href="/#">
                     <img src="/images/logo-full-white.png" alt="logo" style="width: 155px;">
                 </a>
-                <p class="text-white mt-3 fs-5">Buat Undangan Pernikahan Gratis</p>
+                <p class="text-white mt-4 fs-5">Buat Undangan Pernikahan Gratis</p>
                 <p style="color: #dbdbdb !important; font-size: 14px;">Buat undangan tanpa adanya
                     batasan.</p>
                 <p style="color: #dbdbdb !important; font-size: 14px;">Explore banyak template menarik.
                 </p>
             </div>
-            <div class="w-100">
+            <div class="w-100 d-flex flex-column text-center text-lg-start">
                 <p class="text-white fs-4 fw-bold">Links</p>
                 <ul class="mt-1">
                     <li class="border-0 bg-transparent py-1">
@@ -99,6 +108,10 @@
                     <li class="border-0 bg-transparent py-1">
                         <a href="/#template" class="text-decoration-none link-white-hover"
                             style="color: #dbdbdb">Template</a>
+                    </li>
+                    <li class="border-0 bg-transparent py-1">
+                        <a href="/#howTo" class="text-decoration-none link-white-hover" style="color: #dbdbdb">How
+                            To</a>
                     </li>
                     <li class="border-0 bg-transparent py-1">
                         <a href="/#feature" class="text-decoration-none link-white-hover"
@@ -110,7 +123,7 @@
                     </li>
                 </ul>
             </div>
-            <div id="contact" class="w-100">
+            <div id="contact" class="w-100 d-flex flex-column text-center text-lg-start">
                 <p class="text-white fs-4 fw-bold">Kontak</p>
                 <p class="mt-2" style="font-size: 14px; color: #dbdbdb !important;">
                     <i class="bi bi-telephone text-white me-1"></i>
