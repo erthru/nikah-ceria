@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Invitation;
 use App\Models\Order;
 use App\Models\Product;
@@ -21,14 +22,14 @@ class IndexController extends Controller
             return redirect('/dashboard/invitations');
         }
 
-        $usersTotal = User::count();
+        $customersTotal = Customer::count();
         $productsTotal = Product::count();
         $invitationsTotal = Invitation::count();
         $ordersTotal = Order::count();
 
         return view('pages.dashboard.index', [
             'title' => 'Dashboard',
-            'usersTotal' => $usersTotal,
+            'customersTotal' => $customersTotal,
             'productsTotal' => $productsTotal,
             'invitationsTotal' => $invitationsTotal,
             'ordersTotal' => $ordersTotal

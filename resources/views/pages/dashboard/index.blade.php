@@ -11,7 +11,7 @@
             <div class="w-100 d-flex gap-3 flex-column flex-md-row">
                 <div class="card w-100 bg-primary text-white">
                     <div class="card-body">
-                        <p class="fw-bold fs-2">{{ number_format($usersTotal, 0, ',', '.') }}</p>
+                        <p class="fw-bold fs-2">{{ number_format($customersTotal, 0, ',', '.') }}</p>
                         <div class="d-flex align-items-center column-gap-2 mt-2">
                             <i class="bi bi-people fs-4"></i>
                             <span class="fs-5 fw-medium">Pengguna</span>
