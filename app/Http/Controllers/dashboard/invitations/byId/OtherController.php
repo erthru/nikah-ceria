@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\dashboard\invitations\detail;
+namespace App\Http\Controllers\dashboard\invitations\byId;
 
 use App\Http\Controllers\Controller;
 use App\Models\Invitation;
@@ -21,7 +21,7 @@ class OtherController extends Controller
         $invitationGuests = InvitationGuest::where('invitation_id', $id)->orderBy('id', 'asc')->get();
         $invitationGifts = InvitationGift::where('invitation_id', $id)->orderBy('id', 'asc')->get();
 
-        return view('pages.dashboard.invitations.detail.other', [
+        return view('pages.dashboard.invitations.byId.other', [
             'title' => 'Detail Invitation',
             'invitation' => $invitation,
             'invitationEvents' => $invitationEvents,

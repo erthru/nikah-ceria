@@ -13,7 +13,7 @@
     <script src="/assets/jquery/js/jquery.js"></script>
     <script src="/assets/datatables-bs5/js/datatables-bs5.js"></script>
     @yield('style')
-    <title>{{ isset($title) ? $title . ' | NIkah Ceria' : 'Nikah Ceria - Buat Undangan Pernikahan Gratis' }}</title>
+    <title>{{ isset($title) ? $title . ' | Nikah Ceria' : 'Nikah Ceria - Buat Undangan Pernikahan Gratis' }}</title>
 </head>
 
 <body class="min-vh-100 d-flex flex-column">

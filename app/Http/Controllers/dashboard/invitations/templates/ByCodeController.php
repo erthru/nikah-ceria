@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
-class DetailController extends Controller
+class ByCodeController extends Controller
 {
     public function show(String $code): View
     {
@@ -24,7 +24,7 @@ class DetailController extends Controller
             $isProductPurchased = true;
         }
 
-        return view('pages.dashboard.invitations.templates.detail', [
+        return view('pages.dashboard.invitations.templates.byCode', [
             'title' => 'Detail Template',
             'product' => $product,
             'isProductPurchased' => $isProductPurchased

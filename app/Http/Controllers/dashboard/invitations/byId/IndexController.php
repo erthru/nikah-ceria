@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\dashboard\invitations\detail;
+namespace App\Http\Controllers\dashboard\invitations\byId;
 
 use App\Http\Controllers\Controller;
 use App\Models\Invitation;
@@ -28,7 +28,7 @@ class IndexController extends Controller
             array_push($products, $po->product);
         }
 
-        return view('pages.dashboard.invitations.detail.index', [
+        return view('pages.dashboard.invitations.byId.index', [
             'title' => 'Detail Invitation',
             'invitation' => $invitation,
             'products' => $products

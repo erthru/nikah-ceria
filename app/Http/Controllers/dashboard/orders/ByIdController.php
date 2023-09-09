@@ -8,13 +8,13 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class DetailController extends Controller
+class ByIdController extends Controller
 {
     public function show(String $id): View
     {
         $order = Order::with(['customer', 'product'])->findOrFail($id);
 
-        return view('pages.dashboard.orders.detail', [
+        return view('pages.dashboard.orders.byId', [
             'title' => 'Detail Orderan',
             'order' => $order,
         ]);

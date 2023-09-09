@@ -9,14 +9,14 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class DetailController extends Controller
+class ByIdController extends Controller
 {
     public function show(String $id): View
     {
         $this->authorize('act-as-admin');
         $product = Product::findOrFail($id);
 
-        return view('pages.dashboard.products.detail', [
+        return view('pages.dashboard.products.byId', [
             'title' => 'Detail Produk',
             'product' => $product
         ]);
