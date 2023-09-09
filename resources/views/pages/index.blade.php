@@ -178,7 +178,7 @@
 
         .template-list .template-list-item {
             width: 100%;
-            height: 150px;
+            height: 180px;
         }
 
         .view-all-template {

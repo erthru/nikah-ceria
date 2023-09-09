@@ -14,7 +14,7 @@ class BySlugController extends Controller
         $igc = $request->query('igc');
         $invitation = Invitation::with(['customer', 'product'])->where('slug', $slug)->first();
 
-        if (!$invitation) {
+        if (!$invitation || ($invitation && !$invitation->is_published)) {
             return abort(404);
         }
 
