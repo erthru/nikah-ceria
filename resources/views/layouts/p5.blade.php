@@ -18,6 +18,7 @@
 
 <body>
     <main>
+        p5
         @yield('content')
     </main>
     @yield('script')

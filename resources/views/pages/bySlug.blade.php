@@ -1,4 +1,4 @@
-@extends('layouts.empty')
+@extends('layouts.' . $invitation->product->code)
 
 @section('content')
     hehe
