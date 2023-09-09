@@ -50,14 +50,15 @@
                 </div>
                 <div class="d-flex align-items-center column-gap-3 w-100 mt-4">
                     <img src="/images/ill-login-flat.png" class="object-fit: cover" style="width: 55px" alt="how-to">
-                    <p class="text-secondary">1. <a href="/register" class="fw-medium">Daftar</a> terlebih dahulu, atau <a
-                            href="/login" class="fw-medium">login</a> jika sudah punya
+                    <p class="text-secondary">1. <a href="/register" target="_blank" class="fw-medium">Daftar</a> terlebih
+                        dahulu, atau <a href="/login" target="_blank" class="fw-medium">login</a> jika sudah punya
                         akun
                     </p>
                 </div>
                 <div class="d-flex align-items-center column-gap-3 w-100 mt-2">
                     <img src="/images/ill-stats.png" class="object-fit: cover" style="width: 55px" alt="how-to">
-                    <p class="text-secondary">2. Masuk pada <a href="/dashboard/invitations" class="fw-medium">menu
+                    <p class="text-secondary">2. Masuk pada <a href="/dashboard/invitations" target="_blank"
+                            class="fw-medium">menu
                             undangan</a> dan klik buat undangan
                     </p>
                 </div>
