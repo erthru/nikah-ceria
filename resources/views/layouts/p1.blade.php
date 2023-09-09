@@ -17,7 +17,8 @@
 
 <body>
     <main>
-        p1
+        <p>template: p1</p>
+        <p>tamu: {{ $invitationGuest->name }}</p>
     </main>
 </body>
 
