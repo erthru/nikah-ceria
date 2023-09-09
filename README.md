@@ -1,4 +1,4 @@
-Just creating this project to refresh my laravel experience :v
+Just creating this project to play with laravel 10
 
 ## How to setup
 
