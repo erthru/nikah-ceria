@@ -40,7 +40,7 @@
             </div>
         </div>
     </section>
-    <section id="howTo" class="py-5 bg-white">
+    <section id="howTo" class="py-3 bg-white">
         <div
             class="container d-flex w-100 flex-column-reverse row-gap-2 row-gap-lg-0 flex-lg-row mx-auto column-gap-lg-3 align-items-center">
             <div class="d-flex flex-column mx-auto mx-lg-0 w-100">
