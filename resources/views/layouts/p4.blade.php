@@ -5,21 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="/assets/bootstrap-icons/css/bootstrap-icons.css">
-    <link rel="stylesheet" href="/assets/datatables-bs5/css/datatables-bs5.css">
-    <link rel="stylesheet" href="/assets/style.css">
-    <script src="/assets/bootstrap/js/bootstrap.js"></script>
-    <script src="/assets/jquery/js/jquery.js"></script>
-    <script src="/assets/datatables-bs5/js/datatables-bs5.js"></script>
-    <title>{{ (isset($title) ? $title : 'Dashboard') . ' | Nikah Ceria' }}</title>
+    <title>{{ $invitation->name . ' | Nikah Ceria' }}</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
 </head>
 
-<body>
-    <main>
-        <p>template: p4</p>
-        <p>tamu: {{ $invitationGuest->name }}</p>
+<body style="background-color: #efefef; display: flex; width: 100%; align-items: center">
+    <main style="margin: auto; width: 100%; max-width: 540px; background-color: white">
+        <!-- INTRO FULL PAGE -->
+        <section style="min-height: 100vh">
+            p4 theme
+        </section>
+        <!-- ACTIVE OR LAST & COUNTDOWN -->
+        <section></section>
+        <!-- CAPTION -->
+        <section></section>
+        <!-- MALE & FEMALE -->
+        <section></section>
+        <!-- MALE & FEMALE -->
+        <section></section>
+        <!-- EVENTS -->
+        <section></section>
+        <!-- LOCATION -->
+        <section></section>
+        <!-- GALLERY -->
+        <section></section>
+        <!-- GIFTS -->
+        <section></section>
+        <!-- GUEST BOX -->
+        <section></section>
     </main>
+    <footer></footer>
 </body>
 
 </html>
