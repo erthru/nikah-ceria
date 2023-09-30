@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/assets/jquery/js/jquery.js"></script>
     <title>{{ $invitation->name . ' | Nikah Ceria' }}</title>
 
     <style>
@@ -44,7 +45,7 @@
                     <p style="width: 100%; text-align: center; font-size: 24px; margin-top: 2px;">
                         {{ $invitationGuest->name }}</p>
                     <a href="#fec"
-                        style="margin: 0 auto; margin-top: 18px; padding: 10px 28px; color: white; border-radius: 6px; border: 1px solid white; background-color: #654924;">Buka
+                        style="margin: 0 auto; margin-top: 18px; padding: 10px 28px; color: white; border-radius: 6px; border: 1px solid white; background-color: saddlebrown;">Buka
                         Undangan</a>
                     <p style="width: 100%; text-align: center; font-size: 12px; margin-top: 10px;">*Mohon maaf apabila
                         ada kesalahan penulisan nama/gelar</p>
@@ -53,14 +54,14 @@
             <img src="/uploads/{{ $invitation->gallery_1 }}" alt="gallery-1"
                 style="height: 100vh; width: 100%; object-fit: cover; position: absolute; top:0; left: 0" />
             <div
-                style="position: absolute; width: 100%; height: 100%; left:0; top:0; background-color: rgba(0, 0, 0, 0.4)">
+                style="position: absolute; width: 100%; height: 100%; left:0; top:0; background-color: rgba(0, 0, 0, 0.6)">
             </div>
         </section>
         <!-- FIRST EVENT COUNTDOWN -->
         <section id="fec"
             style="min-height: 100vh; position: relative; padding: 16px; display: flex; flex-direction: column">
             <div
-                style="padding-bottom: 50px; margin-top: auto; position: relative; z-index: 10; color: chocolate; display: flex; flex-direction: column">
+                style="padding-bottom: 50px; margin-top: auto; position: relative; z-index: 10; color: saddlebrown; display: flex; flex-direction: column">
                 <p style="width: 100%; text-align: center; font-size: 18px; ">The Wedding of</p>
                 <p
                     style="width: 100%; font-weight: 600; text-align: center; font-size: 32px; margin-top: 6px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
@@ -73,19 +74,19 @@
                     {{ $carbon::parse($invitationEvents[0]->event_at)->format('d M Y') }}</p>
                 <div style="margin: 0 auto; display: flex; column-gap: 38px; color: black; margin-top: 38px;">
                     <div style="text-align: center">
-                        <p style="font-size: 34px; font-weight: 600">00</p>
+                        <p id="days" style="font-size: 34px; font-weight: 600">0</p>
                         <p style="margin-top: 4px;">Hari</p>
                     </div>
                     <div style="text-align: center">
-                        <p style="font-size: 34px; font-weight: 600">00</p>
+                        <p id="hours" style="font-size: 34px; font-weight: 600">0</p>
                         <p style="margin-top: 4px;">Jam</p>
                     </div>
                     <div style="text-align: center">
-                        <p style="font-size: 34px; font-weight: 600">00</p>
+                        <p id="minutes" style="font-size: 34px; font-weight: 600">0</p>
                         <p style="margin-top: 4px;">Menit</p>
                     </div>
                     <div style="text-align: center">
-                        <p style="font-size: 34px; font-weight: 600">00</p>
+                        <p id="seconds" style="font-size: 34px; font-weight: 600">0</p>
                         <p style="margin-top: 4px;">Detik</p>
                     </div>
                 </div>
@@ -109,9 +110,8 @@
             </div>
         </section>
         <!-- CAPTION -->
-        <section></section>
-        <!-- MALE & FEMALE -->
-        <section></section>
+        <section style="min-height: 100vh; position: relative; padding: 16px;">
+        </section>
         <!-- MALE & FEMALE -->
         <section></section>
         <!-- EVENTS -->
@@ -127,6 +127,31 @@
     </main>
     <footer></footer>
     <script>
+        const eventAt = {!! json_encode($invitationEvents[0]->event_at) !!}
+        const eventAtParsed = new Date(eventAt)
+        const days = $("#days")
+        const hours = $("#hours")
+        const minutes = $("#minutes")
+        const seconds = $("#seconds")
+
+        const interval = setInterval(() => {
+            const now = new Date().getTime()
+            const distance = eventAtParsed - now
+            const _days = Math.floor(distance / (1000 * 60 * 60 * 24))
+            const _hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+            const _minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+            const _seconds = Math.floor((distance % (1000 * 60)) / 1000)
+
+            if (distance < 0) {
+                clearInterval(interval)
+            } else {
+                days.html(_days)
+                hours.html(_hours)
+                minutes.html(_minutes)
+                seconds.html(_seconds)
+            }
+        }, 1000);
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
