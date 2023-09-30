@@ -300,7 +300,27 @@
             <p style="margin-top: 10px; width: 100%; text-align: center; margin-bottom: 24px;">Berikan ucapan & Do'a
                 restu
             </p>
-            <p style="width: 100%; text-align: center; font-size: 18px; margin-top: 60px;">The Wedding of</p>
+            <form action="/{{ $invitation->slug }}?igc={{ $invitationGuest->code }}" method="POST"
+                style="margin-bottom: 42px;">
+                <textarea placeholder="Ucapkan sesuatu..." rows="5"
+                    style="width: 100%; border-radius: 6px; color: black; padding: 16px;"></textarea>
+                <button
+                    style="padding: 10px 16px; border-radius: 6px; background-color: saddlebrown; color: white; border: 1px solid white; cursor: pointer; margin-top: 10px">Kirim</button>
+            </form>
+            <div style="height: 370px; overflow-y: auto">
+                @foreach ($invitationGuestBooks as $invitationGuestBook)
+                    <p style="font-weight: 600; font-size: 14px;">{{ $invitationGuestBook->invitationGuest->name }}
+                    </p>
+                    <p style="font-size: 12px; margin-top: 4px;">
+                        {{ $carbon::parse(reverseFormatedDateWithTime($invitationGuestBook->created_at))->format('d m Y H:i') }}
+                    </p>
+                    <p style="margin-top: 10px;">{{ $invitationGuestBook->message }}</p>
+                    <div
+                        style="height: 1px; background-color:rgba(255, 255, 255, 1); width: 100%; margin-top: 16px; margin-bottom: 16px;">
+                    </div>
+                @endforeach
+            </div>
+            <p style="width: 100%; text-align: center; font-size: 18px; margin-top: 80px;">The Wedding of</p>
             <p
                 style="width: 100%; font-weight: 600; text-align: center; font-size: 32px; margin-top: 6px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
                 {{ $invitation->name }}

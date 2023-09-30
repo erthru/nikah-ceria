@@ -13,13 +13,13 @@ class InvitationGuestBook extends Model
 
     protected $fillable = [
         'message',
-        'guest_id',
-        'invitation_id'    
+        'invitation_guest_id',
+        'invitation_id'
     ];
 
-    public function guest(): BelongsTo
+    public function invitationGuest(): BelongsTo
     {
-        return $this->belongsTo(Guest::class);
+        return $this->belongsTo(InvitationGuest::class);
     }
 
     public function invitation(): BelongsTo

@@ -10,6 +10,7 @@ use App\Models\Invitation;
 use App\Models\InvitationEvent;
 use App\Models\InvitationGift;
 use App\Models\InvitationGuest;
+use App\Models\InvitationGuestBook;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -132,14 +133,50 @@ class DatabaseSeeder extends Seeder
                 'invitation_id' => $invitation->id
             ]);
 
-            $guest = InvitationGuest::create([
+            $invitationGuest = InvitationGuest::create([
                 'code' => time() . chr(rand(97, 122)) . '-' . chr(rand(97, 122)) . '-' . chr(rand(97, 122)),
                 'name' => 'Mercutio',
                 'invitation_id' => $invitation->id
             ]);
 
+            InvitationGuestBook::create([
+                'message' => 'Happy wedding romeo & juliet',
+                'invitation_guest_id' => $invitationGuest->id,
+                'invitation_id' => $invitation->id
+            ]);
+
+            InvitationGuestBook::create([
+                'message' => 'Big congrats kak',
+                'invitation_guest_id' => $invitationGuest->id,
+                'invitation_id' => $invitation->id
+            ]);
+
+            InvitationGuestBook::create([
+                'message' => 'Selamat ya brader',
+                'invitation_guest_id' => $invitationGuest->id,
+                'invitation_id' => $invitation->id
+            ]);
+
+            InvitationGuestBook::create([
+                'message' => 'Semoga dilancarkan',
+                'invitation_guest_id' => $invitationGuest->id,
+                'invitation_id' => $invitation->id
+            ]);
+
+            InvitationGuestBook::create([
+                'message' => 'Samawa',
+                'invitation_guest_id' => $invitationGuest->id,
+                'invitation_id' => $invitation->id
+            ]);
+
+            InvitationGuestBook::create([
+                'message' => 'Samawa',
+                'invitation_guest_id' => $invitationGuest->id,
+                'invitation_id' => $invitation->id
+            ]);
+
             Product::find($product->id)->update([
-                'demo_url' => '/' . $invitation->slug . '?igc=' . $guest->code,
+                'demo_url' => '/' . $invitation->slug . '?igc=' . $invitationGuest->code,
             ]);
         }
     }

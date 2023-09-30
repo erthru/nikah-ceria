@@ -6,6 +6,7 @@ use App\Models\Invitation;
 use App\Models\InvitationEvent;
 use App\Models\InvitationGift;
 use App\Models\InvitationGuest;
+use App\Models\InvitationGuestBook;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -22,6 +23,7 @@ class BySlugController extends Controller
         }
 
         $invitationGuest = InvitationGuest::where('invitation_id', $invitation->id)->where('code', $igc)->first();
+        $invitationGuestBooks = InvitationGuestBook::with('invitationGuest')->where('invitation_id', $invitation->id)->latest()->get();
         $invitationEvents = InvitationEvent::where('invitation_id', $invitation->id)->orderBy('event_at', 'asc')->get();
         $invitationGifts = InvitationGift::where('invitation_id', $invitation->id)->get();
 
@@ -37,6 +39,7 @@ class BySlugController extends Controller
             'title' => $invitation->name,
             'invitation' => $invitation,
             'invitationGuest' => $invitationGuest,
+            'invitationGuestBooks' => $invitationGuestBooks,
             'invitationEvents' => $invitationEvents,
             'invitationGifts' => $invitationGifts
         ]);
