@@ -129,7 +129,7 @@
         <!-- MALE & FEMALE -->
         <section style="position: relative; display: flex; flex-direction: column; padding: 16px; margin-top: 42px;">
             <div
-                style="padding: 3px; border-radius: 4px; background-color: saddlebrown; width: max-content; margin: 0 auto;">
+                style="padding: 3px; border-radius: 6px; background-color: saddlebrown; width: max-content; margin: 0 auto;">
                 <img src="/uploads/{{ $invitation->male_photo }}" alt="male"
                     style="width: 180px; height: 180px; object-fit: cover;">
             </div>
@@ -146,7 +146,7 @@
                 &
             </p>
             <div
-                style="padding: 3px; border-radius: 4px; background-color: saddlebrown; width: max-content; margin: 28px auto 0 auto;">
+                style="padding: 3px; border-radius: 6px; background-color: saddlebrown; width: max-content; margin: 28px auto 0 auto;">
                 <img src="/uploads/{{ $invitation->female_photo }}" alt="male"
                     style="width: 180px; height: 180px; object-fit: cover;">
             </div>
@@ -162,7 +162,7 @@
         </section>
         <!-- EVENTS -->
         <section
-            style="position: relative; padding: 32px 16px; margin-top: 42px; background-color: saddlebrown; color: white">
+            style="position: relative; padding: 32px; margin-top: 42px; background-color: saddlebrown; color: white">
             <p style="widht: 100%; text-align: center; 6px; font-size: 28px;">
                 Save
             </p>
@@ -170,9 +170,51 @@
                 style="widht: 100%; text-align: center; font-size: 39px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
                 ~ The Date ~
             </p>
+            @foreach ($invitationEvents as $invitationEvent)
+                <div
+                    style="margin-top: 24px; border-radius: 6px; position: relative; height: 566px; background-color: white; display: flex; flex-direction: column">
+                    <img src="/uploads/{{ $invitation['gallery_' . $loop->index + 4] ? $invitation['gallery_' . $loop->index + 4] : $invitation->gallery_1 }}"
+                        alt="gallery-4" style="width: 100%; height: 75%; object-fit: cover; border-radius: 6px">
+                    <div
+                        style="position: absolute; width: 100%; height: 60%; left:0; bottom:0; background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1))">
+                    </div>
+                    <div
+                        style="position: absolute; width: 100%; height: 60%; left:0; bottom:0; background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1))">
+                    </div>
+                    <div
+                        style="position: absolute; width: 100%; height: 60%; left:0; bottom:0; background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1))">
+                    </div>
+                    <div
+                        style="position: absolute; width: 100%; height: 60%; left:0; bottom:0; background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1))">
+                    </div>
+                    <div style="margin-top: -100px; position: relative; z-index: 10; padding: 0 16px;">
+                        <p
+                            style="font-size: 41px; color: saddlebrown; width: 100%; text-align: right; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: 600">
+                            {{ $invitationEvent->name }}</p>
+                        <div style="height: 2px; background-color: black; width: 88%; margin-top: 16px"></div>
+                        <p style="color: black; margin-top: 16px; font-weight: 600">
+                            {{ $carbon::parse(reverseFormatedDateWithTime($invitationEvent->event_at))->dayName }}
+                            {{ $carbon::parse(reverseFormatedDateWithTime($invitationEvent->event_at))->format('d M Y') }}
+                        </p>
+                        <p style="color: black; margin-top: 4px; font-size: 14px">
+                            Pukul
+                            {{ $carbon::parse(reverseFormatedDateWithTime($invitationEvent->event_at))->format('h:m') }}
+                            - Selesai
+                        </p>
+                        <p style="color: black; margin-top: 16px; font-size: 14px;;">Bertempat di</p>
+                        <p style="color: black; margin-top: 4px; font-size: 14px; font-weight: 600">
+                            {{ $invitationEvent->place }}</p>
+                        <p style="color: black; margin-top: 4px; font-size: 14px; margin-bottom: 12px">
+                            {{ $invitationEvent->address }}</p>
+                        @if ($invitationEvent->latitude && $invitationEvent->longitude)
+                            <a href="https://maps.google.com/?q={{ $invitationEvent->latitude }},{{ $invitationEvent->longitude }}"
+                                style="font-size: 12px; background-color: saddlebrown; padding: 6px 12px; border-radius: 6px; color: white">Buka
+                                Lokasi</a>
+                        @endif
+                    </div>
+                </div>
+            @endforeach
         </section>
-        <!-- LOCATION -->
-        <section></section>
         <!-- GALLERY -->
         <section></section>
         <!-- GIFTS -->
