@@ -264,7 +264,33 @@
             </div>
         </section>
         <!-- GIFTS -->
-        <section></section>
+        @if (count($invitationGifts) > 0)
+            <section style="padding: 32px;">
+                <p
+                    style="width: 100%; text-align: center; font-size: 39px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                    Wedding Gift
+                </p>
+                <p style="margin-top: 10px; width: 100%; text-align: center; margin-bottom: 24px;">Tanpa mengurangi
+                    rasa hormat, bagi
+                    <br />
+                    Bapak/Ibu/Saudara/i yang ingin memberikan
+                    <br />
+                    tanda kasih untuk kami, dapat melalui :
+                </p>
+                @foreach ($invitationGifts as $invitationGift)
+                    <div
+                        style="background-color: saddlebrown; width: 100%; padding: 32px; border-radius: 6px; margin-top: 16px; color: white">
+                        <p>Nomor Rekening: <span
+                                style="font-weight: 600; text-transform: uppercase">{{ $invitationGift->bank }} -
+                                {{ $invitationGift->account_number }}</span>
+                        </p>
+                        <p style="text-transform: uppercase; margin-top: 6px">A/N
+                            {{ $invitationGift->account_holder }}</p>
+                        </p>
+                    </div>
+                @endforeach
+            </section>
+        @endif
         <!-- GUEST BOX -->
         <section></section>
     </main>

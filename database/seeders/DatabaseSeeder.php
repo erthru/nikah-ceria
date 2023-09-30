@@ -119,15 +119,15 @@ class DatabaseSeeder extends Seeder
             ]);
 
             InvitationGift::create([
-                'bank' => 'Bank of Rome 1',
-                'account_holder' => 'Romeo Holder',
+                'bank' => 'BOR',
+                'account_holder' => 'Romeo',
                 'account_number' => '1234567899',
                 'invitation_id' => $invitation->id
             ]);
 
             InvitationGift::create([
-                'bank' => 'Bank of Rome 2',
-                'account_holder' => 'Juliet Holder',
+                'bank' => 'BOR',
+                'account_holder' => 'Juliet',
                 'account_number' => '1234567888',
                 'invitation_id' => $invitation->id
             ]);
