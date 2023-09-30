@@ -127,11 +127,50 @@
             </div>
         </section>
         <!-- MALE & FEMALE -->
-        <section style="position: relative; display: flex; flex-direction: column">
-            <div></div>
+        <section style="position: relative; display: flex; flex-direction: column; padding: 16px; margin-top: 42px;">
+            <div
+                style="padding: 3px; border-radius: 4px; background-color: saddlebrown; width: max-content; margin: 0 auto;">
+                <img src="/uploads/{{ $invitation->male_photo }}" alt="male"
+                    style="width: 180px; height: 180px; object-fit: cover;">
+            </div>
+            <p
+                style="width: 100%; text-align: center; margin-top: 14px; font-size: 34px; font-weight: 600; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                {{ $invitation->male_name }}</p>
+            <p style="widht: 100%; text-align: center; margin-top: 6px; font-size: 14px">
+                Putra Dari
+            </p>
+            <p style="widht: 100%; text-align: center; margin-top: 6px;">
+                Bpk. {{ $invitation->male_father_name }} dan Ibu {{ $invitation->male_mother_name }}
+            </p>
+            <p style="widht: 100%; text-align: center; margin-top: 28px; color: saddlebrown; font-size: 46px;">
+                &
+            </p>
+            <div
+                style="padding: 3px; border-radius: 4px; background-color: saddlebrown; width: max-content; margin: 28px auto 0 auto;">
+                <img src="/uploads/{{ $invitation->female_photo }}" alt="male"
+                    style="width: 180px; height: 180px; object-fit: cover;">
+            </div>
+            <p
+                style="width: 100%; text-align: center; margin-top: 14px; font-size: 34px; font-weight: 600; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                {{ $invitation->female_name }}</p>
+            <p style="widht: 100%; text-align: center; margin-top: 6px; font-size: 14px">
+                Putri Dari
+            </p>
+            <p style="widht: 100%; text-align: center; margin-top: 6px;">
+                Bpk. {{ $invitation->female_father_name }} dan Ibu {{ $invitation->female_mother_name }}
+            </p>
         </section>
         <!-- EVENTS -->
-        <section></section>
+        <section
+            style="position: relative; padding: 32px 16px; margin-top: 42px; background-color: saddlebrown; color: white">
+            <p style="widht: 100%; text-align: center; 6px; font-size: 28px;">
+                Save
+            </p>
+            <p
+                style="widht: 100%; text-align: center; font-size: 39px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                ~ The Date ~
+            </p>
+        </section>
         <!-- LOCATION -->
         <section></section>
         <!-- GALLERY -->
