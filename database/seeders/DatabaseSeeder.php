@@ -46,9 +46,9 @@ class DatabaseSeeder extends Seeder
 
         for ($i = 0; $i < 4; $i++) {
             Product::create([
-                'code' => 'p' . $i + 1,
-                'name' => 'Example Product ' . $i + 1,
-                'description' => 'Example short or not so long description that will use on the product ' . $i + 1,
+                'code' => 'b' . $i + 1,
+                'name' => 'Basic Product ' . $i + 1,
+                'description' => 'Basic product with basic theme & colors ' . $i + 1,
                 'thumbnail' => 'placeholder.png',
                 'price' => 0,
                 'discount' => null,
