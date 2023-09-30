@@ -22,6 +22,25 @@
         a {
             text-decoration: none;
         }
+
+        @-moz-keyframes spin {
+            100% {
+                -moz-transform: rotate(360deg);
+            }
+        }
+
+        @-webkit-keyframes spin {
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 
@@ -331,14 +350,37 @@
                     ceria</a></p>
         </section>
     </main>
+    <div style="height: 50px; width: 50px; border-radius: 100%; background-color: saddlebrown; position: fixed; top: 50%; left: 10px; cursor: pointer; display: flex; align-items: center; -webkit-animation:spin 4s linear infinite; -moz-animation:spin 4s linear infinite; animation:spin 4s linear infinite;"
+        onclick="toggleSong()">
+        <svg height="26px" width="26px" fill="#ffffff" version="1.1" id="Capa_1"
+            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 407.868 407.868" xml:space="preserve" stroke="#ffffff" style="margin: 0 auto">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <g>
+                    <path
+                        d="M407.646,65.032l-81.981-35.126l-0.28-0.12l-48.438-0.229v223.156c-5.353-0.924-10.964-1.392-16.708-1.392 c-12.014,0-24.225,2.033-36.292,6.042c-21.232,7.052-39.366,19.44-51.059,34.881c-12.211,16.126-16.052,33.692-10.813,49.462 c7.499,22.577,31.925,36.603,63.746,36.603c12.012,0,24.224-2.033,36.293-6.042c21.232-7.053,39.364-19.44,51.058-34.882 c6.999-9.244,13.476-19.827,13.476-34.548V118.066l81.219,36.027L407.646,65.032z">
+                    </path>
+                    <rect y="46.017" width="245.107" height="64.302"></rect>
+                    <rect y="159.776" width="245.107" height="64.302"></rect>
+                    <rect y="273.534" width="126.315" height="64.302"></rect>
+                </g>
+            </g>
+        </svg>
+    </div>
     <script>
         const eventAt = {!! json_encode($invitationEvents[0]->event_at) !!}
+        const song = {!! json_encode($invitation->song) !!}
         const eventAtParsed = new Date(eventAt)
         const days = $("#days")
         const hours = $("#hours")
         const minutes = $("#minutes")
         const seconds = $("#seconds")
         const previewedGallery = $("#previewedGallery")
+        const audio = new Audio(`/uploads/${song}`)
+        audio.autoplay = true
+        audio.load()
 
         const interval = setInterval(function() {
             const now = new Date().getTime()
@@ -358,6 +400,18 @@
             }
         }, 1000);
 
+        function setPreviewedGallery(gallery) {
+            previewedGallery.attr('src', '/uploads/' + gallery)
+        }
+
+        function toggleSong() {
+            if (audio.paused) {
+                audio.play()
+            } else {
+                audio.pause()
+            }
+        }
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -368,9 +422,9 @@
             });
         });
 
-        function setPreviewedGallery(gallery) {
-            previewedGallery.attr('src', '/uploads/' + gallery)
-        }
+        audio.addEventListener("load", function() {
+            toggleSong()
+        }, true);
     </script>
 </body>
 
