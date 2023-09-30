@@ -15,22 +15,22 @@
         }
 
         html {
-            font-family: Arial, Helvetica, sans-serif
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
         }
     </style>
 </head>
 
 <body style="background-color: #efefef; display: flex; width: 100%; align-items: center">
-    <main style="margin: auto; width: 100%; max-width: 540px; background-color: white; overflow-x: hidden">
+    <main style="margin: auto; width: 100%; max-width: 540px; background-color: white; overflow-x: hidden;">
         <!-- INTRO FULL PAGE -->
-        <section style="min-height: 100vh; position: relative">
+        <section style="min-height: 100vh; position: relative; padding: 16px;">
             <div style="z-index: 10; position: relative; color: white; padding-top: 60px;">
-                <p style="width: 100%; text-align: center; font-size: 24px; ">The Wedding of</p>
+                <p style="width: 100%; text-align: center; font-size: 18px; ">The Wedding of</p>
                 <p
-                    style="width: 100%; font-weight: 600; text-align: center; font-size: 38px; margin-top: 6px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                    style="width: 100%; font-weight: 600; text-align: center; font-size: 32px; margin-top: 6px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
                     {{ $invitation->name }}
                 </p>
-                <p style="width: 100%; text-align: center; margin-top: 8px;">{{ $invitationEvents[0]->event_at }}</p>
+                <p style="width: 100%; text-align: center; margin-top: 8px; font-size: 14px">{{ $invitationEvents[0]->event_at }}</p>
             </div>
             <img src="/uploads/{{ $invitation->gallery_1 }}" alt="gallery-1"
                 style="height: 100vh; width: 100%; object-fit: cover; position: absolute; top:0; left: 0" />

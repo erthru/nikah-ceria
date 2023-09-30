@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
             ]);
 
             $invitation = Invitation::create([
-                'name' => 'Romeo & Juliet ' . $product->code,
+                'name' => 'Romeo & Juliet',
                 'slug' => 'romeo-juliet-' . $product->code,
                 'male_name' => 'Romeo',
                 'female_name' => 'Juliet',
