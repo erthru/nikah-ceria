@@ -110,7 +110,20 @@
             </div>
         </section>
         <!-- CAPTION -->
-        <section style="min-height: 100vh; position: relative; padding: 16px;">
+        <section style="min-height: 100vh; position: relative; display: flex; flex-direction: column">
+            <div
+                style="background-color: white; width: 100%; height: 60px; border-radius: 50%; z-index: 10; position: relative">
+            </div>
+            <div style="padding: 80px 32px; background-color: saddlebrown; margin-top: -28px;">
+                <p style="text-align: center; width: 100%; color: white;">
+                    {{ $invitation->caption_1 }}</p>
+            </div>
+            <div
+                style="background-color: white; width: 100%; height: 60px; border-radius: 50%; z-index: 10; position: relative; margin-top: -28px">
+            </div>
+            <div style="margin-top: -60px"></div>
+            <p style="text-align: center; width: 100%; color: saddlebrown; padding: 0 32px; margin: auto 0;">
+                {{ $invitation->caption_2 }}</p>
         </section>
         <!-- MALE & FEMALE -->
         <section></section>
