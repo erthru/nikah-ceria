@@ -14,7 +14,6 @@ class Invitation extends Model
     protected $fillable = [
         'name',
         'slug',
-        'header',
         'male_name',
         'female_name',
         'male_father_name',

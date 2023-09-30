@@ -19,3 +19,14 @@ yarn-error.log
 /.vscode
 /public/uploads/*
 !/public/uploads/placeholder.png
+!/public/uploads/example-female.jpeg
+!/public/uploads/example-male.jpeg
+!/public/uploads/example-gallery-1.jpeg
+!/public/uploads/example-gallery-2.jpeg
+!/public/uploads/example-gallery-3.jpeg
+!/public/uploads/example-gallery-4.jpeg
+!/public/uploads/example-gallery-5.jpeg
+!/public/uploads/example-gallery-6.jpeg
+!/public/uploads/example-gallery-7.jpeg
+!/public/uploads/example-gallery-8.jpeg
+!/public/uploads/example-song.mp3

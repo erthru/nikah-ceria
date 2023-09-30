@@ -32,7 +32,6 @@ class AddController extends Controller
     {
         $this->authorize('act-as-customer');
         $name = $request->input('name');
-        $header = $request->file('header');
         $male_name = $request->input('male_name');
         $female_name = $request->input('female_name');
         $male_father_name = $request->input('male_father_name');
@@ -58,7 +57,6 @@ class AddController extends Controller
         $product_id = $request->input('product_id');
 
         if (
-            ($header && $header->getSize() / 1024 > 2000) ||
             ($male_photo && $male_photo->getSize() / 1024 > 2000) ||
             ($female_photo && $female_photo->getSize() / 1024 > 2000) ||
             ($gallery_1 && $gallery_1->getSize() / 1024 > 2000) ||
@@ -72,13 +70,6 @@ class AddController extends Controller
             ($song && $song->getSize() / 1024 > 7000)
         ) {
             return redirect('/dashboard/invitations/add')->with('errorMessage', 'Ukuran file terlalu besar')->withInput();
-        }
-
-        $headerName = '';
-
-        if ($header) {
-            $headerName = time() + 1 . '.' . $header->getClientOriginalExtension();
-            $header->move(public_path('/uploads'), $headerName);
         }
 
         $male_photoName = '';
@@ -168,7 +159,6 @@ class AddController extends Controller
         $invitation = Invitation::create([
             'name' => $name,
             'slug' => $slug,
-            'header' => $headerName,
             'male_name' => $male_name,
             'female_name' => $female_name,
             'male_father_name' => $male_father_name,

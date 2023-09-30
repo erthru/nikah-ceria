@@ -54,18 +54,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body" style="background-color: #f4f4f4">
-                        <p class="fw-medium fs-5">Cover / Sampul Halaman</p>
-                        <div class="w-100 mt-2">
-                            <label class="form-label">Upload Cover / Sampul Halaman</label>
-                            <img id="headerPreview" src="/uploads/{{ $invitation->header }}" alt="male-photo"
-                                class="d-block rounded"
-                                style="width: 280px; height: 280px; object-fit: cover; margin-bottom: 16px;" />
-                            <input type="file" class="form-control" name="header" accept=".jpg,.jpeg,.png,.webp,.git"
-                                onchange="onHeaderChange(this)" />
-                            <p style="font-size: 14px; margin-top: 4px">Max size: 2 MB</p>
-                        </div>
-                    </div>
                     <div class="card-body">
                         <p class="fw-medium fs-5">Data Pengantin</p>
                         <div class="d-flex flex-column flex-md-row row-gap-1 column-gap-3 mt-2">
@@ -325,7 +313,6 @@
 
 @section('script')
     <script>
-        const headerPreview = $("#headerPreview")
         const malePhotoPreview = $('#malePhotoPreview')
         const femalePhotoPreview = $('#femalePhotoPreview')
         const caption1 = $("#caption1")
@@ -353,13 +340,6 @@
 
         const caption2Text =
             'Maha Suci Allah SWT, Yang telah menciptakan makhlukNya berpasang-pasangan. Ya Allah, perkenankanlah dan Ridhoilah Pernikahan kami'
-
-        function onHeaderChange(e) {
-            const file = e.files[0]
-            headerPreview.attr('src', URL.createObjectURL(file))
-            headerPreview.removeClass('d-none')
-            headerPreview.addClass('d-block')
-        }
 
         function onMalePhotoChange(e) {
             const file = e.files[0]

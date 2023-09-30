@@ -17,10 +17,14 @@
 </head>
 
 <body style="background-color: #efefef; display: flex; width: 100%; align-items: center">
-    <main style="margin: auto; width: 100%; max-width: 540px; background-color: white">
+    <main style="margin: auto; width: 100%; max-width: 540px; background-color: white; overflow-x: hidden">
         <!-- INTRO FULL PAGE -->
-        <section style="min-height: 100vh">
-            p1 theme
+        <section style="min-height: 100vh; position: relative">
+            <img src="/uploads/{{ $invitation->gallery_1 }}" alt="gallery-1"
+                style="height: 100vh; width: 100%; object-fit: cover" />
+            <div
+                style="position: absolute; width: 100%; height: 100%; left:0; top:0; background-color: rgba(0, 0, 0, 0.4)">
+            </div>
         </section>
         <!-- ACTIVE OR LAST & COUNTDOWN -->
         <section></section>
