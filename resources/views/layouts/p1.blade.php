@@ -17,6 +17,10 @@
         html {
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
         }
+
+        a {
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -39,10 +43,11 @@
                     <p style="width: 100%; text-align: center; font-size: 18px;">Dear:</p>
                     <p style="width: 100%; text-align: center; font-size: 24px; margin-top: 2px;">
                         {{ $invitationGuest->name }}</p>
-                    <button
-                        style="margin: 0 auto; margin-top: 18px; padding: 10px 28px; color: white; border-radius: 6px; border: 1px solid white; background-color: #654924">Buka
-                        Undangan</button>
-                    <p style="width: 100%; text-align: center; font-size: 12px; margin-top: 10px;">*Mohon maaf apabila ada kesalahan penulisan nama/gelar</p>
+                    <a href="#fec"
+                        style="margin: 0 auto; margin-top: 18px; padding: 10px 28px; color: white; border-radius: 6px; border: 1px solid white; background-color: #654924;">Buka
+                        Undangan</a>
+                    <p style="width: 100%; text-align: center; font-size: 12px; margin-top: 10px;">*Mohon maaf apabila
+                        ada kesalahan penulisan nama/gelar</p>
                 </div>
             </div>
             <img src="/uploads/{{ $invitation->gallery_1 }}" alt="gallery-1"
@@ -50,7 +55,7 @@
             <div
                 style="position: absolute; width: 100%; height: 100%; left:0; top:0; background-color: rgba(0, 0, 0, 0.6)">
             </div>
-        </section>
+        </section id="fec">
         <!-- FIRST EVENT COUNTDOWN -->
         <section></section>
         <!-- CAPTION -->
