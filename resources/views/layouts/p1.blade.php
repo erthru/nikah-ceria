@@ -13,6 +13,10 @@
             padding: 0;
             margin: 0;
         }
+
+        html {
+            font-family: Arial, Helvetica, sans-serif
+        }
     </style>
 </head>
 
@@ -20,10 +24,18 @@
     <main style="margin: auto; width: 100%; max-width: 540px; background-color: white; overflow-x: hidden">
         <!-- INTRO FULL PAGE -->
         <section style="min-height: 100vh; position: relative">
+            <div style="z-index: 10; position: relative; color: white; padding-top: 60px;">
+                <p style="width: 100%; text-align: center; font-size: 24px; ">The Wedding of</p>
+                <p
+                    style="width: 100%; font-weight: 600; text-align: center; font-size: 38px; margin-top: 6px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                    {{ $invitation->name }}
+                </p>
+                <p style="width: 100%; text-align: center; margin-top: 8px;">{{ $invitationEvents[0]->event_at }}</p>
+            </div>
             <img src="/uploads/{{ $invitation->gallery_1 }}" alt="gallery-1"
-                style="height: 100vh; width: 100%; object-fit: cover" />
+                style="height: 100vh; width: 100%; object-fit: cover; position: absolute; top:0; left: 0" />
             <div
-                style="position: absolute; width: 100%; height: 100%; left:0; top:0; background-color: rgba(0, 0, 0, 0.4)">
+                style="position: absolute; width: 100%; height: 100%; left:0; top:0; background-color: rgba(0, 0, 0, 0.6)">
             </div>
         </section>
         <!-- ACTIVE OR LAST & COUNTDOWN -->
