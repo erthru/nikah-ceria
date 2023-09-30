@@ -292,9 +292,23 @@
             </section>
         @endif
         <!-- GUEST BOX -->
-        <section></section>
+        <section style="padding: 32px; background-color: saddlebrown; color: white">
+            <p
+                style="width: 100%; text-align: center; font-size: 39px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                Ucapkan Sesuatu
+            </p>
+            <p style="margin-top: 10px; width: 100%; text-align: center; margin-bottom: 24px;">Berikan ucapan & Do'a
+                restu
+            </p>
+            <p style="width: 100%; text-align: center; font-size: 18px; margin-top: 60px;">The Wedding of</p>
+            <p
+                style="width: 100%; font-weight: 600; text-align: center; font-size: 32px; margin-top: 6px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                {{ $invitation->name }}
+            </p>
+            <p style="width: 100%; text-align: center; font-size: 18px; margin-top: 6px; font-size: 14px">Made with <a href="/"
+                    target="_blank" style="color: white; font-weight: 600">Nikah ceria</a></p>
+        </section>
     </main>
-    <footer></footer>
     <script>
         const eventAt = {!! json_encode($invitationEvents[0]->event_at) !!}
         const eventAtParsed = new Date(eventAt)
