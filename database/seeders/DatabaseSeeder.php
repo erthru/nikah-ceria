@@ -99,8 +99,18 @@ class DatabaseSeeder extends Seeder
             ]);
 
             InvitationEvent::create([
-                'name' => 'Akad',
+                'name' => 'Akad Nikah',
                 'event_at' => '2023-12-12T08:00',
+                'place' => 'Rome',
+                'address' => 'Via Giulia, 181',
+                'latitude' => '41.8937196',
+                'longitude' => '12.4680387',
+                'invitation_id' => $invitation->id
+            ]);
+
+            InvitationEvent::create([
+                'name' => 'Resepsi',
+                'event_at' => '2023-12-13T20:00',
                 'place' => 'Rome',
                 'address' => 'Via Giulia, 181',
                 'latitude' => '41.8937196',

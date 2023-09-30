@@ -28,7 +28,7 @@
 <body style="background-color: #efefef; display: flex; width: 100%; align-items: center">
     <main style="margin: auto; width: 100%; max-width: 540px; background-color: white; overflow-x: hidden;">
         <!-- INTRO FULL PAGE -->
-        <section style="min-height: 100vh; position: relative; padding: 16px;">
+        <section style="min-height: 100vh; position: relative; padding: 32px;">
             <div
                 style="z-index: 10; position: absolute; top:0; left:0; color: white; padding-top: 60px; height: 100%; display: flex; flex-direction: column; width: 100%">
                 <p style="width: 100%; text-align: center; font-size: 18px; ">The Wedding of</p>
@@ -60,7 +60,7 @@
         </section>
         <!-- FIRST EVENT COUNTDOWN -->
         <section id="fec"
-            style="min-height: 100vh; position: relative; padding: 16px; display: flex; flex-direction: column">
+            style="min-height: 100vh; position: relative; padding: 32px; display: flex; flex-direction: column">
             <div
                 style="padding-bottom: 50px; margin-top: auto; position: relative; z-index: 10; color: saddlebrown; display: flex; flex-direction: column">
                 <p style="width: 100%; text-align: center; font-size: 18px; ">The Wedding of</p>
@@ -127,7 +127,7 @@
             </div>
         </section>
         <!-- MALE & FEMALE -->
-        <section style="position: relative; display: flex; flex-direction: column; padding: 16px; margin-top: 42px;">
+        <section style="position: relative; display: flex; flex-direction: column; padding: 32px; margin-top: 42px;">
             <div
                 style="padding: 3px; border-radius: 6px; background-color: saddlebrown; width: max-content; margin: 0 auto;">
                 <img src="/uploads/{{ $invitation->male_photo }}" alt="male"
@@ -198,7 +198,7 @@
                         </p>
                         <p style="color: black; margin-top: 4px; font-size: 14px">
                             Pukul
-                            {{ $carbon::parse(reverseFormatedDateWithTime($invitationEvent->event_at))->format('h:m') }}
+                            {{ $carbon::parse(reverseFormatedDateWithTime($invitationEvent->event_at))->format('H:m') }}
                             - Selesai
                         </p>
                         <p style="color: black; margin-top: 16px; font-size: 14px;;">Bertempat di</p>
@@ -216,7 +216,53 @@
             @endforeach
         </section>
         <!-- GALLERY -->
-        <section></section>
+        <section style="padding: 32px;">
+            <p
+                style="width: 100%; text-align: center; font-size: 39px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                Momen Bahagia Kami
+            </p>
+            <p style="width: 100%; text-align: center; font-size: 18px; margin-top: 10px;">Galeri Foto</p>
+            <img id="previewedGallery" src="/uploads/{{ $invitation->gallery_1 }}" alt="previewed-gallery"
+                style="width: 100%; margin-top: 38px; height: 60vh; object-fit: cover; border-radius: 6px">
+            <div style="width: 100%; display: flex; margin-top: 16px; overflow-x: auto; gap: 10px">
+                <img src="/uploads/{{ $invitation->gallery_1 }}" alt="galleries"
+                    style="min-width: 80px; max-width: 80px; min-height: 80px; max-height: 80px; object-fit: cover; border-radius: 6px; cursor: pointer"
+                    onclick="setPreviewedGallery({{ json_encode($invitation->gallery_1) }})" />
+                <img src="/uploads/{{ $invitation->gallery_2 }}" alt="galleries"
+                    style="min-width: 80px; max-width: 80px; min-height: 80px; max-height: 80px; object-fit: cover; border-radius: 6px; cursor: pointer"
+                    onclick="setPreviewedGallery({{ json_encode($invitation->gallery_2) }})" />
+                @if ($invitation->gallery_3)
+                    <img src="/uploads/{{ $invitation->gallery_3 }}" alt="galleries"
+                        style="min-width: 80px; max-width: 80px; min-height: 80px; max-height: 80px; object-fit: cover; border-radius: 6px; cursor: pointer"
+                        onclick="setPreviewedGallery({{ json_encode($invitation->gallery_3) }})" />
+                @endif
+                @if ($invitation->gallery_4)
+                    <img src="/uploads/{{ $invitation->gallery_4 }}" alt="galleries"
+                        style="min-width: 80px; max-width: 80px; min-height: 80px; max-height: 80px; object-fit: cover; border-radius: 6px; cursor: pointer"
+                        onclick="setPreviewedGallery({{ json_encode($invitation->gallery_4) }})" />
+                @endif
+                @if ($invitation->gallery_5)
+                    <img src="/uploads/{{ $invitation->gallery_5 }}" alt="galleries"
+                        style="min-width: 80px; max-width: 80px; min-height: 80px; max-height: 80px; object-fit: cover; border-radius: 6px; cursor: pointer"
+                        onclick="setPreviewedGallery({{ json_encode($invitation->gallery_5) }})" />
+                @endif
+                @if ($invitation->gallery_6)
+                    <img src="/uploads/{{ $invitation->gallery_6 }}" alt="galleries"
+                        style="min-width: 80px; max-width: 80px; min-height: 80px; max-height: 80px; object-fit: cover; border-radius: 6px; cursor: pointer"
+                        onclick="setPreviewedGallery({{ json_encode($invitation->gallery_6) }})" />
+                @endif
+                @if ($invitation->gallery_7)
+                    <img src="/uploads/{{ $invitation->gallery_7 }}" alt="galleries"
+                        style="min-width: 80px; max-width: 80px; min-height: 80px; max-height: 80px; object-fit: cover; border-radius: 6px; cursor: pointer"
+                        onclick="setPreviewedGallery({{ json_encode($invitation->gallery_7) }})" />
+                @endif
+                @if ($invitation->gallery_8)
+                    <img src="/uploads/{{ $invitation->gallery_8 }}" alt="galleries"
+                        style="min-width: 80px; max-width: 80px; min-height: 80px; max-height: 80px; object-fit: cover; border-radius: 6px; cursor: pointer"
+                        onclick="setPreviewedGallery({{ json_encode($invitation->gallery_8) }})" />
+                @endif
+            </div>
+        </section>
         <!-- GIFTS -->
         <section></section>
         <!-- GUEST BOX -->
@@ -230,8 +276,9 @@
         const hours = $("#hours")
         const minutes = $("#minutes")
         const seconds = $("#seconds")
+        const previewedGallery = $("#previewedGallery")
 
-        const interval = setInterval(() => {
+        const interval = setInterval(function() {
             const now = new Date().getTime()
             const distance = eventAtParsed - now
             const _days = Math.floor(distance / (1000 * 60 * 60 * 24))
@@ -258,6 +305,10 @@
                 });
             });
         });
+
+        function setPreviewedGallery(gallery) {
+            previewedGallery.attr('src', '/uploads/' + gallery)
+        }
     </script>
 </body>
 
