@@ -49,8 +49,7 @@ class IndexController extends Controller
         $female_family_order = $request->input('female_family_order');
         $male_photo = $request->file('male_photo');
         $female_photo = $request->file('female_photo');
-        $caption_1 = $request->input('caption_1');
-        $caption_2 = $request->input('caption_2');
+        $caption = $request->input('caption');
         $gallery_1 = $request->file('gallery_1');
         $gallery_2 = $request->file('gallery_2');
         $gallery_3 = $request->file('gallery_3');
@@ -165,8 +164,7 @@ class IndexController extends Controller
             'female_mother_name' => $female_mother_name,
             'male_family_order' => $male_family_order,
             'female_family_order' => $female_family_order,
-            'caption_1' => $caption_1,
-            'caption_2' => $caption_2,
+            'caption' => $caption,
             'is_published' => $is_published,
             'product_id' => $product_id,
             'customer_id' => Auth::user()->customer->id,

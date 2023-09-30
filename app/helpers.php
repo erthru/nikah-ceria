@@ -3,7 +3,15 @@
 if (!function_exists('reverseFormatedDate')) {
     function reverseFormatedDate($date)
     {
-        return implode('/', array_reverse(explode('/', str_replace(' 00:00:00', '', $date))));
+        $dateOnly = explode(' ', $date)[0];
+        return implode('/', array_reverse(explode('/', $dateOnly)));
+    }
+
+    function reverseFormatedDateWithTime($date)
+    {
+        $dateOnly = explode(' ', $date)[0];
+        $timeOnly = explode(' ', $date)[1];
+        return implode('/', array_reverse(explode('/', $dateOnly))) . ' ' . $timeOnly;
     }
 }
 

@@ -96,21 +96,20 @@
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Nama Ayah Pengantin Wanita</label>
-                                        <input value="{{ old('female_father_name') }}" type="text"
-                                            class="form-control" name="female_father_name"
-                                            placeholder="Masukkan Nama Ayah Pengantin Wanita" required />
+                                        <input value="{{ old('female_father_name') }}" type="text" class="form-control"
+                                            name="female_father_name" placeholder="Masukkan Nama Ayah Pengantin Wanita"
+                                            required />
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Nama Ibu Pengantin Wanita</label>
-                                        <input value="{{ old('female_mother_name') }}" type="text"
-                                            class="form-control" name="female_mother_name"
-                                            placeholder="Masukkan Nama Ibu Pengantin Wanita" required />
+                                        <input value="{{ old('female_mother_name') }}" type="text" class="form-control"
+                                            name="female_mother_name" placeholder="Masukkan Nama Ibu Pengantin Wanita"
+                                            required />
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Anak Keberapa Di Keluarga (Pengantin Wanita)</label>
-                                        <input value="{{ old('female_family_order') }}" type="number"
-                                            class="form-control" name="female_family_order" placeholder="Cth: 1"
-                                            required />
+                                        <input value="{{ old('female_family_order') }}" type="number" class="form-control"
+                                            name="female_family_order" placeholder="Cth: 1" required />
                                     </div>
                                 </div>
                             </div>
@@ -139,26 +138,15 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <p class="fw-medium fs-5">Caption</p>
+                            <p class="fw-medium fs-5">Tambahkan Caption</p>
                             <div class="w-100 mb-3 mt-2">
-                                <label class="form-label">Caption 1</label>
-                                <textarea id="caption1" class="form-control" name="caption_1"
-                                    placeholder="Cth: Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. (QS. Ar-Rum 21)"
-                                    required>{{ old('caption_1') }}</textarea>
+                                <label class="form-label">Caption</label>
+                                <textarea id="caption" class="form-control" name="caption"
+                                    placeholder="Cth: Dalam hari yang indah ini, kami mengikatkan diri dalam janji abadi cinta dan kesetiaan. Di antara senyum bahagia, tawa yang tak terhitung, dan mata yang bercahaya, kami memulai babak baru dalam hidup kami bersama. Terima kasih kepada semua yang hadir dalam hari istimewa ini, yang telah membuatnya menjadi momen yang tak terlupakan. Kami berjanji untuk selalu bersama, melalui suka dan duka, dan untuk membangun masa depan yang penuh cinta dan harapan bersama. Ini adalah awal dari petualangan seumur hidup kami, dan kami sangat bersemangat untuk menghadapinya bersama-sama."
+                                    required>{{ old('caption') }}</textarea>
                                 <p class="text-primary fw-medium"
                                     style="margin-top: 4px; font-size: 14px; cursor: pointer;"
-                                    onclick="copyToCaption1(true)">
-                                    Salin Dari Contoh
-                                </p>
-                            </div>
-                            <div class="w-100">
-                                <label class="form-label">Caption 2</label>
-                                <textarea id="caption2" class="form-control" name="caption_2"
-                                    placeholder="Cth: Maha Suci Allah SWT, Yang telah menciptakan makhlukNya berpasang-pasangan. Ya Allah, perkenankanlah dan Ridhoilah Pernikahan kami"
-                                    required>{{ old('caption_2') }}</textarea>
-                                <p class="text-primary fw-medium"
-                                    style="margin-top: 4px; font-size: 14px; cursor: pointer;"
-                                    onclick="copyToCaption2(true)">
+                                    onclick="copyToCaption(true)">
                                     Salin Dari Contoh
                                 </p>
                             </div>
@@ -291,8 +279,7 @@
     <script>
         const malePhotoPreview = $('#malePhotoPreview')
         const femalePhotoPreview = $('#femalePhotoPreview')
-        const caption1 = $("#caption1")
-        const caption2 = $("#caption2")
+        const caption = $("#caption")
         const gallery1Icon = $("#gallery1Icon")
         const gallery1Preview = $("#gallery1Preview")
         const gallery2Icon = $("#gallery2Icon")
@@ -311,12 +298,9 @@
         const gallery8Preview = $("#gallery8Preview")
         const songPreivew = $("#songPreview")
 
-        const caption1Text =
-            'Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. (QS. Ar-Rum 21)'
+        const captionText =
+            'Dalam hari yang indah ini, kami mengikatkan diri dalam janji abadi cinta dan kesetiaan. Di antara senyum bahagia, tawa yang tak terhitung, dan mata yang bercahaya, kami memulai babak baru dalam hidup kami bersama. Terima kasih kepada semua yang hadir dalam hari istimewa ini, yang telah membuatnya menjadi momen yang tak terlupakan. Kami berjanji untuk selalu bersama, melalui suka dan duka, dan untuk membangun masa depan yang penuh cinta dan harapan bersama. Ini adalah awal dari petualangan seumur hidup kami, dan kami sangat bersemangat untuk menghadapinya bersama-sama.'
 
-        const caption2Text =
-            'Maha Suci Allah SWT, Yang telah menciptakan makhlukNya berpasang-pasangan. Ya Allah, perkenankanlah dan Ridhoilah Pernikahan kami'
-            
         function onMalePhotoChange(e) {
             const file = e.files[0]
             malePhotoPreview.attr('src', URL.createObjectURL(file))
@@ -331,12 +315,8 @@
             femalePhotoPreview.addClass('d-block')
         }
 
-        function copyToCaption1(e) {
-            caption1.html(caption1Text)
-        }
-
-        function copyToCaption2(e) {
-            caption2.html(caption2Text)
+        function copyToCaption(e) {
+            caption.html(captionText)
         }
 
         function onGallery1Change(e) {

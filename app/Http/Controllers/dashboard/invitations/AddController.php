@@ -42,8 +42,7 @@ class AddController extends Controller
         $female_family_order = $request->input('female_family_order');
         $male_photo = $request->file('male_photo');
         $female_photo = $request->file('female_photo');
-        $caption_1 = $request->input('caption_1');
-        $caption_2 = $request->input('caption_2');
+        $caption = $request->input('caption');
         $gallery_1 = $request->file('gallery_1');
         $gallery_2 = $request->file('gallery_2');
         $gallery_3 = $request->file('gallery_3');
@@ -169,8 +168,7 @@ class AddController extends Controller
             'female_family_order' => $female_family_order,
             'male_photo' => $male_photoName,
             'female_photo' => $female_photoName,
-            'caption_1' => $caption_1,
-            'caption_2' => $caption_2,
+            'caption' => $caption,
             'gallery_1' => $gallery_1Name,
             'gallery_2' => $gallery_2Name,
             'gallery_3' => $gallery_3Name,

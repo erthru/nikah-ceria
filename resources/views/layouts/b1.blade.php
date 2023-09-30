@@ -37,8 +37,9 @@
                     {{ $invitation->name }}
                 </p>
                 <p style="width: 100%; text-align: center; margin-top: 8px; font-size: 14px">
-                    {{ $carbon::parse($invitationEvents[0]->event_at)->dayName }}
-                    {{ $carbon::parse($invitationEvents[0]->event_at)->format('d M Y') }}</p>
+                    {{ $carbon::parse(reverseFormatedDateWithTime($invitationEvents[0]->event_at))->dayName }}
+                    {{ $carbon::parse(reverseFormatedDateWithTime($invitationEvents[0]->event_at))->format('d M Y') }}
+                </p>
                 <div
                     style="margin-top: auto; padding-bottom: 100px; display: flex; width: 100%; flex-direction: column">
                     <p style="width: 100%; text-align: center; font-size: 18px;">Dear:</p>
@@ -70,8 +71,9 @@
                 <p style="width: 100%; text-align: center; margin-top: 8px; font-size: 14px">
                     We invited you to celebrate our wedding</p>
                 <p style="width: 100%; text-align: center; margin-top: 4px; font-size: 14px">
-                    {{ $carbon::parse($invitationEvents[0]->event_at)->dayName }}
-                    {{ $carbon::parse($invitationEvents[0]->event_at)->format('d M Y') }}</p>
+                    {{ $carbon::parse(reverseFormatedDateWithTime($invitationEvents[0]->event_at))->dayName }}
+                    {{ $carbon::parse(reverseFormatedDateWithTime($invitationEvents[0]->event_at))->format('d M Y') }}
+                </p>
                 <div style="margin: 0 auto; display: flex; column-gap: 38px; color: black; margin-top: 38px;">
                     <div style="text-align: center">
                         <p id="days" style="font-size: 34px; font-weight: 600">0</p>
@@ -110,23 +112,24 @@
             </div>
         </section>
         <!-- CAPTION -->
-        <section style="min-height: 100vh; position: relative; display: flex; flex-direction: column">
+        <section style="position: relative; display: flex; flex-direction: column">
             <div
                 style="background-color: white; width: 100%; height: 60px; border-radius: 50%; z-index: 10; position: relative">
             </div>
             <div style="padding: 80px 32px; background-color: saddlebrown; margin-top: -28px;">
-                <p style="text-align: center; width: 100%; color: white;">
-                    {{ $invitation->caption_1 }}</p>
+                <img src="/uploads/{{ $invitation->gallery_3 ? $invitation->gallery_3 : $invitation->gallery_2 }}"
+                    alt="gallery-3" style="width: 100%; height: 250px; object-fit: cover" />
+                <p style="text-align: justify; width: 100%; color: white; margin-top: 16px">
+                    {{ $invitation->caption }}</p>
             </div>
             <div
                 style="background-color: white; width: 100%; height: 60px; border-radius: 50%; z-index: 10; position: relative; margin-top: -28px">
             </div>
-            <div style="margin-top: -60px"></div>
-            <p style="text-align: center; width: 100%; color: saddlebrown; padding: 0 32px; margin: auto 0;">
-                {{ $invitation->caption_2 }}</p>
         </section>
         <!-- MALE & FEMALE -->
-        <section></section>
+        <section style="position: relative; display: flex; flex-direction: column">
+            <div></div>
+        </section>
         <!-- EVENTS -->
         <section></section>
         <!-- LOCATION -->

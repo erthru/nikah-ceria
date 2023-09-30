@@ -6,6 +6,7 @@ use App\Models\Invitation;
 use App\Models\InvitationEvent;
 use App\Models\InvitationGift;
 use App\Models\InvitationGuest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -23,6 +24,10 @@ class BySlugController extends Controller
         $invitationGuest = InvitationGuest::where('invitation_id', $invitation->id)->where('code', $igc)->first();
         $invitationEvents = InvitationEvent::where('invitation_id', $invitation->id)->orderBy('event_at', 'asc')->get();
         $invitationGifts = InvitationGift::where('invitation_id', $invitation->id)->get();
+
+        if (count($invitationEvents) === 0) {
+            return abort(404);
+        }
 
         if (!$invitationGuest) {
             return abort(404);
