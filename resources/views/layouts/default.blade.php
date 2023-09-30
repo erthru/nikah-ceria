@@ -98,7 +98,7 @@
                     batasan.</p>
                 <p style="color: #dbdbdb !important; font-size: 14px;">Explore banyak template menarik.
                 </p>
-                <p style="color: #dbdbdb; font-size: 14px">Example couple taken from <a
+                <p style="color: #dbdbdb; font-size: 14px">Contoh couple diambil dari <a
                         href="https://www.pexels.com/@qmanfotos/" target="_blank" class="fw-bold" style="color: #dbdbdb;">Pexels</a></p>
                 <p class="mt-3" style="color: #dbdbdb !important; font-size: 14px;">© 2023 Nikah Ceria
                 </p>

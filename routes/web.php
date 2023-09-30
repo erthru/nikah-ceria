@@ -65,3 +65,4 @@ Route::get('/dashboard/orders/{id}', [DashboardOrdersByIdController::class, 'sho
 Route::put('/dashboard/orders/{id}', [DashboardOrdersByIdController::class, 'customActionPut'])->middleware('auth');
 Route::get('/dashboard/logout', [DashboardLogoutController::class, 'show'])->middleware('auth');
 Route::get('/{slug}', [BySlugController::class, 'show']);
+Route::post('/{slug}', [BySlugController::class, 'store']);

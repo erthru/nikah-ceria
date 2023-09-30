@@ -7,7 +7,7 @@ use App\Models\InvitationEvent;
 use App\Models\InvitationGift;
 use App\Models\InvitationGuest;
 use App\Models\InvitationGuestBook;
-use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -43,5 +43,27 @@ class BySlugController extends Controller
             'invitationEvents' => $invitationEvents,
             'invitationGifts' => $invitationGifts
         ]);
+    }
+
+    public function store(String $slug, Request $request): RedirectResponse
+    {
+        $message = $request->input('message');
+        $igc = $request->query('igc');
+        $invitation = Invitation::with(['customer', 'product'])->where('slug', $slug)->first();
+
+        if (!$invitation || ($invitation && !$invitation->is_published)) {
+            return abort(404);
+        }
+
+        $invitationGuest = InvitationGuest::where('invitation_id', $invitation->id)->where('code', $igc)->first();
+
+        InvitationGuestBook::create([
+            'message' => $message,
+            'invitation_guest_id' => $invitationGuest->id,
+            'invitation_id' => $invitation->id
+        ]);
+
+
+        return redirect('/' . $slug . '?igc=' . $igc . '#guestBooks');
     }
 }

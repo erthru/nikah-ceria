@@ -292,7 +292,7 @@
             </section>
         @endif
         <!-- GUEST BOX -->
-        <section style="padding: 32px; background-color: saddlebrown; color: white">
+        <section id="guestBooks" style="padding: 32px; background-color: saddlebrown; color: white">
             <p
                 style="width: 100%; text-align: center; font-size: 39px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
                 Ucapkan Sesuatu
@@ -302,7 +302,8 @@
             </p>
             <form action="/{{ $invitation->slug }}?igc={{ $invitationGuest->code }}" method="POST"
                 style="margin-bottom: 42px;">
-                <textarea placeholder="Ucapkan sesuatu..." rows="5"
+                @csrf
+                <textarea placeholder="Ucapkan sesuatu..." rows="5" name="message"
                     style="width: 100%; border-radius: 6px; color: black; padding: 16px;"></textarea>
                 <button
                     style="padding: 10px 16px; border-radius: 6px; background-color: saddlebrown; color: white; border: 1px solid white; cursor: pointer; margin-top: 10px">Kirim</button>
