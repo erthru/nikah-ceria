@@ -305,8 +305,9 @@
                 style="width: 100%; font-weight: 600; text-align: center; font-size: 32px; margin-top: 6px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
                 {{ $invitation->name }}
             </p>
-            <p style="width: 100%; text-align: center; font-size: 18px; margin-top: 6px; font-size: 14px">Made with <a href="/"
-                    target="_blank" style="color: white; font-weight: 600">Nikah ceria</a></p>
+            <p style="width: 100%; text-align: center; font-size: 18px; margin-top: 6px; font-size: 14px">Ayo buat
+                undangan gratis dengan <a href="/" target="_blank" style="color: white; font-weight: 600">Nikah
+                    ceria</a></p>
         </section>
     </main>
     <script>
