@@ -98,6 +98,8 @@
                     batasan.</p>
                 <p style="color: #dbdbdb !important; font-size: 14px;">Explore banyak template menarik.
                 </p>
+                <p style="color: #dbdbdb; font-size: 14px">Example couple taken from <a
+                        href="https://www.pexels.com/@qmanfotos/" target="_blank" class="fw-bold" style="color: #dbdbdb;">Pexels</a></p>
                 <p class="mt-3" style="color: #dbdbdb !important; font-size: 14px;">© 2023 Nikah Ceria
                 </p>
             </div>
@@ -105,7 +107,8 @@
                 <p class="text-white fs-4 fw-bold">Links</p>
                 <ul class="mt-1">
                     <li class="border-0 bg-transparent py-1">
-                        <a href="/#" class="text-decoration-none link-white-hover" style="color: #dbdbdb">Home</a>
+                        <a href="/#" class="text-decoration-none link-white-hover"
+                            style="color: #dbdbdb">Home</a>
                     </li>
                     <li class="border-0 bg-transparent py-1">
                         <a href="/#template" class="text-decoration-none link-white-hover"
