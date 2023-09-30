@@ -327,7 +327,7 @@
                 <button
                     style="padding: 10px 16px; border-radius: 6px; background-color: saddlebrown; color: white; border: 1px solid white; cursor: pointer; margin-top: 10px">Kirim</button>
             </form>
-            <div style="height: 370px; overflow-y: auto">
+            <div style="height: {{ count($invitationGuestBooks) > 0 ? '370px' : '0' }}; overflow-y: auto">
                 @foreach ($invitationGuestBooks as $invitationGuestBook)
                     <p style="font-weight: 600; font-size: 14px;">{{ $invitationGuestBook->invitationGuest->name }}
                     </p>
@@ -350,7 +350,7 @@
                     ceria</a></p>
         </section>
     </main>
-    <div style="height: 50px; width: 50px; border-radius: 100%; background-color: saddlebrown; position: fixed; top: 50%; left: 10px; cursor: pointer; display: flex; align-items: center; -webkit-animation:spin 4s linear infinite; -moz-animation:spin 4s linear infinite; animation:spin 4s linear infinite;"
+    <div style="height: 50px; width: 50px; border-radius: 100%; background-color: saddlebrown; position: fixed; top: 50%; left: 10px; cursor: pointer; display: flex; align-items: center; -webkit-animation:spin 4s linear infinite; -moz-animation:spin 4s linear infinite; animation:spin 4s linear infinite; z-index: 50"
         onclick="toggleSong()">
         <svg height="26px" width="26px" fill="#ffffff" version="1.1" id="Capa_1"
             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
