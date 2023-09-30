@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
                 'code' => 'b' . $i + 1,
                 'name' => 'Basic Product ' . $i + 1,
                 'description' => 'Basic product with basic theme & colors ' . $i + 1,
-                'thumbnail' => 'placeholder.png',
+                'thumbnail' => 'b' . $i + 1 . '-template.jpeg',
                 'price' => 0,
                 'discount' => null,
                 'discount_expires_at' => null,
