@@ -37,8 +37,8 @@
                     {{ $invitation->name }}
                 </p>
                 <p style="width: 100%; text-align: center; margin-top: 8px; font-size: 14px">
-                    {{ $carbon::parse(reverseFormatedDateWithTime($invitationEvents[0]->event_at))->dayName }}
-                    {{ $carbon::parse(reverseFormatedDateWithTime($invitationEvents[0]->event_at))->format('d M Y') }}
+                    {{ $carbon::parse(reverseFormatedDate($invitationEvents[0]->event_at))->dayName }}
+                    {{ $carbon::parse(reverseFormatedDate($invitationEvents[0]->event_at))->format('d M Y') }}
                 </p>
                 <div
                     style="margin-top: auto; padding-bottom: 100px; display: flex; width: 100%; flex-direction: column">
@@ -71,8 +71,8 @@
                 <p style="width: 100%; text-align: center; margin-top: 8px; font-size: 14px">
                     We invited you to celebrate our wedding</p>
                 <p style="width: 100%; text-align: center; margin-top: 4px; font-size: 14px">
-                    {{ $carbon::parse(reverseFormatedDateWithTime($invitationEvents[0]->event_at))->dayName }}
-                    {{ $carbon::parse(reverseFormatedDateWithTime($invitationEvents[0]->event_at))->format('d M Y') }}
+                    {{ $carbon::parse(reverseFormatedDate($invitationEvents[0]->event_at))->dayName }}
+                    {{ $carbon::parse(reverseFormatedDate($invitationEvents[0]->event_at))->format('d M Y') }}
                 </p>
                 <div style="margin: 0 auto; display: flex; column-gap: 38px; color: black; margin-top: 38px;">
                     <div style="text-align: center">
@@ -112,7 +112,7 @@
             </div>
         </section>
         <!-- CAPTION -->
-        <section style="position: relative; display: flex; flex-direction: column">
+        <section style="position: relative; display: flex; flex-direction: column; margin-top: -20px;">
             <div
                 style="background-color: white; width: 100%; height: 60px; border-radius: 50%; z-index: 10; position: relative">
             </div>
