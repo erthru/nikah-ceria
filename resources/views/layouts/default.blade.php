@@ -132,7 +132,7 @@
                 <p class="text-white fs-4 fw-bold">Kontak</p>
                 <p class="mt-2" style="font-size: 14px; color: #dbdbdb !important;">
                     <i class="bi bi-telephone text-white me-1"></i>
-                    <span>(+62)822 9338 9523</span>
+                    <span>(+62)812 3456 7890</span>
                 </p>
                 <p style="font-size: 14px; color: #dbdbdb !important;">
                     <i class="bi bi-envelope text-white me-1"></i>
